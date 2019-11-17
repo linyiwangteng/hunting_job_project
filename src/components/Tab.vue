@@ -1,23 +1,156 @@
 <template>
-  <div>
-      <a-tabs defaultActiveKey="1" @change="callback">
-      <a-tab-pane tab="Tab 1" key="1"><a href="/home.html#/">home pave</a></a-tab-pane>
-      <a-tab-pane tab="Tab 2" key="2" forceRender><a href="/center.html#/">center page</a></a-tab-pane>
-      <a-tab-pane tab="Tab 3" key="3">Content of Tab Pane 3</a-tab-pane>
-    </a-tabs>
-  </div>
+  <header class="public-header">
+      <div class="header-part">
+        <div class="main-part header-position">
+          <span class="city-position">
+            <i class="icon-location"></i>
+            <span>当前城市：</span>
+            <span>所有城市</span>
+          </span>
+          <span class="login-box">
+            <i class="icon-user"></i>
+            <span>
+              <a href="center.html#/">
+              求职者登录</a></span>
+            <i class="divide">｜</i>
+            <span><a href="javascript:;">企业注册</a></span>
+          </span>
+        </div>
+      </div>
+      <nav class="nav-tab">
+        <div class="main-part nav-position">
+          <img src="./img/logo.png" alt="logo" class="site-logo">
+          <img src="./img/pc-culture.png" alt="culture" class="pc-culture">
+          <ul class="tabs-box">
+            <li class="active">首页</li>
+            <li>职位</li>
+            <li>企业</li>
+            <li>校院招生</li>
+            <li>机构培训</li>
+            <li>咨询中心</li>
+          </ul>
+        </div>
+      </nav>
+  </header>
 </template>
 
 <script>
 export default {
-    methods: {
-        callback(val){
-            console.log(val)
-        }
-    }
+  
 }
 </script>
 
-<style>
-
+<style lang="less">
+  @import '~@/assets/variable';
+  i{
+    font-style: normal;
+  }
+  a{
+    color: #ffffff;
+  }
+  .public-header{
+    position: relative;
+    width: 100%;
+    min-width: @mainwidth;
+    .header-part{
+      height: 37px;
+      background: @maincolor;
+    }
+    
+    .main-part{
+      width: @mainwidth;
+      height: 100%;
+      margin: 0 auto;
+    }
+    .header-position{
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+    .city-position{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 14px;
+      font-weight: bold;
+      color: #ffffff;
+      margin-right: 32px;
+    }
+    .icon-location{
+      display: block;
+      width: 10px;
+      height: 12px;
+      background: url('./img/icon-location.png') no-repeat center;
+      background-size: 100% auto;
+      
+      margin-right: 4px;
+    }
+    .login-box{
+      position: relative;
+      width: 197px;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: @logincolor;
+      color: #ffffff;
+      a{
+        color: #ffffff;
+      }
+    }
+    .icon-user{
+      display: block;
+      width: 13px;
+      height: 11px;
+      background: url('./img/icon-user.png') no-repeat center;
+      background-size: 100% auto;
+      margin-right: 4px;
+    }
+    .divide{
+      padding: 0 4px;
+    }
+    .nav-tab{
+      height: 88px;
+      background: @subcolor;
+    } 
+    .nav-position{
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+    
+    }
+    .site-logo{
+      width: 324px;
+      height: 88px;
+      margin-right: 72px;
+    }
+    .pc-culture{
+      width: 157px;
+      height: 51px;
+      margin-right: 56px;
+    }
+    .tabs-box{
+      width: 570px;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0;
+      margin: 0;
+      li{
+        height: 100%;
+        padding: 0 20px;
+        font-size: 18px;
+        color: #ffffff;
+        line-height: 88px;
+        cursor: pointer;
+        &.active{
+          background: @logincolor;
+        }
+        &:hover{
+          background: @logincolor;
+        }
+      }
+    }
+  }
 </style>
