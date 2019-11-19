@@ -3,13 +3,19 @@
     <tab></tab>
     <!-- <div>this is a home window page</div> -->
     <router-view/>
+    <my-footer></my-footer>
+    <right-contact class="fixed"></right-contact>
   </div>
 </template>
 <script>
-import Tab from '@/components/Tab'
+import Tab from '@/components/Tab';
+import MyFooter from '@/components/Footer'
+import RightContact from '@/components/Right-contact'
 export default {
   components:{
-    Tab
+    Tab,
+    MyFooter,
+    RightContact
   }
 }
 </script>
@@ -22,5 +28,10 @@ export default {
   color: #000000;
   background: #ffffff;
 }
-
+.fixed{
+  position: fixed;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
 </style>

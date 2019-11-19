@@ -7,10 +7,10 @@
     <ul class="recommend-list">
       <li v-for="item in 6" :key="item">
         <slot name="default">
-        <div class="school-logo">
-          <img src="@/assets/universities/hebgydx.png" alt="" class="logo-img">
-        </div>
-        <p>成立于****年  ****   ****<br/>招聘*****人</p>
+          <div class="school-logo">
+            <img src="@/assets/universities/hebgydx.png" alt="" class="logo-img">
+          </div>
+          <p>成立于****年  ****   ****<br/>招聘*****人</p>
         </slot>
       </li>
     </ul>
@@ -72,6 +72,9 @@ export default {
     border: 1px solid #ebefee;
     margin-top: 16px;
     padding:  0 18px;
+    &:hover{
+      box-shadow: 0 0 0 4px rgba(0,0,0,0.02);
+    }
     .school-logo{
       width: 348px;
       height: 121px;
