@@ -1,21 +1,23 @@
 <template>
   <div id="app">
-      <tab></tab>
-      <div>this is a center window page</div>
-    <router-view/>
+    <tab></tab>
+    <div>this is a center window page</div>
+    <div class="center-warp">
+      <router-view />
+    </div>
   </div>
 </template>
 <script>
-import Tab from '@/components/Tab'
+import Tab from "@/components/Tab";
 export default {
-    components: {
-        Tab
-    }
-}
+  components: {
+    Tab
+  }
+};
 </script>
 <style lang="less">
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -33,5 +35,10 @@ export default {
       color: #42b983;
     }
   }
+}
+
+.center-warp{
+  width: 1182px;
+  margin: 0 auto;
 }
 </style>
