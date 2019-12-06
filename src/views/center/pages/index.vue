@@ -105,7 +105,140 @@
       <div class="center-right-img">
         <img :src="centerBanner" alt />
       </div>
+      <div class="right-title">为您优选</div>
       <ul class="clearfix position_list_ul">
+        <li class="position_list_item default_list">
+          <span class="top_icon direct_recruitment" style="display: inline;"></span>
+          <div class="position-top">
+            <div class="position-item-title">
+              移动APP测试专家
+              <span class="title-tip">[1天前发布]</span>
+            </div>
+            <div class="position-title-desc">经验5-10年不限</div>
+            <div class="postion-money">30K-60K</div>
+          </div>
+          <div class="position-bottom">
+            <div class="company-item">
+              <div class="cmp-img">
+                <img :src="imgUrl" alt />
+              </div>
+              <div class="cmp-msg">
+                <div class="cmp-name">云朵课堂</div>
+                <div class="cmp-desc">教育 科技</div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="position_list_item default_list">
+          <span class="top_icon direct_recruitment" style="display: inline;"></span>
+          <div class="position-top">
+            <div class="position-item-title">
+              移动APP测试专家
+              <span class="title-tip">[1天前发布]</span>
+            </div>
+            <div class="position-title-desc">经验5-10年不限</div>
+            <div class="postion-money">30K-60K</div>
+          </div>
+          <div class="position-bottom">
+            <div class="company-item">
+              <div class="cmp-img">
+                <img :src="imgUrl" alt />
+              </div>
+              <div class="cmp-msg">
+                <div class="cmp-name">云朵课堂</div>
+                <div class="cmp-desc">教育 科技</div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="position_list_item default_list">
+          <span class="top_icon direct_recruitment" style="display: inline;"></span>
+          <div class="position-top">
+            <div class="position-item-title">
+              移动APP测试专家
+              <span class="title-tip">[1天前发布]</span>
+            </div>
+            <div class="position-title-desc">经验5-10年不限</div>
+            <div class="postion-money">30K-60K</div>
+          </div>
+          <div class="position-bottom">
+            <div class="company-item">
+              <div class="cmp-img">
+                <img :src="imgUrl" alt />
+              </div>
+              <div class="cmp-msg">
+                <div class="cmp-name">云朵课堂</div>
+                <div class="cmp-desc">教育 科技</div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="position_list_item default_list">
+          <span class="top_icon direct_recruitment" style="display: inline;"></span>
+          <div class="position-top">
+            <div class="position-item-title">
+              移动APP测试专家
+              <span class="title-tip">[1天前发布]</span>
+            </div>
+            <div class="position-title-desc">经验5-10年不限</div>
+            <div class="postion-money">30K-60K</div>
+          </div>
+          <div class="position-bottom">
+            <div class="company-item">
+              <div class="cmp-img">
+                <img :src="imgUrl" alt />
+              </div>
+              <div class="cmp-msg">
+                <div class="cmp-name">云朵课堂</div>
+                <div class="cmp-desc">教育 科技</div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="position_list_item default_list">
+          <span class="top_icon direct_recruitment" style="display: inline;"></span>
+          <div class="position-top">
+            <div class="position-item-title">
+              移动APP测试专家
+              <span class="title-tip">[1天前发布]</span>
+            </div>
+            <div class="position-title-desc">经验5-10年不限</div>
+            <div class="postion-money">30K-60K</div>
+          </div>
+          <div class="position-bottom">
+            <div class="company-item">
+              <div class="cmp-img">
+                <img :src="imgUrl" alt />
+              </div>
+              <div class="cmp-msg">
+                <div class="cmp-name">云朵课堂</div>
+                <div class="cmp-desc">教育 科技</div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="position_list_item default_list">
+          <span class="top_icon direct_recruitment" style="display: inline;"></span>
+          <div class="position-top">
+            <div class="position-item-title">
+              移动APP测试专家
+              <span class="title-tip">[1天前发布]</span>
+            </div>
+            <div class="position-title-desc">经验5-10年不限</div>
+            <div class="postion-money">30K-60K</div>
+          </div>
+          <div class="position-bottom">
+            <div class="company-item">
+              <div class="cmp-img">
+                <img :src="imgUrl" alt />
+              </div>
+              <div class="cmp-msg">
+                <div class="cmp-name">云朵课堂</div>
+                <div class="cmp-desc">教育 科技</div>
+              </div>
+            </div>
+          </div>
+        </li>
         <li class="position_list_item default_list">
           <span class="top_icon direct_recruitment" style="display: inline;"></span>
           <div class="position-top">
@@ -277,17 +410,33 @@ ul {
     flex: 1;
     padding-left: 20px;
     box-sizing: border-box;
+    .right-title{
+      width: 145px;
+      height: 36px;
+      background: url('./assets/img/center_title_bg.png') no-repeat;
+
+      // text-align: center;
+      text-indent: 30px;
+      line-height: 40px;
+      color: #ff6700;
+      font-weight: bolder;
+      font-size: 18px;
+      margin: 16px 0 0 0;
+    }
     .center-right-img {
       width: 100%;
     }
     .position_list_ul {
       width: 100%;
+      li:nth-of-type(3n) {
+        margin-right: 0;
+      }
       .position_list_item {
         float: left;
         position: relative;
-        width: 389px;
-        height: 200px;
-        margin: 16px 16px 0 0;
+        width: 250px;
+        height: 150px;
+        margin: 12px 12px 0 0;
         padding: 20px 18px 0;
         border: 1px solid #eaeeed;
         background-color: #fff;
@@ -323,7 +472,9 @@ ul {
         .position-bottom {
           .company-item {
             display: flex;
-            margin-bottom: 15px;
+            // margin-bottom: 15px;
+            padding: 14px 0 14px;
+            box-sizing: border-box;
             .cmp-img {
               width: 40px;
               height: 40px;
