@@ -2,7 +2,9 @@
   <div id="app">
     <tab></tab>
     <!-- <div>this is a home window page</div> -->
-    <router-view/>
+    <div class="routerClass">
+      <router-view />
+    </div>
     <my-footer></my-footer>
     <right-contact class="fixed"></right-contact>
   </div>
@@ -33,5 +35,8 @@ export default {
   right: 0;
   top: 50%;
   transform: translateY(-50%);
+}
+.routerClass{
+  min-height: 100vh;
 }
 </style>

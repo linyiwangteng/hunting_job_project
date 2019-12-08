@@ -3,7 +3,8 @@
     <div class="home-top">
       <div class="top-left">
         <div class="top-left-top">
-          <div class="banner"></div>
+          <!-- <div class="banner"></div> -->
+            <banner class="banner"></banner>
             <notice class="notice"></notice>
         </div>
         <div class="top-left-middle">
@@ -14,7 +15,24 @@
         </div>
       </div>
       <div class="top-right">
-
+        <div class="enter-company">
+          <h1>入驻企业 / 院校</h1>
+          <ul class="companyList">
+            <li>
+              <span><img src="../../../../assets/companys/hrbgldx.png" alt=""></span>
+            </li>
+            <li>
+              <span><img src="../../../../assets/companys/hljdx.png" alt=""></span>
+            </li>
+             <li v-for="i in 8" :key="i">
+              <span><img src="../../../../assets/companys/hrbsxdx.png" alt=""></span>
+            </li>
+          </ul>
+        </div>
+        <div class="enter-entrance">
+          <span class="entrance entrance1"></span>
+          <span class="entrance entrance2"></span>
+        </div>
       </div>
     </div>
      <div class="home-middle">
@@ -85,12 +103,14 @@
 </template>
 
 <script>
+import Banner from '../components/banner';
 import Notice from '../components/notice';
 import Search from '../components/search';
 import SelectCity from '../components/select-city';
 import schoolRecommend from '../components/school-recommend';
 export default {
   components: {
+    Banner,
     Notice,
     Search,
     SelectCity,
@@ -120,9 +140,9 @@ export default {
           justify-content: center;
           align-items: flex-start;
           .banner{
+            position: relative;
             width: 580px;
             height: 348px;
-            background: red;
           }
           .notice{
             width: 394px;
@@ -142,7 +162,55 @@ export default {
       .top-right{
         width: 206px;
         height: 900px;
-        background: greenyellow;
+        .enter-company{
+          border: 1px solid #e2e2e2;
+          border-top: 2px solid #ff6700;
+          height: 748px;
+          padding: 10px;
+          box-sizing: border-box;
+          h1{
+            height: 40px;
+            line-height: 40px;
+            color: #ff6700;
+            font-size: 18px;
+            text-align: center;
+            border-bottom: 1px solid #e2e2e2;
+          }
+          .companyList{
+            padding: 9px 0;
+            li{
+              margin-bottom: 16px;
+              span{
+                display: block;
+                width: 182px;
+                height: 52px;
+                img{
+                  display: block;
+                  width: 100%;
+                  height: 100%;
+                }
+              }
+            }
+          }
+        }
+        .enter-entrance{
+          padding-top: 14px;
+          .entrance{
+            display: block;
+            width: 205px;
+            height: 48px;
+            border-radius: 24px;
+            margin-top: 20px;
+          }
+          .entrance1{
+            background: url('../../img/yuanxiao.png') no-repeat center;
+            background-size: 100% auto;
+          }
+          .entrance2{
+            background: url('../../img/jigou.png') no-repeat center;
+            background-size: 100% auto;
+          }
+        }
       }
     }
     &-middle{
