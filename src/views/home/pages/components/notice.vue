@@ -1,22 +1,39 @@
 <template>
-  <div class="notice-box">
+  <div class="notice-box" v-if="noticeData.length">
     <h1 class="notice-title">政策报告 <span class="more">更多></span></h1>
 		<ul class="article-box">
-			<li>
-				<h2 class="article-title">关于领取2019年度全国会计专业...</h2>
-				<span class="date">19-10-20</span>
-			</li>
-			<li>
-				<h2 class="article-title">关于领取2019年度全国会计专业...</h2>
-				<span class="date">19-10-20</span>
+			<li v-for="(item) in noticeData" :key="item.id">
+				<h2 class="article-title">{{item.title}}</h2>
+				<span class="date">{{item.modifiedTime.split(' ')[0]}}</span>
 			</li>
 		</ul>
   </div>
 </template>
 
 <script>
+import {newsList} from '@/api/index.js';
 export default {
-
+	data(){
+		return {
+			noticeData:[]
+		}
+	},
+	mounted(){
+		this._getNoticeList();
+	},
+	methods: {
+		_getNoticeList(){
+			newsList({
+				infoType:1,
+				topRow: 10
+			}).then(res=>{
+				if(res.code == 1){
+					this.noticeData = res.data;
+				}
+				
+			})
+		}
+	}
 }
 </script>
 
@@ -75,6 +92,7 @@ export default {
 				white-space: nowrap;
 				text-overflow: ellipsis;
 				margin-bottom: 0;
+				overflow: hidden;
 			}
 			.date{
 				position: absolute;

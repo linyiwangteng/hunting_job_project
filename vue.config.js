@@ -4,6 +4,7 @@ module.exports = {
     devServer:{
         disableHostCheck: true,
         open:true,
+        proxy: 'http://47.93.199.16:5220'
     },
     pages: {
         home: {
