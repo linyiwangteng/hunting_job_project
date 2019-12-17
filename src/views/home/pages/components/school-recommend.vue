@@ -5,13 +5,13 @@
       <span class="recommend-more">更多></span>
     </h2>
     <ul class="recommend-list">
-      <li v-for="item in 6" :key="item">
-        <slot name="default">
-          <div class="school-logo">
-            <img src="@/assets/universities/hebgydx.png" alt="" class="logo-img">
-          </div>
-          <p>成立于****年  ****   ****<br/>招聘*****人</p>
-        </slot>
+      <li v-for="item in organizationList" :key="item.id" @click="goDetail(item.id)">
+          <slot name="default" :item="item">
+            <div class="school-logo">
+              <img src="@/assets/universities/hebgydx.png" alt="" class="logo-img">
+            </div>
+            <p>成立于****年  ****   ****<br/>招聘*****人</p>
+          </slot>
       </li>
     </ul>
   </div>
@@ -27,6 +27,15 @@ export default {
     updateStyle:{
       type:String,
       default:''
+    },
+    organizationList:{
+      type:Array,
+      default:()=>[]
+    }
+  },
+  methods:{
+    goDetail(id){
+      this.$router.push(`/organization?id=${id}`);
     }
   }
 }

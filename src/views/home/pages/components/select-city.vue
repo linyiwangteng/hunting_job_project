@@ -14,10 +14,12 @@
 
 <script>
 import citydata from '@/assets/pca-code.js'
-console.log(citydata);
+import api from '@/api/index.js'
 export default {
 	data(){
-		return {}
+		return {
+
+		}
 	},
 	computed:{
 		hlj_province:function(){
@@ -28,11 +30,21 @@ export default {
 			})
 		}
 	},
-	methods: {
-
+	created(){
+		console.log(123)
 	},
 	mounted(){
-		console.log(this.hlj_province);
+		console.log(345);
+		this.getZoneList();
+	},
+	methods: {
+		getZoneList(){
+			api.zoneList({
+				parentCode:'230000000000'
+			}).then(res=>{
+				console.log(res);
+			})
+		}
 	}
 }
 </script>

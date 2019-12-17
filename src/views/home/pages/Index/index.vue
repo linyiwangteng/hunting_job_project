@@ -14,6 +14,7 @@
           <select-city />
         </div>
       </div>
+      <!-- 入驻企业/院校 -->
       <div class="top-right">
         <div class="enter-company">
           <h1>入驻企业 / 院校</h1>
@@ -36,7 +37,7 @@
       </div>
     </div>
      <div class="home-middle">
-       <div class="ads-box"><img src="@/assets/ads_demo.png" alt=""></div>
+       <div class="ads-box" v-if="middleAdv.length"><img src="@/assets/ads_demo.png" alt=""></div>
        <div class="hot-recommend">
          <!-- 热推岗位 -->
          <div class="recommend-left">
@@ -81,22 +82,22 @@
            </ul>
          </div>
        </div>
-      <schoolRecommend recommend-title='名校热推' />
-      <schoolRecommend recommend-title='热招培训机构' update-style="width:160px">
-        <template>
+      <schoolRecommend recommend-title='名校热推' :organization-list="organizationList" />
+      <schoolRecommend recommend-title='热招培训机构' update-style="width:160px" :organization-list="organizationList">
+        <template v-slot:default="info">
            <div class="school-logo logo-box">
             <img class="jg-logo" src="@/assets/universities/jyjg-logo.png" alt="">
             <div class="jg-content">
-              <a href="javascript:;">学而思网校</a>
-              <span class="content">成立于2003念</span>
-              <span class="content">到培训脸</span>
+              <a href="javascript:;">{{info.item.name}}</a>
+              <span class="content">{{info.item.address}}</span>
+              <!-- <span class="content">到培训脸</span> -->
             </div>
           </div>
             <p>正在热招   课程***********<br/>招聘200人</p>
         </template>
       </schoolRecommend>
      </div>
-     <div class="home-bottom">
+     <div class="home-bottom" v-if="footAdv.length">
        <img src="@/assets/allads-demo.png" alt="">
      </div>
   </div>
@@ -108,7 +109,76 @@ import Notice from '../components/notice';
 import Search from '../components/search';
 import SelectCity from '../components/select-city';
 import schoolRecommend from '../components/school-recommend';
+import api from '@/api/index.js';
 export default {
+  data(){
+    return {
+      middleAdv:[],
+      footAdv: [],
+      conpanyList:[],
+      universityList:[],
+      organizationList:[]
+    }
+  },
+  mounted(){
+    this._getMiddleAdv();
+    this._getFootAdv();
+    this._getCompany();
+    this._getUniverties();
+    this._getOrganization();
+  },
+  methods:{
+    _getMiddleAdv(){
+      api.advList({
+        type:2,
+        topRows: 1
+      }).then(res=>{
+        if(res.code == 1){
+          this.middleAdv = res.data;
+        }
+      })
+    },
+    _getFootAdv(){
+      api.advList({
+        type:3,
+        topRows: 8
+      }).then(res=>{
+        if(res.code === 1){
+          this.footAdv = res.data;
+        }
+      })
+    },
+    // 名企推荐
+    _getCompany(){
+      api.organizationList({
+        row:6,
+        type:2,
+        companyType:0
+      }).then(res=>{
+        console.log(res);
+      })
+    },
+    // 名校推荐
+    _getUniverties(){
+      api.organizationList({
+        row:6,
+        type:2,
+        companyType:1
+      }).then(res=>{
+        console.log(res);
+      })
+    },
+    // 机构推荐
+    _getOrganization(){
+      api.organizationList({
+        row:6,
+        type:2,
+        companyType:2
+      }).then(res=>{
+        this.organizationList = res.data;
+      })
+    }
+  },
   components: {
     Banner,
     Notice,
@@ -217,6 +287,7 @@ export default {
       width: 100%;
       height: auto;
       color: #ffffff;
+      padding-bottom: 46px;
       .hot-recommend{
         margin-top: 28px;
         display: flex;
@@ -388,6 +459,7 @@ export default {
           }
           .content{
             display: block;
+            width: 95px;
             text-align: center;
             color: #000000;
           }
@@ -397,7 +469,7 @@ export default {
     &-bottom{
       width: 100%;
       height: auto;
-      padding-top: 46px;
+      
       img{
         display: block;
         width: 1168px;

@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import {newsList} from '@/api/index.js';
+import api from '@/api/index.js';
 export default {
 	data(){
 		return {
@@ -23,7 +23,7 @@ export default {
 	},
 	methods: {
 		_getNoticeList(){
-			newsList({
+			api.newsList({
 				infoType:1,
 				topRow: 10
 			}).then(res=>{

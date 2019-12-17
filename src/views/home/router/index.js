@@ -9,6 +9,15 @@ export default {
       path:'/table',
       name:'table',
       component: ()=>import('../pages/table')
+    },
+    {
+      path: '/organization',
+      name: 'organizationIntro',
+      component: ()=>import("../pages/organization")
+    },
+    {
+      path:'*',
+      redirect:'/'
     }
   ]
 }
