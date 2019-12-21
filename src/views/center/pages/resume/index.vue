@@ -55,19 +55,19 @@
           <span>自我描述</span>
         </div>
         <div class="tagboard integrative-tag">
-          <div class="editor-tool">
-            <em class="edit-btn">
-              <i class="icon-icon_resume_editor active-color"></i>
-              编辑
-            </em>
+          <div class="edit-btn" @click="showSelfDesc">
+            <i class="icon-icon_resume_editor active-color"></i>
+            编辑
           </div>
+          <!-- 个人标签 -->
           <div class="integrative-tag_content">
-            <span class="tagboard-tag">责任心</span>
+            <a-tag>责任心</a-tag>
+            <a-tag>责任心</a-tag>
+            <a-tag>责任心</a-tag>
           </div>
         </div>
         <div class="per-self_content">
           <div class="per-self_des">
-            <p></p>
             <ul>
               <li>
                 <p>沉着冷静的我，相信遇到任何困难都会有它的解决办法。</p>
@@ -79,58 +79,39 @@
                 <p>运用所学技术开发一些项目</p>
               </li>
             </ul>
-            <p></p>
-            <p>
-              <br />
-            </p>
           </div>
           <div class="editor-tool">
-            <em class="edit-btn" data-lg-tj-id="1jit" data-lg-tj-no="0002" data-lg-tj-cid="idnull">
+            <div class="edit-btn" data-lg-tj-id="1jit" data-lg-tj-no="0002" data-lg-tj-cid="idnull">
               <i class="icon-icon_resume_editor active-color"></i>
               编辑
-            </em>
+            </div>
           </div>
         </div>
       </div>
       <div class="mr-template work-exp" id="workExp">
         <div class="mr-template_title">
           <span>工作经历</span>
-          <em class="add-btn">
-            <i
-              class="icon-icon_resume_add active-color"
-              data-lg-tj-id="1jit"
-              data-lg-tj-no="0003"
-              data-lg-tj-cid="idnull"
-            ></i>
+          <div class="add-btn">
+            <i class="icon-icon_resume_add active-color"></i>
             添加
-          </em>
+          </div>
         </div>
         <ol class="work-exp_group">
-          <li
-            class="work-exp_list"
-            data-enddate="至今"
-            data-startdate="2018.04"
-            data-workid="6196606"
-            data-visible="2"
-            data-positiontype="WEB前端"
-            data-positiontype1="开发|测试|运维类"
-            data-positiontype2="前端开发"
-            data-companyindustry="教育"
-          >
+          <li class="work-exp_list">
             <div class="editor-tool">
-              <em
-                class="edit-btn"
-                data-lg-tj-id="1jit"
-                data-lg-tj-no="0004"
-                data-lg-tj-cid="idnull"
-              >
+              <div class="edit-btn">
                 <i class="icon-icon_resume_editor active-color"></i>
                 编辑
-              </em>
-              <em class="del-btn" data-lg-tj-id="1jit" data-lg-tj-no="0005" data-lg-tj-cid="idnull">
+              </div>
+              <div
+                class="del-btn"
+                data-lg-tj-id="1jit"
+                data-lg-tj-no="0005"
+                data-lg-tj-cid="idnull"
+              >
                 <i class="icon-icon_resume_delete active-color"></i>
                 删除
-              </em>
+              </div>
             </div>
             <p class="exp-list_time">2018.04-至今</p>
             <div class="exp-list_top">
@@ -148,10 +129,13 @@
               </div>
             </div>
             <div class="tagboard">
-              <span class="tagboard-tag">React</span>
-              <span class="tagboard-tag">Web前端</span>
+              <a-tag>React</a-tag>
+              <a-tag>Web前端</a-tag>
             </div>
             <div class="exp-list_content dn">
+              <p>
+                <br />
+              </p>
               <p>设计、编写可复用的用户界面组件、前端通用组件。&nbsp;</p>
               <p>h5教室系统组件的开发与设计、教室回放播放器的开发。&nbsp;</p>
               <p>与服务器端开发人员进行应用及系统整合，调试网站页面在不同浏览器下的兼容性。&nbsp;</p>
@@ -159,159 +143,45 @@
               <p>
                 <br />
               </p>
-            </div>
-            <div class="exp-list_content_highlight">
-              <p>设计、编写可复用的用户界面组件、前端通用组件。&nbsp;</p>
-              <p>h5教室系统组件的开发与设计、教室回放播放器的开发。&nbsp;</p>
-              <p>与服务器端开发人员进行应用及系统整合，调试网站页面在不同浏览器下的兼容性。&nbsp;</p>
-              <p>跟踪前端技术的发展，掌握最新动态和主流技术。</p>
-              <p>
-                <br />
-              </p>
-            </div>
-          </li>
-          <li
-            class="work-exp_list"
-            data-enddate="2018.04"
-            data-startdate="2017.01"
-            data-workid="16649751"
-            data-visible="1"
-            data-positiontype="WEB前端"
-            data-positiontype1="开发|测试|运维类"
-            data-positiontype2="前端开发"
-            data-companyindustry="教育"
-          >
-            <div class="editor-tool">
-              <em
-                class="edit-btn"
-                data-lg-tj-id="1jit"
-                data-lg-tj-no="0004"
-                data-lg-tj-cid="idnull"
-              >
-                <i class="icon-icon_resume_editor active-color"></i>
-                编辑
-              </em>
-              <em class="del-btn" data-lg-tj-id="1jit" data-lg-tj-no="0005" data-lg-tj-cid="idnull">
-                <i class="icon-icon_resume_delete active-color"></i>
-                删除
-              </em>
-            </div>
-            <p class="exp-list_time">2017.01-2018.04</p>
-            <div class="exp-list_top">
-              <img src="//www.lgstatic.com/images/logo_default.png" alt="公司Logo" />
-              <div class="exp-list_right">
-                <strong class="exp-list_title">
-                  <span>北京笨鸟雅思教育科技有限公司</span>
-                  ／
-                  <span>研发</span>
-                </strong>
-                <p>WEB前端</p>
-              </div>
-            </div>
-            <div class="tagboard">
-              <span class="tagboard-tag">前端开发</span>
-            </div>
-            <div class="exp-list_content dn">
-              <ul>
-                <li>设计、编写h5课件的开发。&nbsp;</li>
-                <li>与服务器开发人员协调开发，包括移动端，pc端网站系统的开发。</li>
-                <li>使用 highcharts 数据可视化 进行数据监控平台的 搭建 。</li>
-                <li>改善jquery项目，使用用react全家桶 重构项目，搭建webpack 作为 前端打包工具。&nbsp;</li>
-                <li>负责前端项目的性能优化。&nbsp;</li>
-              </ul>
-            </div>
-            <div class="exp-list_content_highlight">
-              <ul>
-                <li>设计、编写h5课件的开发。&nbsp;</li>
-                <li>与服务器开发人员协调开发，包括移动端，pc端网站系统的开发。</li>
-                <li>使用 highcharts 数据可视化 进行数据监控平台的 搭建 。</li>
-                <li>改善jquery项目，使用用react全家桶 重构项目，搭建webpack 作为 前端打包工具。&nbsp;</li>
-                <li>负责前端项目的性能优化。&nbsp;</li>
-              </ul>
-            </div>
-          </li>
-          <li
-            class="work-exp_list"
-            data-enddate="2016.12"
-            data-startdate="2015.10"
-            data-workid="16676163"
-            data-visible="1"
-            data-positiontype="WEB前端"
-            data-positiontype1="开发|测试|运维类"
-            data-positiontype2="前端开发"
-            data-companyindustry="教育"
-          >
-            <div class="editor-tool">
-              <em
-                class="edit-btn"
-                data-lg-tj-id="1jit"
-                data-lg-tj-no="0004"
-                data-lg-tj-cid="idnull"
-              >
-                <i class="icon-icon_resume_editor active-color"></i>
-                编辑
-              </em>
-              <em class="del-btn" data-lg-tj-id="1jit" data-lg-tj-no="0005" data-lg-tj-cid="idnull">
-                <i class="icon-icon_resume_delete active-color"></i>
-                删除
-              </em>
-            </div>
-            <p class="exp-list_time">2015.10-2016.12</p>
-            <div class="exp-list_top">
-              <img src="//www.lgstatic.com/images/logo_default.png" alt="公司Logo" />
-              <div class="exp-list_right">
-                <strong class="exp-list_title">
-                  <span>北京微语言教育科技有限公司</span>
-                  ／
-                  <span>研发</span>
-                </strong>
-                <p>WEB前端</p>
-              </div>
-            </div>
-            <div class="tagboard">
-              <span class="tagboard-tag">react</span>
-              <span class="tagboard-tag">前端开发</span>
-              <span class="tagboard-tag">Javascript</span>
-            </div>
-            <div class="exp-list_content dn">
-              <p></p>
-              <ul>
-                <li>与服务器端开发人员接口对接，调试网站页面在不同浏览器下的兼容性。 公司官网的开发与性能优化。</li>
-                <li>企业宣传页的开发。</li>
-                <li>企业课程管理系统的开发与维护&nbsp;</li>
-              </ul>
-            </div>
-            <div class="exp-list_content_highlight">
-              <p></p>
-              <ul>
-                <li>与服务器端开发人员接口对接，调试网站页面在不同浏览器下的兼容性。 公司官网的开发与性能优化。</li>
-                <li>企业宣传页的开发。</li>
-                <li>企业课程管理系统的开发与维护&nbsp;</li>
-              </ul>
             </div>
           </li>
         </ol>
       </div>
     </div>
     <div class="mr-myresume-right"></div>
+    <a-modal title="Basic Modal" v-model="selfModal" @ok="selfModal = false">
+      <p>Some contents...</p>
+      <p>Some contents...</p>
+      <p>Some contents...</p>
+    </a-modal>
   </div>
 </template>
 
 <script>
 import DefaultImg from "../assets/img/touxiang.jpg";
+import { tag, modal } from "ant-design-vue";
 export default {
   data() {
     return {
-      imgUrl: DefaultImg
+      imgUrl: DefaultImg,
+      selfModal: false
     };
   },
-  created() {}
+  created() {},
+  methods: {
+      showSelfDesc() {
+          this.selfModal = true;
+      }
+  }
 };
 </script>
 <style lang="less" scoped>
 body {
   padding: 0;
   margin: 0;
+}
+* {
+  box-sizing: border-box;
 }
 a {
   color: #000;
@@ -321,6 +191,7 @@ li {
 }
 ul {
   padding-left: 0;
+  margin-bottom: 0;
 }
 .persion-center-container {
   width: 100%;
@@ -595,6 +466,22 @@ ul {
   .mr-myresume-left .mr_bottom .mr_down_tip li.active a {
     background-color: #f4f4f4;
     color: #555;
+  }
+
+  .per-self_content {
+    padding: 30px 0 30px 20px;
+    .per-self_des {
+      li {
+        list-style: disc;
+      }
+    }
+  }
+  .integrative-tag {
+    position: relative;
+    .edit-btn {
+      position: absolute;
+      right: 0;
+    }
   }
 }
 </style>

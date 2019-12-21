@@ -17,6 +17,18 @@ module.exports = {
             template: 'public/index.html',
             filename: 'center.html',
             title: '个人中心'
-        }
+        },
+        login: {
+            entry: 'src/views/login/main.js',
+            template: 'public/index.html',
+            filename: 'login.html',
+            title: '登录'
+        },
+        list: {
+            entry: 'src/views/list/main.js',
+            template: 'public/index.html',
+            filename: 'list.html',
+            title: '公司搜索'
+        },
       }
 }
