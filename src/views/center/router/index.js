@@ -10,5 +10,15 @@ export default {
       name:'resume',
       component: ()=>import('../pages/resume')
     },
+    {
+      path:'/jianli',
+      name:'jianli',
+      component: ()=>import('../pages/jianli')
+    },
+    {
+      path:'/collections',
+      name:'collections',
+      component: ()=>import('../pages/collections')
+    },
   ]
 }

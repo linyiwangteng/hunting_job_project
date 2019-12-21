@@ -253,7 +253,7 @@
           <li class="odd clearfix">
             <div class="hot_pos_l">
               <div class="mb10">
-                <a href="h/jobs/86989.html" title="前端开发" target="_blank">
+                <a href="#/company/1" title="前端开发" target="_blank">
                   <span>前</span>
                   <span>端</span>
                   <span>开</span>
@@ -308,7 +308,7 @@
           <li class="clearfix">
             <div class="hot_pos_l">
               <div class="mb10">
-                <a href="h/jobs/114177.html" title="前端开发" target="_blank">
+                <a href="#/company/2" title="前端开发" target="_blank">
                   <span>前</span>
                   <span>端</span>
                   <span>开</span>
@@ -363,7 +363,7 @@
           <li class="odd clearfix">
             <div class="hot_pos_l">
               <div class="mb10">
-                <a href="h/jobs/95531.html" title="高级web前端开发工程师" target="_blank">
+                <a href="#/company/1" title="高级web前端开发工程师" target="_blank">
                   高级web
                   <span>前</span>
                   <span>端</span>
