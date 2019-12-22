@@ -410,10 +410,10 @@ ul {
     flex: 1;
     padding-left: 20px;
     box-sizing: border-box;
-    .right-title{
+    .right-title {
       width: 145px;
       height: 36px;
-      background: url('./assets/img/center_title_bg.png') no-repeat;
+      background: url("./assets/img/center_title_bg.png") no-repeat;
 
       // text-align: center;
       text-indent: 30px;

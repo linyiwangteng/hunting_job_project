@@ -42,7 +42,7 @@ export default {
 		},
 		// 跳转
 		goList(){
-			location.href='/list.html';
+			location.href='/job/list.html';
 			alert('搜索');
 		}
 	}

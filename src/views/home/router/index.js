@@ -6,6 +6,11 @@ export default {
       component: ()=>import('../pages/Index/index.vue')
     },
     {
+      path:'/newinfo',
+      name:'newinfo',
+      component: ()=>import('../pages/newdetail/index.vue')
+    },
+    {
       path: '/detail',
       name:'detail',
       component: ()=>import('../pages/detail/index.vue')

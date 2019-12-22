@@ -45,6 +45,11 @@
 
 <script>
 import { defcompanyUrl } from "../config";
+
+// console.log("process.env.NODE_ENV", process.env.NODE_ENV);
+// 上线要变
+let _file = process.env.NODE_ENV == 'development' ? '' : 'job';
+
 export default {
   data() {
     return {
@@ -52,32 +57,32 @@ export default {
       tabs: [
         {
           name: "首页",
-          path: "/home.html#/",
+          path: _file + "/home.html#/",
           routeName: "home"
         },
         {
           name: "职位",
-          path: "/jobPosition#/",
+          path: _file + "/list.html#/",
           routeName: "jobPosition"
         },
         {
           name: "企业",
-          path: "company.html#/",
-          routeName: "company"
+          path: _file + "companylist.html#/",
+          routeName: "companylist"
         },
         {
           name: "校院招生",
-          path: "school.html#/",
+          path: _file + "school.html#/",
           routeName: "school"
         },
         {
           name: "机构培训",
-          path: "javacript:;",
+          path: _file + "javacript:;",
           routeName: "organization"
         },
         {
           name: "咨询中心",
-          path: "consult.html#/",
+          path: _file + "consult.html#/",
           routeName: "consult"
         }
       ],

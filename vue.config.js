@@ -31,5 +31,11 @@ module.exports = {
             filename: 'list.html',
             title: '公司搜索'
         },
+        companylist: {
+            entry: 'src/views/companylist/main.js',
+            template: 'public/index.html',
+            filename: 'companylist.html',
+            title: '公司列表'
+        },
       }
 }

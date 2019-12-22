@@ -363,7 +363,7 @@
           <li class="odd clearfix">
             <div class="hot_pos_l">
               <div class="mb10">
-                <a href="#/company/1" title="高级web前端开发工程师" target="_blank">
+                <a href="h/jobs/95531.html" title="高级web前端开发工程师" target="_blank">
                   高级web
                   <span>前</span>
                   <span>端</span>
