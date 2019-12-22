@@ -14,7 +14,7 @@
           </span>
           <i class="divide">｜</i>
           <span>
-            <a href="center.html#/">企业注册</a>
+            <a :href="defcompanyUrl">企业登录</a>
           </span>
         </span>
       </div>
