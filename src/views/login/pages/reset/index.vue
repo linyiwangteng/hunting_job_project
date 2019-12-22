@@ -1,38 +1,50 @@
 <template>
-  <div id="login_bg">
-    Î
-    <div class="login_wrapper">
-      <div class="login_header">
-        <div style="width:285px;height:62px;marginBottom:78px;"></div>
-        <div id="cloud_s">
-          <img src="../assets/cloud_s.png" width="81" height="52" alt="cloud" />
-        </div>
-        <div id="cloud_m">
-          <img src="../assets/cloud_m.png" width="136" height="95" alt="cloud" />
-        </div>
-      </div>
-
-      <input type="hidden" id="resubmitToken" value />
-      <div class="find_psw">
-        <img src="../assets/psw_step1.png" width="369" height="56" alt="找回密码第一步" />
-        <form>
-          <div>
-            <input
-              type="text"
-              name="email"
-              id="email"
-              tabindex="1"
-              value
-              placeholder="请输入注册时使用的邮箱地址"
-            />
-          </div>
-          <div>
-            <input type="submit" id="submitLogin" value="找回密码" />
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
+  <a-form
+    id="components-form-demo-normal-login"
+    :form="form"
+    class="login-form"
+    @submit="handleSubmit"
+  >
+    <a-form-item>
+      <a-input
+        v-decorator="[
+          '用户名',
+          { rules: [{ required: true, message: '请输入用户名!' }] },
+        ]"
+        placeholder="用户名"
+      >
+        <a-icon slot="prefix" type="user" style="color: rgba(0,0,0,.25)" />
+      </a-input>
+    </a-form-item>
+    <a-form-item>
+      <a-input
+        v-decorator="[
+          '密码',
+          { rules: [{ required: true, message: '请输入密码！' }] },
+        ]"
+        type="password"
+        placeholder="密码"
+      >
+        <a-icon slot="prefix" type="lock" style="color: rgba(0,0,0,.25)" />
+      </a-input>
+    </a-form-item>
+    <a-form-item>
+      <a-input
+        v-decorator="[
+          '再次输入密码',
+          { rules: [{ required: true, message: '请再次输入密码！' }] },
+        ]"
+        type="password"
+        placeholder="再输入一次密码"
+      >
+        <a-icon slot="prefix" type="lock" style="color: rgba(0,0,0,.25)" />
+      </a-input>
+    </a-form-item>
+    <a-form-item>
+      <a-button type="primary" html-type="submit" class="login-form-button">确认</a-button>
+      <a href="#/">返回</a>
+    </a-form-item>
+  </a-form>
 </template>
 
 <script>
@@ -41,521 +53,30 @@ export default {
   data() {
     return {};
   },
-  created() {}
+  created() {},
+  beforeCreate() {
+    this.form = this.$form.createForm(this, { name: 'normal_reset' });
+  },
+  methods: {
+    handleSubmit(e) {
+      e.preventDefault();
+      this.form.validateFields((err, values) => {
+        if (!err) {
+          console.log('Received values of form: ', values);
+        }
+      });
+    },
+  },
 };
 </script>
 <style lang="less" scoped>
-* {
-  outline: none;
+#components-form-demo-normal-login .login-form {
+  max-width: 300px;
 }
-html,
-body {
-  height: 100%;
+#components-form-demo-normal-login .login-form-forgot {
+  float: right;
 }
-#body {
-  min-height: 100%;
-  height: auto !important;
-  height: 100%;
-  margin: 0 0 -37px;
-}
-body {
-  margin: 0;
-  padding: 0;
-  font: 14px/22px "微软雅黑", "宋体", Arial;
-  color: #333;
-  word-wrap: break-word;
-}
-.clearfix:after {
-  content: "";
-  height: 0;
-  clear: both;
-  visibility: hidden;
-}
-.clearfix {
-  display: inline-block;
-} /* for IE/Mac */
-h1,
-h2,
-h3,
-h4,
-h5 {
-  font-weight: normal;
-}
-input[type="text"],
-input[type="password"] {
-  border: 2px solid #f1f1f1;
-  outline: none;
-  font: 20px/32px "微软雅黑", "宋体", Arial;
-  width: 600px;
-  height: 30px;
-  padding: 6px 10px;
-  margin-top: 20px;
-  transition: border 0.2s ease-in 0s;
-}
-input[type="button"],
-input[type="submit"] {
-  font-family: "微软雅黑", "宋体", Arial;
-  outline: none;
-  cursor: pointer;
-  border: none;
-}
-input[type="text"]:focus,
-input[type="password"]:focus {
-  border: 2px solid #d4e2e4;
-}
-textarea {
-  border: 2px solid #f1f1f1;
-  width: 600px;
-  height: 260px;
-  outline: none;
-  resize: none;
-  font: 20px/32px "微软雅黑", "宋体", Arial;
-  padding: 6px 10px;
-  margin-top: 20px;
-  transition: border 0.2s ease-in 0s;
-}
-textarea:focus {
-  border: 2px solid #d4e2e4;
-}
-:focus {
-  outline: 0;
-}
-.placeholder {
-  color: #777;
-}
-img {
-  border: none;
-}
-.dn {
-  display: none;
-}
-.db {
-  display: block;
-}
-.fl {
-  float: left !important;
-}
-.fr {
-  float: right !important;
-}
-.clear {
-  clear: both;
-}
-a {
-  color: #555;
-  text-decoration: none;
-  cursor: pointer;
-  -moz-transition: background-color 0.2s ease-out, color 0.1s ease-out;
-  -webkit-transition: background-color 0.2s ease-out, color 0.1s ease-out;
-  -ms-transition: background-color 0.2s ease-out, color 0.1s ease-out;
-  transition: background-color 0.2s ease-out, color 0.1s ease-out;
-}
-a:hover {
-  color: #019875;
-}
-dl,
-dd {
-  margin: 0;
-}
-em {
-  font-style: normal;
-}
-ul.reset {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-h2 {
-  font-size: 16px;
-  margin: 10px 0;
-}
-.c9 {
-  color: #999;
-}
-.c7 {
-  color: #777;
-}
-.c5 {
-  color: #555;
-}
-.c3 {
-  color: #333;
-}
-.f24 {
-  font-size: 24px;
-}
-.f20 {
-  font-size: 20px;
-}
-.f18 {
-  font-size: 18px;
-}
-.f16 {
-  font-size: 16px;
-}
-.f14 {
-  font-size: 14px;
-}
-.mb10 {
-  margin-bottom: 10px;
-}
-.mb20 {
-  margin-bottom: 20px;
-}
-.mb0 {
-  margin-bottom: 0 !important;
-}
-.mb50 {
-  margin-bottom: 50px;
-}
-.mt20 {
-  margin-top: 20px;
-}
-span.error {
-  display: block;
-  margin: 5px 0 10px 0;
-  font-size: 14px;
-  color: #ff6a6a;
-  text-align: left;
-  background: url(../assets/error.png) 0 3px no-repeat;
-  padding-left: 20px;
-  line-height: 22px;
-}
-::selection {
-  background: #019875;
-  color: white; /* Safari */
-}
-::-moz-selection {
-  background: #019875;
-  color: white; /* Firefox */
-}
-.triangle {
-  height: 0;
-  width: 0;
-  overflow: hidden;
-  font-size: 0;
-  line-height: 0;
-  border-width: 6px 5px 0;
-  border-style: solid dashed;
-  border-color: #019875 transparent transparent;
-  -webkit-transition: all 0.4s ease 0s;
-  -moz-transition: all 0.4s ease 0s;
-  -ms-transition: all 0.4s ease 0s;
-  transition: all 0.4s ease 0s;
-}
-.triangle.transform {
-  -webkit-transform: rotate(180deg);
-  -moz-transform: rotate(180deg);
-  -ms-transform: rotate(180deg);
-  transform: rotate(180deg);
-  -webkit-transition: all 0.4s ease 0s;
-  -moz-transition: all 0.4s ease 0s;
-  -ms-transition: all 0.4s ease 0s;
-  transition: all 0.4s ease 0s;
-}
-/*end globel style*/
-/*login.html*/
-#login_bg {
-  background: #019875 url(../assets/bgwall.png) center 100px no-repeat;
-  overflow: hidden;
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-}
-.login_wrapper {
-  width: 700px;
-  margin: 0 auto;
-  color: #777;
-  font-size: 16px;
-  padding-top: 110px;
-}
-.login_header {
-  position: relative;
-  margin-bottom: 20px;
-}
-.login_header img {
-  margin: 30px 0 0 20px;
-}
-#cloud_s {
-  position: absolute;
-  left: 375px;
-  top: 15px;
-}
-#cloud_m {
-  position: absolute;
-  left: 470px;
-  top: -35px;
-}
-.login_box {
-  min-height: 150px;
-  background: #eafffd;
-  padding: 40px;
-  overflow: hidden;
-}
-.login_box_btm {
-  background: url(../assets/login_btm.png) repeat-x;
-  height: 10px;
-}
-#loginForm {
-  width: 360px;
-  margin: 0;
-  border-right: 1px dashed #999;
-  float: left;
-}
-#loginForm a {
-  color: #019875;
-}
-#loginForm input#email {
-  width: 296px;
-  font-size: 16px;
-  color: #777;
-  border: none;
-}
-#loginForm input#password {
-  width: 296px;
-  font-size: 16px;
-  color: #777;
-  border: none;
-}
-#loginForm input:focus {
-  border: 2px solid #fff;
-  -webkit-box-shadow: 0px 0px 4px #b5f0e7;
-  -moz-box-shadow: 0px 0px 4px #b5f0e7;
-  box-shadow: 0px 0px 4px #b5f0e7;
-}
-#loginForm .fr {
-  color: #777;
-  margin-right: 45px;
-}
-#loginForm .fr:hover {
-  color: #019875;
-}
-#loginForm label {
-  vertical-align: top;
-}
-/**add nancy**/
-.registerJianJu {
-  *height: 36px;
-}
-#loginForm input[type="checkbox"] {
-  margin-bottom: 20px;
-  border: none;
-  background: none;
-}
-#submitLogin {
-  width: 155px;
-  height: 46px;
-  font-size: 16px;
-  line-height: 46px;
-  clear: both;
-  float: left;
-  background: #019875;
-  color: #fff;
-  border: none;
-  text-align: center;
-}
-.submitLogin {
-  width: 155px;
-  height: 46px;
-  font-size: 16px;
-  line-height: 46px;
-  clear: both;
-  float: left;
-  background: #019875;
-  color: #fff;
-  border: none;
-  text-align: center;
-}
-
-#submitLogin:hover {
-  background: #00694e;
-}
-.login_right {
-  *width: 170px;
-  float: left;
-  margin: 10px 0 0 30px;
-  line-height: 30px;
-}
-.registor_now {
-  color: #019875;
-  background: url(../assets/registor_now.png) right center no-repeat;
-  padding-right: 24px;
-  float: left;
-  height: 30px;
-  line-height: 30px;
-}
-.registor_now:hover {
-  color: #019875;
-  text-decoration: underline;
-}
-.login_others {
-  clear: both;
-  margin: 70px 0 10px 0;
-}
-.icon_wb {
-  width: 54px;
-  height: 54px;
-  float: left;
-  background: url(../assets/wbqq.png) left top no-repeat;
-  margin: 0 30px 0 10px;
-}
-.icon_qq {
-  width: 54px;
-  height: 54px;
-  float: left;
-  background: url(../assets/wbqq.png) right top no-repeat;
-}
-.login_wrapper input[type="text"],
-.login_wrapper input[type="password"] {
-  margin: 0 0 20px 0;
-  border: none;
-}
-.login_wrapper span.error {
-  margin: -10px 0 10px 0;
-}
-#loginForm input[type="text"],
-#loginForm input[type="password"] {
-  margin: 0 0 20px 0;
-}
-#loginForm span.error {
-  margin: -10px 0 10px 0;
-}
-.login_box h1 {
-  font-size: 24px;
-  font-weight: normal;
-  color: #555;
-  margin: 0px 0 20px 0;
-}
-.login_box h2 {
-  font-size: 18px;
-  font-weight: normal;
-  color: #555;
-  margin: 0 0 15px 0;
-}
-.login_box h3 {
-  font-size: 20px;
-  font-weight: normal;
-  color: #555;
-  margin: 0 0 25px 0;
-}
-.register_radio {
-  list-style: none;
-  margin: 0 0 20px 0;
-  padding: 0;
-}
-.register_radio li {
-  width: 148px;
-  height: 42px;
-  font-size: 18px;
-  color: #555;
-  text-align: center;
-  line-height: 42px;
-  float: left;
-  background: #fff;
-  margin: 15px 11px 0 0;
-  border: 2px solid #fafafa;
-  cursor: pointer;
-  position: relative;
-}
-.register_radio li:hover {
-  border: 2px solid #93b7bb;
-}
-.register_radio li.current {
-  border: 2px solid #93b7bb;
-}
-.register_radio li em {
-  background: url(../assets/s_choose.png) no-repeat;
-  width: 31px;
-  height: 32px;
-  position: absolute;
-  right: -1px;
-  top: -1px;
-}
-.register_radio li input[type="radio"] {
-  cursor: pointer;
-  position: absolute;
-  left: -2px;
-  top: -2px;
-  margin: 0;
-  width: 152px;
-  height: 46px;
-  filter: alpha(Opacity=0);
-  -moz-opacity: 0;
-  opacity: 0;
-}
-.login_box .typeBtn {
-  float: left;
-  width: 160px;
-  font-size: 18px;
-  text-align: center;
-  color: #fff;
-  background: #0d9572;
-  padding: 10px 0;
-  margin: 0 30px 20px 2px;
-}
-.login_box .typeBtn:hover {
-  background: #00694e;
-}
-.choosetype_l {
-  width: 390px;
-  border-right: 1px dashed #c4d5d4;
-  padding-top: 10px;
-  overflow: hidden;
-}
-
-.find_psw {
-  padding: 45px 90px;
-  background: #eafffd url(../assets/login_btm.png) left bottom repeat-x;
-  margin-bottom: 20px;
-  overflow: hidden;
-}
-.find_psw img {
-  margin: 0 0 30px 30px;
-}
-#pswForm {
-  margin-left: 48px;
-}
-.find_psw input[type="text"],
-.find_psw input[type="password"] {
-  width: 310px;
-  font-size: 16px;
-  color: #777;
-}
-.find_psw input[type="text"]:focus,
-.find_psw input[type="password"]:focus {
-  -webkit-box-shadow: 0px 0px 4px #b5f0e7;
-  -moz-box-shadow: 0px 0px 4px #b5f0e7;
-  box-shadow: 0px 0px 4px #b5f0e7;
-}
-.sendemail {
-  font-size: 14px;
-  text-align: center;
-}
-.sendemail span {
-  font-size: 18px;
-  display: block;
-  margin-bottom: 20px;
-}
-.sendemail a {
-  color: #019875;
-}
-.find_psw a#submitLogin {
-  margin: 20px 0 0 150px;
-}
-.email_address {
-  margin: 0 0 20px 50px;
-  font-size: 18px;
-}
-.email_address a {
-  color: #019875;
-}
-#tip {
-  border: 1px solid #cbcbcb;
-  padding: 3px 10px;
-  float: left;
-  margin: 10px 0 0 40px;
-  background: #fff;
+#components-form-demo-normal-login .login-form-button {
+  width: 100%;
 }
 </style>
