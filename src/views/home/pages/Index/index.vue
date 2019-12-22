@@ -19,15 +19,15 @@
         <div class="enter-company">
           <h1>入驻企业 / 院校</h1>
           <ul class="companyList">
-            <li>
-              <span><img src="../../../../assets/companys/hrbgldx.png" alt=""></span>
+            <li v-for="company in conpanyList" :key="company.id">
+              <span><img :src="company.logo" alt=""></span>
             </li>
-            <li>
+            <!-- <li>
               <span><img src="../../../../assets/companys/hljdx.png" alt=""></span>
             </li>
              <li v-for="i in 8" :key="i">
               <span><img src="../../../../assets/companys/hrbsxdx.png" alt=""></span>
-            </li>
+            </li> -->
           </ul>
         </div>
         <div class="enter-entrance">
@@ -82,23 +82,26 @@
            </ul>
          </div>
        </div>
-      <schoolRecommend recommend-title='名校热推' :organization-list="organizationList" />
+      <schoolRecommend recommend-title='名校热推' :organization-list="universityList"/>
       <schoolRecommend recommend-title='热招培训机构' update-style="width:160px" :organization-list="organizationList">
         <template v-slot:default="info">
            <div class="school-logo logo-box">
-            <img class="jg-logo" src="@/assets/universities/jyjg-logo.png" alt="">
+            <img class="jg-logo" :src="info.item.logo" alt="">
             <div class="jg-content">
               <a href="javascript:;">{{info.item.name}}</a>
               <span class="content">{{info.item.address}}</span>
               <!-- <span class="content">到培训脸</span> -->
             </div>
           </div>
-            <p>正在热招   课程***********<br/>招聘200人</p>
+            <!-- <p>正在热招   课程***********<br/>招聘200人</p> -->
         </template>
       </schoolRecommend>
      </div>
      <div class="home-bottom" v-if="footAdv.length">
-       <img src="@/assets/allads-demo.png" alt="">
+       <!-- <img src="@/assets/allads-demo.png" alt=""> -->
+       <template v-for="adv in footAdv" >
+        <a :href="adv.url" target="_blank" :key="adv.id"><img :src="adv.imgPath" alt=""></a>
+       </template>
      </div>
   </div>
 </template>
@@ -156,6 +159,7 @@ export default {
         companyType:0
       }).then(res=>{
         // console.log(res);
+        this.conpanyList = res.data;
       })
     },
     // 名校推荐
@@ -166,6 +170,7 @@ export default {
         companyType:1
       }).then(res=>{
         // console.log(res);
+        this.universityList = res.data;
       })
     },
     // 机构推荐
@@ -469,7 +474,7 @@ export default {
     &-bottom{
       width: 100%;
       height: auto;
-      
+      margin-bottom: 20px;
       img{
         display: block;
         width: 1168px;

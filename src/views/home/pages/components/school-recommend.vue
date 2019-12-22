@@ -8,9 +8,9 @@
       <li v-for="item in organizationList" :key="item.id" @click="goDetail(item.id)">
           <slot name="default" :item="item">
             <div class="school-logo">
-              <img src="@/assets/universities/hebgydx.png" alt="" class="logo-img">
+              <img :src="item.logo" alt="" class="logo-img">
             </div>
-            <p>成立于****年  ****   ****<br/>招聘*****人</p>
+            <!-- <p>成立于****年  ****   ****<br/>招聘*****人</p> -->
           </slot>
       </li>
     </ul>
@@ -77,7 +77,7 @@ export default {
   margin: 0;
   li{
     width: 384px;
-    height: 194px;
+    // height: 194px; 
     border: 1px solid #ebefee;
     margin-top: 16px;
     padding:  0 18px;
@@ -87,7 +87,7 @@ export default {
     .school-logo{
       width: 348px;
       height: 121px;
-      border-bottom: 1px dashed #e2e2e2;
+      // border-bottom: 1px dashed #e2e2e2;
       display: flex;
       justify-content: center;
       align-items: center;
