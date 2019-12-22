@@ -10,10 +10,10 @@
           <span class="login-box">
             <i class="icon-user"></i>
             <span>
-              <a href="center.html#/">
+              <a href="login.html#/">
               求职者登录</a></span>
             <i class="divide">｜</i>
-            <span><a href="javascript:;">企业注册</a></span>
+            <span><a href="center.html#/">企业注册</a></span>
           </span>
         </div>
       </div>
@@ -22,12 +22,17 @@
           <img src="./img/logo.png" alt="logo" class="site-logo">
           <img src="./img/pc-culture.png" alt="culture" class="pc-culture">
           <ul class="tabs-box">
-            <li class="active">首页</li>
+            <!-- <li class="active">首页</li>
             <li>职位</li>
             <li>企业</li>
             <li>校院招生</li>
             <li>机构培训</li>
-            <li>咨询中心</li>
+            <li>咨询中心</li> -->
+            <li v-for="(tab,index) in tabs" :key="index"
+              :class="tab.routeName == routeName ? 'active':''"
+             >
+              <a :href="tab.path">{{tab.name}}</a>
+            </li>
           </ul>
         </div>
       </nav>
@@ -36,7 +41,48 @@
 
 <script>
 export default {
-  
+  data(){
+    return {
+      tabs:[
+        {
+          name:'首页',
+          path:'/home.html#/',
+          routeName:'home'
+        },
+        {
+          name:'职位',
+          path:'/jobPosition#/',
+          routeName:'jobPosition'
+        },
+        {
+          name:'企业',
+          path: 'company.html#/',
+          routeName:'company'
+        },
+        {
+          name:'校院招生',
+          path:'school.html#/',
+          routeName:'school'
+        },
+        {
+          name:'机构培训',
+          path: 'javacript:;',
+          routeName:'organization'
+        },
+        {
+          name:'咨询中心',
+          path:'consult.html#/',
+          routeName:'consult'
+        }
+      ],
+      routeName:'home'
+    }
+  },
+  watch: {
+    $route:function(to,from){
+      this.routeName = to.name;
+    }
+  }
 }
 </script>
 
@@ -144,6 +190,11 @@ export default {
         color: #ffffff;
         line-height: 88px;
         cursor: pointer;
+        a{
+          display: block;
+          color: #ffffff;
+          line-height: inherit;
+        }
         &.active{
           background: @logincolor;
         }

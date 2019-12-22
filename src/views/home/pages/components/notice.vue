@@ -84,6 +84,7 @@ export default {
 				display: flex;
 				align-content: center;
 				justify-content: flex-start;
+				cursor: pointer;
 			}
 			.article-title{
 				width: 264px;

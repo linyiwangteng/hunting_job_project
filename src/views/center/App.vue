@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <tab></tab>
-    <div>this is a center window page</div>
     <div class="center-warp">
       <router-view />
     </div>
