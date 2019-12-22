@@ -1,46 +1,47 @@
 <template>
-  <div>
-    <swiper class="banner-swiper" :options="bannerOption" ref="mybanner">
+  <div v-if="banner.length">
+    <swiper class="banner-swiper" :options="banner.length > 1 ? bannerOption : bannerOption1" ref="mybanner">
       <swiper-slide v-for="(slide,index) in banner" :key="index">
-        <div class="banner-container">
-          <img :src="slide.img" alt="">
-          <span class="banner-title">{{slide.name}}</span>
+        <div class="banner-container" @click="goDetail(slide.id,slide.title)">
+          <img :src="slide.titlePage" alt="">
+          <span class="banner-title">{{slide.title}}</span>
         </div>
       </swiper-slide>
     </swiper>
-    <span class="prev-next prev-slide" @click="prevPage"><</span>
-    <span class="prev-next next-slide" @click="nextPage">></span>
+    <span class="prev-next prev-slide" @click="prevPage" v-if="banner.length > 1"><</span>
+    <span class="prev-next next-slide" @click="nextPage" v-if="banner.length > 1">></span>
   </div>
 </template>
 
 <script>
 import 'swiper/dist/css/swiper.css'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
-import banner1 from '@/assets/banners/banner1.jpg'
-import banner2 from '@/assets/banners/banner2.jpg'
-import banner3 from '@/assets/banners/banner3.jpg'
+// import banner1 from '@/assets/banners/banner1.jpg'
+// import banner2 from '@/assets/banners/banner2.jpg'
+// import banner3 from '@/assets/banners/banner3.jpg'
+import api from '@/api/index.js';
+import {mapMutations} from 'vuex';
 export default {
   data(){
     return {
-      banner: [
-        {
-          img: banner1,
-          name: '【新华全媒头条】深圳建设“先行示范区”全球观'
-        },
-        {
-          img: banner2,
-          name: '【新华全媒头条】深圳建设“先行示范区”全球观'
-        },
-        {
-          img: banner3,
-          name: '【澳门回归20周年】澳门举行国际幻彩大巡游'
-        }
-      ],
+      banner: [],
       bannerOption: {
         autoplay: true,
         loop: true
+      },
+      bannerOption1: {
+        autoplay: false,
+        loop: false
       }
     }
+  },
+  mounted(){
+    api.bannerList({
+      infoType:2,
+      topRow:4
+    }).then(res=>{
+      this.banner = res.data;
+    })
   },
   computed:{
     bannerSwiper() {
@@ -53,7 +54,18 @@ export default {
     },
     nextPage(){
       this.bannerSwiper.slideNext();
-    }
+    },
+    goDetail(id,name){
+      this.banner.map(item=>{
+        if(item.id == id){
+          this.setNewsContent(item.contents);
+        }
+      })
+      this.$router.push('/detail?id='+id+"&name="+name);
+    },
+    ...mapMutations([
+      'setNewsContent'
+    ])
   },
   components: {
     swiper,
@@ -73,6 +85,7 @@ export default {
     position: relative;
     width: 100%;
     height: 100%;
+    cursor: pointer;
     img{
       display: block;
       width: 100%;

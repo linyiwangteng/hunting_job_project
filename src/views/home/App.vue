@@ -6,7 +6,7 @@
       <router-view />
     </div>
     <my-footer></my-footer>
-    <right-contact class="fixed"></right-contact>
+    <right-contact class="rightFixed"></right-contact>
   </div>
 </template>
 <script>
@@ -30,7 +30,7 @@ export default {
   color: #000000;
   background: #ffffff;
 }
-.fixed{
+.rightFixed{
   position: fixed;
   right: 0;
   top: 50%;

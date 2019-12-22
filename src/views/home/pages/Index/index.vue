@@ -155,7 +155,7 @@ export default {
         type:2,
         companyType:0
       }).then(res=>{
-        console.log(res);
+        // console.log(res);
       })
     },
     // 名校推荐
@@ -165,7 +165,7 @@ export default {
         type:2,
         companyType:1
       }).then(res=>{
-        console.log(res);
+        // console.log(res);
       })
     },
     // 机构推荐

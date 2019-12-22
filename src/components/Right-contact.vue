@@ -8,7 +8,7 @@
       <span class="kefu-box"><img src="@/assets/kefu.png" alt=""></span>
       <span class="kefu-name">意见<br/>反馈</span>
     </div>
-    <div class="top-container">
+    <div class="top-container" @click="goTop">
       <img src="@/assets/top-pointer.png" alt="">
       <span class="top-name">回到<br/>顶部</span>
     </div>
@@ -17,7 +17,19 @@
 
 <script>
 export default {
-
+  methods: {
+    goTop(){
+      // window.scroll(0,0);
+      let top = document.documentElement.scrollTop || document.body.scrollTop;
+      // 实现滚动效果 
+      const timeTop = setInterval(() => {
+        document.body.scrollTop = document.documentElement.scrollTop = top -= 50;
+        if (top <= 0) {
+          clearInterval(timeTop);
+        }
+      }, 10);
+    }
+  }
 }
 </script>
 
@@ -83,6 +95,8 @@ export default {
     .top-container{
       padding-top: 17px;
       color: #ffffff;
+      cursor: pointer;
+      transition: all 0.2s linear;
       img{
         display: block;
         width: 25px;
