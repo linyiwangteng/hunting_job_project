@@ -91,8 +91,8 @@
         </div>
         <!--end #myInfo-->
         <div class="greybg qrcode mt20">
-          <img width="242" height="242" alt="拉勾微信公众号二维码" src="" />
-          <span class="c7">扫描拉勾二维码，微信轻松搜工作</span>
+          <img width="242" height="242" alt="微信公众号二维码" src="" />
+          <span class="c7">扫描二维码，微信轻松搜工作</span>
         </div>
       </div>
     </div>

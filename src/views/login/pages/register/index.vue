@@ -28,7 +28,7 @@
           <input type="submit" id="submitLogin" value="注册" />
         </form>
         <div class="login_right">
-          <div>已有拉勾帐号</div>
+          <div>已有帐号</div>
           <a href="login.html" class="registor_now">直接登录</a>
         </div>
       </div>

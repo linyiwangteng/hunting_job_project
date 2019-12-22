@@ -38,7 +38,7 @@
 
           <dd class="unresume">
             <div>
-              你在拉勾还没有简历呢，你可以
+              你在还没有简历呢，你可以
               <a href="login.html" target="_blank" title="完善在线简历">完善在线简历</a>，也可
               <a class="inline cboxElement" href="#loginPop" title="登录">上传附件简历</a>直接投递
             </div>
@@ -79,8 +79,8 @@
               <div>
                 <h2 class="fl">
                   立方网
-                  <img src="style/img/valid.png" width="15" height="19" alt="拉勾认证企业" />
-                  <span class="dn">拉勾认证企业</span>
+                  <img src="style/img/valid.png" width="15" height="19" alt="认证企业" />
+                  <span class="dn">认证企业</span>
                 </h2>
               </div>
             </a>

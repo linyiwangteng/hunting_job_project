@@ -31,7 +31,7 @@
           >登录</a>
         </form>
         <div class="login_right">
-          <div>还没有拉勾帐号？</div>
+          <div>还没有帐号？</div>
           <a href="#/register" class="registor_now">立即注册</a>
         </div>
       </div>

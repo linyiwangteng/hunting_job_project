@@ -1322,7 +1322,7 @@
             	
 								
 				<div class="greybg qrcode mt20">
-                	<img width="242" height="242" alt="拉勾微信公众号二维码" src="style/images/qr_resume.png">
+                	<img width="242" height="242" alt="微信公众号二维码" src="style/images/qr_resume.png">
                     <span class="c7">微信扫一扫，轻松找工作</span>
                 </div>
             </div><!--end .content_r-->
@@ -1374,7 +1374,7 @@
     <div class="popup" id="deliverResumesNo">
         <table width="100%">
             <tbody><tr>
-                <td align="center"><p class="font_16">你在拉勾还没有简历，请先上传一份</p></td>
+                <td align="center"><p class="font_16">你在还没有简历，请先上传一份</p></td>
             </tr>
         	<tr>
             	<td align="center">

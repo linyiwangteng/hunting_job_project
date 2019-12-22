@@ -9,7 +9,7 @@
           <div class="input-box">
 						<span class="select-type">职位类型<i class="bottom-point"></i></span>
 						<input type="text" class="search-input" placeholder="搜索职位、公司" />
-						<span class="search-btn"></span>
+						<span class="search-btn" @click="goList"></span>
 					</div>
 					<div class="hot-search">
 						<i>热门搜素：</i>
@@ -39,6 +39,11 @@ export default {
 		// 搜索类型
 		handletype(index){
 			this.search_type_index = index;
+		},
+		// 跳转
+		goList(){
+			location.href='/list.html';
+			alert('搜索');
 		}
 	}
 }
@@ -103,6 +108,7 @@ export default {
 					outline: none;
 					padding: 0 0 0 34px;
 					box-sizing: border-box;
+					margin-top: 0!important;
 				}
 				.search-btn{
 					display: inline-block;
