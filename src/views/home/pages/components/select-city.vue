@@ -85,7 +85,7 @@ export default {
 			line-height: 29px;
 		}
 		.areas{
-			padding-right: 16px;
+			padding-right: 51px;
 			line-height: 29px;
 		}
   }

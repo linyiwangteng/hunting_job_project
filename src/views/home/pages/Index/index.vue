@@ -145,7 +145,7 @@
                 <span class="xinzi">25k-45k</span>
               </div>
               <div class="company-info">
-                <img src alt />
+                <img src='@/assets/company_1.png' alt />
                 <span class="info-text">
                   <span>奇虎360金融</span>
                   <span>金融 上市公司 北京</span>
@@ -425,6 +425,7 @@ export default {
               line-height: 18px;
               a {
                 margin-right: 4px;
+                color: #000;
               }
             }
             .more {
@@ -515,7 +516,7 @@ export default {
               img {
                 display: block;
                 width: 34px;
-                height: 34px;
+                // height: 34px;
                 background: red;
                 margin-right: 8px;
               }

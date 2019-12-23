@@ -48,7 +48,7 @@ import { defcompanyUrl } from "../config";
 
 // console.log("process.env.NODE_ENV", process.env.NODE_ENV);
 // 上线要变
-let _file = process.env.NODE_ENV == 'development' ? '' : 'job';
+let _file = "";
 
 export default {
   data() {
@@ -99,16 +99,17 @@ export default {
 
 <style lang="less">
 @import "~@/assets/variable";
-i {
-  font-style: normal;
-}
-a {
-  color: #ffffff;
-}
+
 .public-header {
   position: relative;
   width: 100%;
   min-width: @mainwidth;
+  i {
+    font-style: normal;
+  }
+  a {
+    color: #ffffff;
+  }
   .header-part {
     height: 37px;
     background: @maincolor;
