@@ -7,7 +7,7 @@ export default {
     // },
     {
       path: '/',
-      name: 'company',
+      name: 'companylist',
       component: () => import('../pages')
     },
   ]

@@ -37,5 +37,11 @@ module.exports = {
             filename: 'companylist.html',
             title: '公司列表'
         },
+        consult: {
+            entry: "src/views/consult/main.js",
+            template: "public/inde.html",
+            filename:'consult.html',
+            title:'咨询中心'
+        }
       }
 }

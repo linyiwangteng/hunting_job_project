@@ -7,7 +7,7 @@ export default {
     },
     {
       path: '/',
-      name: 'list',
+      name: 'jobPosition',
       component: () => import('../pages')
     },
   ]

@@ -19,17 +19,11 @@
         <div class="enter-company">
           <h1>入驻企业 / 院校</h1>
           <ul class="companyList">
-            <li v-for="company in conpanyList" :key="company.id">
+            <li v-for="company in conpanyList" :key="company.id" @click="goIntroDetail(company.id)">
               <span>
                 <img :src="company.logo" alt />
               </span>
             </li>
-            <!-- <li>
-              <span><img src="../../../../assets/companys/hljdx.png" alt=""></span>
-            </li>
-             <li v-for="i in 8" :key="i">
-              <span><img src="../../../../assets/companys/hrbsxdx.png" alt=""></span>
-            </li>-->
           </ul>
         </div>
         <div class="enter-entrance">
@@ -271,6 +265,9 @@ export default {
         .then(res => {
           this.organizationList = res.data;
         });
+    },
+    goIntroDetail(id){
+      this.$router.push(`/organization?id=${id}`);
     }
   },
   components: {
@@ -344,6 +341,7 @@ export default {
           padding: 9px 0;
           li {
             margin-bottom: 16px;
+            cursor: pointer;
             span {
               display: block;
               width: 182px;
@@ -494,6 +492,7 @@ export default {
                 i {
                   color: #9fa0a0;
                   padding-left: 18px;
+                  font-style: normal;
                 }
               }
               p {

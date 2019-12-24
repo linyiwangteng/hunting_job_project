@@ -16,9 +16,6 @@
 <script>
 import 'swiper/dist/css/swiper.css'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
-// import banner1 from '@/assets/banners/banner1.jpg'
-// import banner2 from '@/assets/banners/banner2.jpg'
-// import banner3 from '@/assets/banners/banner3.jpg'
 import api from '@/api/index.js';
 import {mapMutations} from 'vuex';
 export default {
@@ -61,7 +58,7 @@ export default {
           this.setNewsContent(item.contents);
         }
       })
-      this.$router.push('/detail?id='+id+"&name="+name);
+      this.$router.push('/newinfo?id='+id);
     },
     ...mapMutations([
       'setNewsContent'

@@ -2,7 +2,7 @@
   <div class="city-box">
       <span class="city-name">热招城市</span>
 			<ul class="city-list" v-if="hlj_province">
-				<li class="every-area" v-for="area in hlj_province.children" :key="area.code">
+				<li class="every-area" v-for="area in hotProvince" :key="area.code">
 					<span class="city">{{area.name}}</span>
 					<span class="areas" v-for="(item,index) in area.children" :key="item.code">
 						<template v-if="index < 5">{{item.name}}</template>
@@ -18,7 +18,7 @@ import api from '@/api/index.js'
 export default {
 	data(){
 		return {
-
+			hotProvince:[]
 		}
 	},
 	computed:{
@@ -30,19 +30,19 @@ export default {
 			})
 		}
 	},
-	created(){
-		console.log(123)
-	},
 	mounted(){
-		console.log(345);
-		this.getZoneList();
+		setTimeout(()=>{
+			this.getZoneList();
+		},200);	
+		
 	},
 	methods: {
 		getZoneList(){
 			api.zoneList({
 				parentCode:'230000000000'
 			}).then(res=>{
-				console.log(res);
+				this.hotProvince = res.data;
+
 			})
 		}
 	}
@@ -76,6 +76,8 @@ export default {
 		.every-area{
 			position: relative;
 			padding-left: 110px;
+			height: 29px;
+			overflow: hidden;	
 		}
 		.city{
 			position: absolute;
@@ -83,10 +85,13 @@ export default {
 			left: 0;
 			z-index: 5;
 			line-height: 29px;
+			cursor: pointer;
 		}
 		.areas{
 			padding-right: 51px;
 			line-height: 29px;
+			word-break: keep-all;
+			cursor: pointer;
 		}
   }
 </style>
