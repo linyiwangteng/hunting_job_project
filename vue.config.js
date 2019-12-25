@@ -37,6 +37,18 @@ module.exports = {
             filename: 'companylist.html',
             title: '公司列表'
         },
+        school: {
+            entry:'src/views/school/main.js',
+            template:"public/index.html",
+            filename:'school.html',
+            title:'院校招生'
+        },
+        organization: {
+            entry: 'src/views/organization/main.js',
+            template:'public/index.html',
+            filename:'organization.html',
+            title:'机构培训'
+        },
         consult: {
             entry: "src/views/consult/main.js",
             template: "public/inde.html",

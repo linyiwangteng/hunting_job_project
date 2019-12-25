@@ -85,7 +85,7 @@ export default {
         },
         {
           name: "机构培训",
-          path: _file + "javacript:;",
+          path: _file + "organization.html#/",
           routeName: "organization"
         },
         {
