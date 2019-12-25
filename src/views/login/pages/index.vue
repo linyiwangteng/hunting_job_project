@@ -1,36 +1,33 @@
 <template>
-  <div id="login_bg">
-    <div class="login_wrapper">
-      <div class="login_box">
-        <form id="loginForm" action="index.html">
-          <input type="text" name="userName" value placeholder="请输入登录手机号" v-model="userName" />
-          <input type="password" name="password" placeholder="请输入密码" v-model="password" />
-          <div class="login-code">
-            <input type="text" name="code" placeholder="图形验证码" v-model="code" />
-            <img :src="codeUrl" width="100" alt="获取验证码" @click="onCode"/>
-          </div>
-          <span class="error" style="display:none;" id="beError"></span>
-          <!-- <label class="fl" for="remember">
-            <input type="checkbox" id="remember" value checked="checked" name="autoLogin" /> 记住我
-          </label>-->
-          <a href="#/reset" class="fr" target="_blank">忘记密码？</a>
-
-          <!--<input type="submit" id="submitLogin" value="登 &nbsp; &nbsp; 录" />-->
-          <a
-            style="color:#fff;"
-            href="javascript:;"
-            class="submitLogin"
-            @click="onLogin"
-            title="登录"
-          >登录</a>
-        </form>
-        <div class="login_right">
-          <div>还没有帐号？</div>
-          <a href="#/register" class="registor_now">立即注册</a>
+  <div class="login-warp-antd">
+    <a-form id="components-form-demo-normal-login" class="login-form">
+      <a-form-item>
+        <a-input placeholder="手机号" v-model="userName">
+          <a-icon slot="prefix" type="user" style="color: #dd0101" />
+        </a-input>
+      </a-form-item>
+      <a-form-item>
+        <a-input type="password" placeholder="密码" v-model="password">
+          <a-icon slot="prefix" type="lock" style="color: #dd0101" />
+        </a-input>
+      </a-form-item>
+      <div class="login-code">
+        <a-form-item>
+          <a-input placeholder="验证码" v-model="code">
+            <a-icon slot="prefix" type="picture" style="color: #dd0101" />
+          </a-input>
+        </a-form-item>
+        <div class="code-img">
+          <img :src="codeUrl" @click="onCode" alt='点击获取验证码'/>
         </div>
       </div>
-      <div class="login_box_btm"></div>
-    </div>
+
+      <a-form-item>
+        <a class="login-form-forgot" href="#/reset">忘记密码</a>
+        <a-button type="primary" class="login-form-button" @click="onLogin">登录</a-button>
+        <a href="#/register">去注册</a>
+      </a-form-item>
+    </a-form>
   </div>
 </template>
 
@@ -46,9 +43,12 @@ export default {
       platform: 2,
       code: "",
       codeUrl: "",
-      PictrueId:'',
-      loginFlag:true,
+      PictrueId: "",
+      loginFlag: true
     };
+  },
+  beforeCreate() {
+    this.form = this.$form.createForm(this, { name: "normal_login" });
   },
   created() {},
   mounted() {
@@ -56,28 +56,37 @@ export default {
   },
   methods: {
     onCode() {
-      api
-        .getCode()
-          .then(res=>{
-            if(res.code == 1){
-              this.codeUrl = res.data.base64String;
-              this.PictrueId = res.data.id;
-            }else{
-              this.$message.error('获取图形验证失败')
-            }
-          })
+      api.getCode().then(res => {
+        if (res.code == 1) {
+          this.codeUrl = res.data.base64String;
+          this.PictrueId = res.data.id;
+        } else {
+          this.$message.error("获取图形验证失败");
+        }
+      });
     },
     onLogin() {
-      let { userName, password, accountType, platform, PictrueId, loginFlag } = this;
+      let {
+        userName,
+        password,
+        accountType,
+        platform,
+        PictrueId,
+        loginFlag
+      } = this;
       if (userName == "") {
-        this.$message.error("手机号不能为空");
+        this.$message.error("请输入手机号");
         return false;
       }
       if (this.checkPhone(userName)) {
         this.$message.error("手机号格式不正确");
         return false;
       }
-      if(!loginFlag){
+      if (password == "") {
+        this.$message.error("请输入密码");
+        return false;
+      }
+      if (!loginFlag) {
         return false;
       }
       this.loginFlag = false;
@@ -92,11 +101,11 @@ export default {
         .then(res => {
           this.loginFlag = true;
           if (res.code == 1) {
-            localStorage.setItem('accessToken',res.data.accessToken);
-            this.$message.success('登录成功！');
-            setTimeout(e=>{
-              location.href = '/home.html';
-            },1000)
+            localStorage.setItem("accessToken", res.data.accessToken);
+            this.$message.success("登录成功！");
+            setTimeout(e => {
+              location.href = "/home.html";
+            }, 1000);
           }
         });
     },
@@ -111,6 +120,38 @@ export default {
 };
 </script>
 <style lang="less" scoped>
+#components-form-demo-normal-login .login-form {
+  max-width: 300px;
+}
+#components-form-demo-normal-login .login-form-forgot {
+  float: right;
+}
+#components-form-demo-normal-login .login-form-button {
+  width: 100%;
+}
+.login-warp-antd {
+  padding: 80px 0 110px 0;
+  ::-webkit-input-placeholder {
+    color: rgba(221, 1, 1, 0.44) !important;
+  }
+  ::-moz-placeholder {
+    color: rgba(221, 1, 1, 0.44) !important;
+  }
+  :-ms-input-placeholder {
+    color: rgba(221, 1, 1, 0.44) !important;
+  }
+  .ant-btn-primary {
+    background-color: #dd0101;
+    border-color: #dd0101;
+  }
+  a {
+    color: #dd0101;
+  }
+}
+.login-form {
+  width: 400px;
+  margin: 0 auto;
+}
 .login-code {
   display: flex;
   flex-direction: row;
