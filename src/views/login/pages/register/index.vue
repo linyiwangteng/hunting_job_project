@@ -212,5 +212,6 @@ export default {
 }
 .ant-form-item{
   padding: 10px 0 10px 0;
+  margin-bottom:0; 
 }
 </style>

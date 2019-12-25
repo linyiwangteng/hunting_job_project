@@ -5,16 +5,45 @@
         <span class="city-position">
           <i class="icon-location"></i>
           <span>当前城市：</span>
-          <span>所有城市</span>
+          <span id="city" v-text="cityName"></span>
         </span>
         <span class="login-box">
           <i class="icon-user"></i>
-          <span>
-            <a href="login.html#/">求职者登录</a>
+          <span v-if="!login">
+            <span>
+              <a href="login.html#/">求职者登录</a>
+            </span>
+            <i class="divide">｜</i>
+            <span>
+              <a :href="defcompanyUrl">企业登录</a>
+            </span>
           </span>
-          <i class="divide">｜</i>
-          <span>
-            <a :href="defcompanyUrl">企业登录</a>
+          <span v-else>
+            <a-dropdown :trigger="['click']">
+              <a class="ant-dropdown-link" href="javascript::;">
+                简历刷新
+                <a-icon type="down" />
+              </a>
+              <a-menu slot="overlay">
+                <a-menu-item key="0">
+                  <a href="/center.html">账户信息</a>
+                </a-menu-item>
+                <a-menu-item key="1">
+                  <a href="/">我的院校</a>
+                </a-menu-item>
+                <a-menu-item key="2">
+                  <a href="/">报名机构</a>
+                </a-menu-item>
+                <a-menu-item key="3">
+                  <a href="/">职位投递</a>
+                </a-menu-item>
+                <a-menu-item key="4" @click="outLogin">退出</a-menu-item>
+              </a-menu>
+            </a-dropdown>
+            <i class="divide">｜</i>
+            <span>
+              <a :href="defcompanyUrl">更多</a>
+            </span>
           </span>
         </span>
       </div>
@@ -45,8 +74,8 @@
 
 <script>
 import { defcompanyUrl } from "../config";
-
 // console.log("process.env.NODE_ENV", process.env.NODE_ENV);
+import api from "@/api/index.js";
 // 上线要变
 let _file = "";
 
@@ -55,11 +84,13 @@ export default {
     tab: {
       // 必须提供字段
       required: false,
-      default:true,
+      default: true
     }
   },
   data() {
     return {
+      login: false,
+      cityName: "",
       isShow: false,
       defcompanyUrl: defcompanyUrl + "/app/#/admin/account/login",
       tabs: [
@@ -99,6 +130,17 @@ export default {
   },
   mounted() {
     this.isShow = this.tab;
+    this.cityName = JSON.parse(localStorage.getItem("ipCity"))["cname"];
+    let accessToken = localStorage.getItem("accessToken");
+    if (accessToken != null || accessToken != "null") {
+      this.login = true;
+    }
+  },
+  methods: {
+    outLogin() {
+      window.localStorage.removeItem("accessToken");
+      window.location.href = "/login.html";
+    }
   },
   watch: {
     $route: function(to, from) {
