@@ -1,6 +1,6 @@
 <template>
   <header class="public-header">
-    <div class="header-part">
+    <div class="header-part" v-if="isShow">
       <div class="main-part header-position">
         <span class="city-position">
           <i class="icon-location"></i>
@@ -23,7 +23,7 @@
       <div class="main-part nav-position">
         <img src="./img/logo.png" alt="logo" class="site-logo" />
         <img src="./img/pc-culture.png" alt="culture" class="pc-culture" />
-        <ul class="tabs-box">
+        <ul class="tabs-box" v-if="isShow">
           <!-- <li class="active">首页</li>
             <li>职位</li>
             <li>企业</li>
@@ -51,8 +51,16 @@ import { defcompanyUrl } from "../config";
 let _file = "";
 
 export default {
+  props: {
+    tab: {
+      // 必须提供字段
+      required: false,
+      default:true,
+    }
+  },
   data() {
     return {
+      isShow: false,
       defcompanyUrl: defcompanyUrl + "/app/#/admin/account/login",
       tabs: [
         {
@@ -89,9 +97,15 @@ export default {
       routeName: "home"
     };
   },
+  mounted() {
+    this.isShow = this.tab;
+  },
   watch: {
     $route: function(to, from) {
       this.routeName = to.name;
+    },
+    tab(nv, ov) {
+      this.isShow = nv;
     }
   }
 };

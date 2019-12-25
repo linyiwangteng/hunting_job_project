@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <tab></tab>
+    <tab ></tab>
     <!-- <div>this is a home window page</div> -->
     <div class="routerClass">
       <router-view />
