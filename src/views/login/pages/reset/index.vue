@@ -1,6 +1,5 @@
 <template>
   <div id="login_bg">
-    Î
     <div class="login_wrapper">
       <div class="login_header">
         <div style="width:285px;height:62px;marginBottom:78px;"></div>

@@ -1,29 +1,44 @@
 <template>
-  <div id="login_bg">
-    <div class="login_wrapper">
-      <div class="login_box">
-        <form id="loginForm">
-          <input type="text" v-model="Phone" placeholder="请输入手机号" />
-          <div class="login-code">
-            <input type="text" name="code" placeholder="图形验证码" v-model="Code" />
-            <img :src="codeUrl" width="100" alt="获取验证码" @click="onCode" />
-          </div>
-          <div class="login-code">
-            <input type="text" name="code" placeholder="验证码" v-model="MobileCode" />
-            <div class="sendCode" @click="validateBtn" v-html="btnTitle"></div>
-          </div>
-          <!-- <span class="error" style="display:none;" id="beError"></span> -->
-          <input type="password" v-model="Password" placeholder="请输入密码" />
-          <input type="password" v-model="RePassword" placeholder="请再次输入密码" />
-          <input type="button" id="submitLogin" @click="onRegister" value="注册" />
-        </form>
-        <div class="login_right">
-          <div>已有帐号</div>
-          <a href="login.html" class="registor_now">直接登录</a>
+  <div class="login-warp-antd">
+    <a-form id="components-form-demo-normal-login" class="login-form">
+      <a-form-item>
+        <a-input placeholder="手机号" v-model="Phone">
+          <a-icon slot="prefix" type="user" style="color: #dd0101" />
+        </a-input>
+      </a-form-item>
+      <div class="login-code">
+        <a-form-item>
+          <a-input placeholder="图形验证码" v-model="Code">
+            <a-icon slot="prefix" type="picture" style="color: #dd0101" />
+          </a-input>
+        </a-form-item>
+        <div class="code-img">
+          <img :src="codeUrl" @click="onCode" alt="点击获取验证码" />
         </div>
       </div>
-      <div class="login_box_btm"></div>
-    </div>
+      <div class="login-code">
+        <a-form-item>
+          <a-input placeholder="短信验证码" v-model="MobileCode">
+            <a-icon slot="prefix" type="phone" style="color: #dd0101" />
+          </a-input>
+        </a-form-item>
+        <div class="code-btn" v-html="btnTitle" @click="validateBtn"></div>
+      </div>
+      <a-form-item>
+        <a-input type="password" placeholder="密码" v-model="Password">
+          <a-icon slot="prefix" type="lock" style="color: #dd0101" />
+        </a-input>
+      </a-form-item>
+      <a-form-item>
+        <a-input type="password" placeholder="再输一次密码" v-model="RePassword">
+          <a-icon slot="prefix" type="lock" style="color: #dd0101" />
+        </a-input>
+      </a-form-item>
+      <a-form-item>
+        <a-button type="primary" class="login-form-button" @click="onRegister">注册</a-button>
+        <a href="#/">去登录</a>
+      </a-form-item>
+    </a-form>
   </div>
 </template>
 
@@ -63,6 +78,10 @@ export default {
         let { Phone, Code, PictureId } = this;
         if (Phone == "") {
           this.$message.error("手机号不能为空");
+          return false;
+        }
+        if (Code == "") {
+          this.$message.error("请输入图形验证码");
           return false;
         }
         api
@@ -146,25 +165,52 @@ export default {
 };
 </script>
 <style lang="less" scoped>
-.sendCode {
+.code-btn{
   cursor: pointer;
+}
+#components-form-demo-normal-login .login-form {
+  max-width: 300px;
+}
+#components-form-demo-normal-login .login-form-forgot {
+  float: right;
+}
+#components-form-demo-normal-login .login-form-button {
+  width: 100%;
+}
+.login-warp-antd {
+  padding: 80px 0 110px 0;
+  ::-webkit-input-placeholder {
+    color: rgba(221, 1, 1, 0.44) !important;
+  }
+  ::-moz-placeholder {
+    color: rgba(221, 1, 1, 0.44) !important;
+  }
+  :-ms-input-placeholder {
+    color: rgba(221, 1, 1, 0.44) !important;
+  }
+  .ant-btn-primary {
+    background-color: #dd0101;
+    border-color: #dd0101;
+  }
+  a {
+    color: #dd0101;
+  }
+}
+.login-form {
+  width: 400px;
+  margin: 0 auto;
 }
 .login-code {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   width: 300px;
   input {
     width: 150px !important;
   }
 }
-.clearfix:after {
-  content: "";
-  height: 0;
-  clear: both;
-  visibility: hidden;
+.ant-form-item{
+  padding: 10px 0 10px 0;
 }
-.clearfix {
-  display: inline-block;
-} /* for IE/Mac */
 </style>
