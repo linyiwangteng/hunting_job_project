@@ -76,6 +76,7 @@
 import { defcompanyUrl } from "../config";
 // console.log("process.env.NODE_ENV", process.env.NODE_ENV);
 import api from "@/api/index.js";
+import { log } from 'util';
 // 上线要变
 let _file = "";
 
@@ -132,7 +133,9 @@ export default {
     this.isShow = this.tab;
     this.cityName = JSON.parse(localStorage.getItem("ipCity"))["cname"];
     let accessToken = localStorage.getItem("accessToken");
-    if (accessToken != null || accessToken != "null") {
+    console.log(typeof accessToken);
+    
+    if (accessToken != null && accessToken != "null") {
       this.login = true;
     }
   },

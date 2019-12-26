@@ -217,17 +217,6 @@ span.error {
     line-height: 22px;
 }
 
-::selection {
-    background: #019875;
-    color: white;
-    /* Safari */
-}
-
-::-moz-selection {
-    background: #019875;
-    color: white;
-    /* Firefox */
-}
 
 .triangle {
     height: 0;

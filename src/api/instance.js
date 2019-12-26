@@ -8,7 +8,7 @@ let instance = axios.create({
 });
 
 let accessToken = localStorage.getItem('accessToken');
-if (accessToken != null || accessToken != 'null') {
+if (accessToken != null && accessToken != 'null') {
   instance.defaults.headers.common['Authorization'] = 'Bearer' + accessToken;
 }
 
