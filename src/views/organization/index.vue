@@ -2,7 +2,7 @@
   <div class="consult-container">
     <filter-options :options="options" @requestList="requestList"></filter-options>
     <div class="list-container">
-      <span class="options" v-for="i in 10" :key="i">
+      <span class="options" v-for="i in 10" :key="i" @click="goDetail(i)">
         <h1>技术学院</h1>
         <span>已开设班级</span>
         <p>转业科目</p>
@@ -28,7 +28,7 @@ export default {
         key:'course',
         opts:['不限','电子商务','游戏','媒体','广告营销','数据服务','医疗健康','生活服务','o2o','不限','电子商务','游戏','媒体','广告营销','数据服务','医疗健康','生活服务','o2o','不限','电子商务','游戏','媒体','广告营销','数据服务','医疗健康','生活服务','o2o']
       }]
-    };
+    }
   },
   mounted() {
     // this._getNoticeList();
@@ -51,7 +51,7 @@ export default {
         });
     },
     goDetail(id) {
-      window.location.href = `/home.html#/newinfo?id=${id}`;
+      this.$router.push(`/detail?id=${id}`);
     }
   },
   components: {
