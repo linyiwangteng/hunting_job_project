@@ -711,8 +711,23 @@ export default {
     }
 
     this.getZoneList();
+    this.getBaseInfo();
   },
   methods: {
+    // 添加工作经历
+    addWord(id){
+      api.workAdd({
+        id,
+        
+      })
+    },
+    getBaseInfo(){
+      api.getBaseInfo({})
+        .then(res=>{
+          console.log(res);
+          
+        })
+    },
     getGenger(val) {
       this.gender = val;
     },
