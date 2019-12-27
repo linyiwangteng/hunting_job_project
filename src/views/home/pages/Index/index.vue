@@ -482,13 +482,16 @@ export default {
             padding: 18px 18px 0;
             box-sizing: border-box;
             margin-top: 12px;
+            &:hover{
+              background: rgba(0,0,0,0.06);
+            }
             .company-zhiwei {
               border-bottom: 1px dashed #9fa0a0;
               h3 {
                 margin-bottom: 0;
                 color: #000000;
                 font-size: 14px;
-                padding-bottom: 6px;
+                // padding-bottom: 6px;
                 i {
                   color: #9fa0a0;
                   padding-left: 18px;
@@ -504,11 +507,11 @@ export default {
               .xinzi {
                 display: block;
                 color: #ff6700;
-                padding-bottom: 12px;
+                padding-bottom: 10px;
               }
             }
             .company-info {
-              padding-top: 16px;
+              padding-top: 13px;
               display: flex;
               justify-content: flex-start;
               align-items: center;

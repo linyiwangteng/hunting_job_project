@@ -94,7 +94,7 @@ export default {
           routeName: "consult"
         }
       ],
-      routeName: "home"
+      routeName: ""
     };
   },
   mounted() {
