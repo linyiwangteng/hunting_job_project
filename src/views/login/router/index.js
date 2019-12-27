@@ -7,12 +7,12 @@ export default {
     },
     {
       path:'/register',
-      name:'login',
+      name:'register',
       component: ()=>import('../pages/register')
     },
     {
       path:'/reset',
-      name:'login',
+      name:'reset',
       component: ()=>import('../pages/reset')
     },
   ]

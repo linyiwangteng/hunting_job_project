@@ -13,6 +13,8 @@ const  organizationList = (params) => instance.get('/api/personnelfiles/company/
 
 const orgDetail = (params) => instance.get('/api/personnelfiles/company/edit',{params});
 
+// const getCity = () => instance.get('http://pv.sohu.com/cityjson?ie=utf-8')
+
 export default {
   bannerList,
   advList,
@@ -21,4 +23,5 @@ export default {
   organizationList,
   orgDetail,
   newsDetail,
+  // getCity,
 }

@@ -1,11 +1,17 @@
 import axios from 'axios';
-
-let domain = process.env.NODE_ENV === 'development' ? '/' : 'http://47.93.199.16:5220';
+export const serverUrl = 'http://47.93.199.16:5220';
+let domain = process.env.NODE_ENV === 'development' ? '/' : serverUrl;
 
 let instance = axios.create({
-  baseURL:domain,
+  baseURL: domain,
   timeout: 5000,
 });
+
+let accessToken = localStorage.getItem('accessToken');
+if (accessToken != null && accessToken != 'null') {
+  instance.defaults.headers.common['Authorization'] = 'Bearer ' + accessToken;
+}
+
 
 
 // 添加请求拦截器

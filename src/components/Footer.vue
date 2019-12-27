@@ -2,8 +2,7 @@
   <div class="footer">
     <div class="footer-content">
       <span class="f1">Copyryght</span>
-      <span class="f2">© 2019 黑龙江省1132213京ICP备150923号-5京</span>
-      <span class="f3">ICP证150923号</span> 
+      <span class="f2">© 2019 黑ICP备19008166号</span>
       <span class="f4"><i></i>电子营业执照 </span> 
       <span class="f5">京公网安备11010502032801<i></i></span>
       <span style="margin-right: 24px;">首都网警</span> 

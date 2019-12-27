@@ -9,12 +9,21 @@ const register = (params) => instance.post('/api/admin/account/PersonResiter', {
 //发送短信验证码
 const sendCode = (params) => instance.post('/api/admin/send/Send_RegisterCodeSMS', { ...params });
 //修改密码
-const resetPwd = (params) => instance.post('/api/admin/account/updatepassword', { ...params });
+const findPwd = (params) => instance.post('/api/admin/account/UpdatePasswordByPhoneCode', { ...params });
+//修改密码
+const sendFindCode = (params) => instance.post('/api/admin/send/Send_PasswordCodeSMS', { ...params });
+
+// /api/admin/account/UpdatePasswordByPhoneCode
+// Phone
+// Code
+// Password
+// Repassword
 
 export default {
     loginReuest,
     getCode,
     register,
     sendCode,
-    resetPwd,
+    findPwd,
+    sendFindCode,
 }

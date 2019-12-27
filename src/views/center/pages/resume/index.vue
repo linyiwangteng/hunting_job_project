@@ -3,22 +3,23 @@
     <div class="mr-myresume-left">
       <div class="myresume">
         <div class="basic" id="baseInfo">
-          <div class="basic-photo">
-            <img
-              class="mr_headimg user-avatar"
-              id="userpic"
-              src="//www.lgstatic.com/i/image/M00/38/05/Cgp3O1dh_YmAfQWcAAA0yho1ATU51.jpeg"
-              width="120"
-              height="120"
-              alt="头像"
-            />
-            <img
-              class="basic-photo_shadow"
-              src="//www.lgstatic.com/lg-www-fed/mycenter/modules/common/img/shadow_tx_a482008.png"
-              width="119"
-              height="119"
-            />
-          </div>
+          <a-upload
+            name="formFile"
+            listType="picture-card"
+            class="avatar-uploader"
+            accept=".png, .jpg, .jpeg"
+            :showUploadList="false"
+            :action="uploadPhoto"
+            :beforeUpload="beforeUpload"
+            @change="handleChange"
+            :headers="geHeader"
+          >
+            <img v-if="imageUrl" :src="imageUrl" alt="avatar" />
+            <div v-else>
+              <a-icon :type="loading ? 'loading' : 'plus'" />
+              <div class="ant-upload-text">上传头像</div>
+            </div>
+          </a-upload>
           <div class="basic-info">
             <em class="edit-btn" @click="showSelfDesc('selfModal')">
               <i class="icon-icon_resume_editor active-color"></i>编辑
@@ -392,12 +393,23 @@
     <a-modal title="基本信息" v-model="selfModal" :footer="null" @ok="selfModal = false">
       <a-form :form="form" @submit="handleSelfInfoSubmit">
         <a-form-item v-bind="formItemLayout">
-          <span slot="label">姓名</span>
+          <span slot="label">姓名:</span>
           <a-input
             v-decorator="[
-          'username',
+          'name',
           {
             rules: [{ required: true, message: '请输入姓名!', whitespace: true }],
+          },
+        ]"
+          />
+        </a-form-item>
+        <a-form-item v-bind="formItemLayout">
+          <span slot="label">邮箱:</span>
+          <a-input
+            v-decorator="[
+          'email',
+          {
+            rules: [{ required: true, message: '请输入邮箱!', whitespace: true }],
           },
         ]"
           />
@@ -406,18 +418,20 @@
           <span slot="label">生日</span>
           <a-date-picker
             placeholder
-            v-decorator="['date', {rules: [{ type: 'array', required: true, message: '请输入生日!' }]} ]"
+            v-decorator="['date', {rules: [{ type: 'object', required: true, message: '请输入生日!' }]} ]"
+            @change="onBirthdayChange"
           />
         </a-form-item>
         <a-form-item v-bind="formItemLayout">
           <span slot="label">姓别</span>
           <a-radio-group
             v-decorator="[
-          'genger',
+          'gender',
           {
             rules: [{ required: true, message: '请选择性别!', whitespace: true }],
           }
           ]"
+            @change="getGenger"
           >
             <a-radio value="1">男</a-radio>
             <a-radio value="0">女</a-radio>
@@ -426,7 +440,7 @@
         <a-form-item v-bind="formItemLayout" label="手机号">
           <a-input
             v-decorator="[
-          'phone',
+          'mobile',
           {
             rules: [{ required: true, message: '请输入手机号!' }],
           },
@@ -522,44 +536,41 @@
     <!-- 求职意向 -->
     <a-modal title="求职意向" v-model="selfHopeModal" :footer="null" @ok="selfHopeModal = false">
       <a-form :form="form" @submit="handleSelfInfoSubmit">
-        <a-form-item v-bind="formItemLayout">
-          <span slot="label">期望职位</span>
-          <a-select default-value="1">
-            <a-select-option value="1">Option 1</a-select-option>
-            <a-select-option value="2">Option 2</a-select-option>
-            <a-select-option value="3">Option 3</a-select-option>
-          </a-select>
-        </a-form-item>
-        <a-form-item v-bind="formItemLayout">
-          <span slot="label">职位类型</span>
-          <a-select default-value="1">
-            <a-select-option value="1">Option 1</a-select-option>
-            <a-select-option value="2">Option 2</a-select-option>
-            <a-select-option value="3">Option 3</a-select-option>
-          </a-select>
-        </a-form-item>
-        <a-form-item v-bind="formItemLayout">
+        <a-form-item v-bind="formItemLayout" class="city_set">
           <span slot="label">期望城市</span>
-          <a-select default-value="1">
-            <a-select-option value="1">Option 1</a-select-option>
-            <a-select-option value="2">Option 2</a-select-option>
-            <a-select-option value="3">Option 3</a-select-option>
+          <a-select placeholder="请选择省份" @change="getZoneList">
+            <a-select-option
+              :key="item.code"
+              :value="index"
+              v-for="(item,index) in Province"
+            >{{item.name}}</a-select-option>
+          </a-select>
+          <a-select placeholder="请选择城市" @change="getCityCode">
+            <a-select-option
+              :key="item.code"
+              :value="index"
+              v-for="(item,index) in City"
+            >{{item.name}}</a-select-option>
+          </a-select>
+        </a-form-item>
+        <a-form-item v-bind="formItemLayout" class="city_set">
+          <span slot="label">薪资范围</span>
+          <a-select @change="getZoneList">
+            <a-select-option :key="index" :value="item" v-for="(item,index) in oPrice">{{item}}</a-select-option>
+          </a-select>
+          <span>~</span>
+          <a-select @change="getCityCode" style="marginLeft:10px">
+            <a-select-option :key="index" :value="item" v-for="(item,index) in ePrice">{{item}}</a-select-option>
           </a-select>
         </a-form-item>
         <a-form-item v-bind="formItemLayout">
-          <span slot="label">期望薪资</span>
-          <a-select default-value="1">
-            <a-select-option value="1">Option 1</a-select-option>
-            <a-select-option value="2">Option 2</a-select-option>
-            <a-select-option value="3">Option 3</a-select-option>
-          </a-select>
+          <span slot="label">期望职业</span>
+          <a-input placeholder="WEB前端" v-model="expectationOccupation"></a-input>
         </a-form-item>
-        <a-form-item v-bind="formItemLayout">
-          <span slot="label">目前状态</span>
-          <a-select default-value="1">
-            <a-select-option value="1">Option 1</a-select-option>
-            <a-select-option value="2">Option 2</a-select-option>
-            <a-select-option value="3">Option 3</a-select-option>
+        <a-form-item v-bind="formItemLayout" class="city_set">
+          <span slot="label">求职类型</span>
+          <a-select @change="onGetJobType">
+            <a-select-option :key="item.id" :value="item.id" v-for="item in getJobType">{{item.val}}</a-select-option>
           </a-select>
         </a-form-item>
         <a-form-item v-bind="tailFormItemLayout">
@@ -573,10 +584,81 @@
 <script>
 import DefaultImg from "../assets/img/touxiang.jpg";
 import { tag, modal } from "ant-design-vue";
+import { uploadPhoto } from "@/api/center.js";
+import citydata from "@/assets/pca-code.js";
+import api from "@/api";
+// console.log(uploadPhoto);
 
+function getBase64(img, callback) {
+  const reader = new FileReader();
+  reader.addEventListener("load", () => callback(reader.result));
+  reader.readAsDataURL(img);
+}
 export default {
   data() {
     return {
+      Province: [
+        {
+          name: "",
+          code: 0
+        }
+      ],
+      City: [
+        {
+          name: "",
+          code: 0
+        }
+      ],
+      oPrice: ["5K", "8k", "10k", "15k", "20k", "25k", "30k", "35k", "40k"],
+      ePrice: [
+        "10k",
+        "15k",
+        "18k",
+        "20k",
+        "25k",
+        "30k",
+        "35k",
+        "40k",
+        "45k",
+        "50k"
+      ],
+
+      activeProvince: 0,
+      activeCity: 0,
+
+      // 求职类型
+      getJobType: [
+        { id: 1, val: "全职" },
+        { id: 2, val: "兼职" },
+        { id: 3, val: "实习" },
+        { id: 4, val: "全/兼职" }
+      ],
+      // 邮箱
+      email: "",
+      tittle: "",
+      //期望职业
+      expectationOccupation: "",
+      //求值类型
+      jobWantedStatus: 1,
+      // 期望行业
+      expectationIndustry: "",
+      //薪资范围
+      expectationSalary: "",
+      // 姓名
+      name: "",
+      //性别
+      gender: 1,
+      //生日
+      birthday: "",
+      //手机
+      mobile: "",
+      weight: 0,
+      height: 0,
+      description: "",
+      uploadPhoto, //上传头像URL
+      geHeader: {},
+      loading: false,
+      imageUrl: "",
       imgUrl: DefaultImg,
       selfModal: false,
       selfDescModal: false,
@@ -617,7 +699,150 @@ export default {
   created() {
     this.form = this.$form.createForm(this, { name: "register" });
   },
+  computed: {},
+  mounted() {
+    let accessToken = localStorage.getItem("accessToken");
+    if (accessToken == null || accessToken == "null") {
+      location.href = "/login.html";
+    } else {
+      this.geHeader = {
+        Authorization: "Bearer " + accessToken
+      };
+    }
+
+    this.getZoneList();
+    this.getBaseInfo();
+  },
   methods: {
+    // 添加工作经历
+    addWord(id){
+      api.workAdd({
+        id,
+        
+      })
+    },
+    getBaseInfo(){
+      api.getBaseInfo({})
+        .then(res=>{
+          console.log(res);
+          
+        })
+    },
+    getGenger(val) {
+      this.gender = val;
+    },
+    onBirthdayChange(date, dateString) {
+      this.birthday = dateString;
+    },
+    onGetJobType(val) {
+      console.log(val);
+    },
+    editJianli(id) {
+      let {
+        tittle,
+        email,
+        expectationSalary,
+        name,
+        activeCity,
+        activeProvince,
+        height,
+        weight,
+        mobile,
+        gender,
+        description,
+        birthday,
+        jobWantedStatus,
+        expectationIndustry,
+        expectationOccupation
+      } = this;
+      let subData = Object.assign(
+        {},
+        {
+          tittle:this.formatData(tittle),
+          email:this.formatData(email),
+          expectationSalary:this.formatData(expectationSalary),
+          name:this.formatData(name),
+          city:this.formatData(activeCity),
+          province:this.formatData(activeProvince),
+          height:this.formatData(height),
+          weight:this.formatData(weight),
+          mobile:this.formatData(mobile),
+          gender:this.formatData(gender),
+          description:this.formatData(description),
+          birthday:this.formatData(birthday),
+          jobWantedStatus:this.formatData(jobWantedStatus),
+          expectationIndustry:this.formatData(expectationIndustry),
+          expectationOccupation:this.formatData(expectationOccupation)
+        }
+      );
+
+      api
+        .baseInfo({
+          ...subData
+        })
+        .then(res => {
+          console.log(res);
+        });
+    },
+    getZoneList() {
+      let params =
+        arguments.length == 0
+          ? {}
+          : {
+              parentCode: this.Province[arguments[0]].code
+            };
+      api.zoneList(params).then(res => {
+        if (res.code == 1) {
+          if (arguments.length == 0) {
+            this.Province = res.data;
+          } else {
+            this.City = res.data;
+            this.activeProvince = this.Province[arguments[0]].code;
+          }
+        }
+      });
+    },
+    formatData(data){
+      if(data == ''){
+        return 0
+      }
+      else{
+        return data;
+      }
+    },
+    getCityCode() {
+      this.City[arguments[0]].code;
+    },
+    addBaseInfo() {
+      api.baseInfo({}).then(res => {
+        console.log(res);
+      });
+    },
+    // 上传图片
+    handleChange(info) {
+      if (info.file.status === "uploading") {
+        this.loading = true;
+        return;
+      }
+      if (info.file.status === "done") {
+        // Get this url from response in real world.
+        getBase64(info.file.originFileObj, imageUrl => {
+          this.imageUrl = imageUrl;
+          this.loading = false;
+        });
+      }
+    },
+    beforeUpload(file) {
+      // const isJPG = file.type === "image/jpeg";
+      // if (!isJPG) {
+      //   this.$message.error("You can only upload JPG file!");
+      // }
+      // const isLt2M = file.size / 1024 / 1024 < 2;
+      // if (!isLt2M) {
+      //   this.$message.error("Image must smaller than 2MB!");
+      // }
+      // return isJPG && isLt2M;
+    },
     showSelfDesc(desc) {
       console.log(desc);
 
@@ -628,7 +853,12 @@ export default {
       e.preventDefault();
       this.form.validateFieldsAndScroll((err, values) => {
         if (!err) {
-          console.log("Received values of form: ", values);
+          let { name, gender, mobile, date, email } = values;
+          this.name = name;
+          this.gender = Number(gender);
+          this.mobile = mobile;
+          this.email = email;
+          this.editJianli(0);
         }
       });
     },
@@ -642,58 +872,11 @@ export default {
           });
         }
       });
-    },
-    handleConfirmBlur(e) {
-      const value = e.target.value;
-      this.confirmDirty = this.confirmDirty || !!value;
-    },
-    compareToFirstPassword(rule, value, callback) {
-      const form = this.form;
-      if (value && value !== form.getFieldValue("password")) {
-        callback("Two passwords that you enter is inconsistent!");
-      } else {
-        callback();
-      }
-    },
-    validateToNextPassword(rule, value, callback) {
-      const form = this.form;
-      if (value && this.confirmDirty) {
-        form.validateFields(["confirm"], { force: true });
-      }
-      callback();
-    },
-    handleWebsiteChange(value) {
-      let autoCompleteResult;
-      if (!value) {
-        autoCompleteResult = [];
-      } else {
-        autoCompleteResult = [".com", ".org", ".net"].map(
-          domain => `${value}${domain}`
-        );
-      }
-      this.autoCompleteResult = autoCompleteResult;
     }
   }
 };
 </script>
 <style lang="less" scoped>
-body {
-  padding: 0;
-  margin: 0;
-}
-* {
-  box-sizing: border-box;
-}
-a {
-  color: #000;
-}
-li {
-  list-style: none;
-}
-ul {
-  padding-left: 0;
-  margin-bottom: 0;
-}
 .persion-center-container {
   width: 1024px;
   margin: 0 auto;

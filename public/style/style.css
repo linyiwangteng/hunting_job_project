@@ -217,18 +217,6 @@ span.error {
     line-height: 22px;
 }
 
-::selection {
-    background: #019875;
-    color: white;
-    /* Safari */
-}
-
-::-moz-selection {
-    background: #019875;
-    color: white;
-    /* Firefox */
-}
-
 .triangle {
     height: 0;
     width: 0;
@@ -1654,7 +1642,6 @@ ul.hot_pos i {
     border: none;
     background: none
 }
-
 
 .submitLogin {
     width: 155px;
@@ -12386,3 +12373,18 @@ ul.my_collections li i {
 }
 
 /*end*/
+
+.ant-upload.ant-upload-select-picture-card {
+    border-radius: 50%!important;
+    overflow: hidden;
+}
+
+.ant-upload.ant-upload-select-picture-card img{
+    width: 88px;
+    height: 88px;
+}
+.city_set .ant-select{
+    display: inline-block!important;
+    width: 40%!important;
+    margin-right: 10px!important;
+}

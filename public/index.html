@@ -7,12 +7,15 @@
     <link rel="icon" href="favicon.ico">
     <title>hunting_job_project</title>
     <link rel="stylesheet" href="style/style.css">
+    <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
   </head>
   <body>
     <noscript>
       <strong>We're sorry but hunting_job_project doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
     <div id="app"></div>
-    <!-- built files will be auto injected -->
+    <script>
+      localStorage.setItem('ipCity',JSON.stringify(returnCitySN));
+    </script>
   </body>
 </html>
