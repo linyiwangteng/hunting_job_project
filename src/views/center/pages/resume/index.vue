@@ -634,7 +634,7 @@ export default {
         { id: 4, val: "全/兼职" }
       ],
       // 邮箱
-      email:'',
+      email: "",
       tittle: "",
       //期望职业
       expectationOccupation: "",
@@ -654,7 +654,7 @@ export default {
       mobile: "",
       weight: 0,
       height: 0,
-
+      description: "",
       uploadPhoto, //上传头像URL
       geHeader: {},
       loading: false,
@@ -740,24 +740,30 @@ export default {
         expectationIndustry,
         expectationOccupation
       } = this;
+      let subData = Object.assign(
+        {},
+        {
+          tittle:this.formatData(tittle),
+          email:this.formatData(email),
+          expectationSalary:this.formatData(expectationSalary),
+          name:this.formatData(name),
+          city:this.formatData(activeCity),
+          province:this.formatData(activeProvince),
+          height:this.formatData(height),
+          weight:this.formatData(weight),
+          mobile:this.formatData(mobile),
+          gender:this.formatData(gender),
+          description:this.formatData(description),
+          birthday:this.formatData(birthday),
+          jobWantedStatus:this.formatData(jobWantedStatus),
+          expectationIndustry:this.formatData(expectationIndustry),
+          expectationOccupation:this.formatData(expectationOccupation)
+        }
+      );
+
       api
         .baseInfo({
-          id,
-          tittle,
-          email,
-          expectationSalary,
-          name,
-          city:activeCity,
-          province:activeProvince,
-          height,
-          weight,
-          mobile,
-          gender,
-          description,
-          birthday,
-          jobWantedStatus,
-          expectationIndustry,
-          expectationOccupation
+          ...subData
         })
         .then(res => {
           console.log(res);
@@ -780,6 +786,14 @@ export default {
           }
         }
       });
+    },
+    formatData(data){
+      if(data == ''){
+        return 0
+      }
+      else{
+        return data;
+      }
     },
     getCityCode() {
       this.City[arguments[0]].code;
@@ -826,7 +840,7 @@ export default {
         if (!err) {
           let { name, gender, mobile, date, email } = values;
           this.name = name;
-          this.gender = gender;
+          this.gender = Number(gender);
           this.mobile = mobile;
           this.email = email;
           this.editJianli(0);
