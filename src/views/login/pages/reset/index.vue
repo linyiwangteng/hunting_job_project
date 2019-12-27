@@ -35,7 +35,7 @@
         </a-input>
       </a-form-item>
       <a-form-item>
-        <a-button type="primary" class="login-form-button" @click="onRegister">注册</a-button>
+        <a-button type="primary" class="login-form-button" @click="onFind">打回密码</a-button>
         <a href="#/">去登录</a>
       </a-form-item>
     </a-form>
@@ -85,10 +85,11 @@ export default {
           return false;
         }
         api
-          .sendCode({
+          .sendFindCode({
             Phone,
             Code,
-            PictureId
+            PictureId,
+            AccountType: 2
           })
           .then(res => {
             if (res.code == 1) {
@@ -112,7 +113,7 @@ export default {
           });
       }
     },
-    onRegister() {
+    onFind() {
       let { Phone, MobileCode, Password, RePassword } = this;
       if (Phone == "") {
         this.$message.error("手机号不能为空");
@@ -139,18 +140,20 @@ export default {
         return false;
       }
       api
-        .register({
+        .findPwd({
           Phone,
-          MobileCode,
+          Code: MobileCode,
           Password,
           RePassword
         })
         .then(res => {
           if (res.code == 1) {
-            this.$message.success("注册成功，快去登录吧");
+            this.$message.success("修改成功，快去登录吧");
             setTimeout(e => {
-              location.reload();
+              location.href = "/login.html";
             }, 1000);
+          } else {
+            this.$message.error(res.msg);
           }
         });
     },
@@ -165,7 +168,7 @@ export default {
 };
 </script>
 <style lang="less" scoped>
-.code-btn{
+.code-btn {
   cursor: pointer;
 }
 #components-form-demo-normal-login .login-form {
@@ -210,8 +213,8 @@ export default {
     width: 150px !important;
   }
 }
-.ant-form-item{
+.ant-form-item {
   padding: 10px 0 10px 0;
-  margin-bottom:0; 
+  margin-bottom: 0;
 }
 </style>

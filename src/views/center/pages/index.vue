@@ -42,11 +42,11 @@
               <div class="icon icon_one">
                 <img :src="iconOne" alt />
               </div>
-              <a class="jianli-line" href="#/jianli">在线简历</a>
+              <a class="jianli-line" href="#/resume">在线简历</a>
             </li>
             <li class="jianli-item">
               <div class="icon"></div>
-              <a href="#/jianli" class="jianli-edit">编辑简历</a>
+              <a href="#/resume" class="jianli-edit">编辑简历</a>
               <div class="jianli-update-time">1029.11.03更新</div>
             </li>
           </ul>
@@ -278,7 +278,18 @@ export default {
       centerBanner: require("./assets/img/center_banner.png")
     };
   },
-  created() {}
+  created() {},
+  mounted() {
+    isLogin();
+  },
+  methods: {
+    isLogin() {
+      let accessToken = localStorage.getItem("accessToken");
+      if (accessToken == null || accessToken == "null") {
+        location.href = "/login.html";
+      }
+    }
+  }
 };
 </script>
 <style lang="less" scoped>

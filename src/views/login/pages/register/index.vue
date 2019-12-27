@@ -149,9 +149,12 @@ export default {
           if (res.code == 1) {
             this.$message.success("注册成功，快去登录吧");
             setTimeout(e => {
-              location.reload();
+              location.href = '/login.html';
             }, 1000);
+          }else{
+            this.$message.error(res.msg);
           }
+
         });
     },
     checkPhone(phone) {

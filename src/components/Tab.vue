@@ -26,7 +26,7 @@
               </a>
               <a-menu slot="overlay">
                 <a-menu-item key="0">
-                  <a href="/center.html">账户信息</a>
+                  <a href="javascript:;" @click="goCenter">账户信息</a>
                 </a-menu-item>
                 <a-menu-item key="1">
                   <a href="/">我的院校</a>
@@ -76,7 +76,7 @@
 import { defcompanyUrl } from "../config";
 // console.log("process.env.NODE_ENV", process.env.NODE_ENV);
 import api from "@/api/index.js";
-import { log } from 'util';
+import { log } from "util";
 // 上线要变
 let _file = "";
 
@@ -134,7 +134,7 @@ export default {
     this.cityName = JSON.parse(localStorage.getItem("ipCity"))["cname"];
     let accessToken = localStorage.getItem("accessToken");
     console.log(typeof accessToken);
-    
+
     if (accessToken != null && accessToken != "null") {
       this.login = true;
     }
@@ -143,6 +143,14 @@ export default {
     outLogin() {
       window.localStorage.removeItem("accessToken");
       window.location.href = "/login.html";
+    },
+    goCenter() {
+      let accessToken = localStorage.getItem("accessToken");
+      if (accessToken != null && accessToken != "null") {
+        location.href = "/center.html";
+      } else {
+        location.href = "/login.html";
+      }
     }
   },
   watch: {
