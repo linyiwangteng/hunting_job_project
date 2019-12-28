@@ -3,12 +3,18 @@ export default {
     {
       path: '/',
       name: 'school',
-      component: () => import('../index.vue')
+      component: () => import('../index.vue'),
+      meta:{
+        key: 'school'
+      }
     },
     {
       path: '/detail',
       name: 'school_detail',
-      component: () => import('../detail.vue')
+      component: () => import('../detail.vue'),
+      meta:{
+        key:'school'
+      }
     }
   ]
 }

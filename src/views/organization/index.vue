@@ -2,12 +2,12 @@
   <div class="consult-container">
     <filter-options :options="options" @requestList="requestList"></filter-options>
     <div class="list-container">
-      <span class="options" v-for="i in 10" :key="i" @click="goDetail(i)">
-        <h1>技术学院</h1>
-        <span>已开设班级</span>
-        <p>转业科目</p>
+      <span class="options" v-for="item in organizationList" :key="item.id" @click="goDetail(item.id)">
+        <img :src="item.logo" alt="" class="schoolLogo">
+        <h1 class="paddingleft">{{item.name}}</h1>
+        <span class="paddingleft">已开设班级:</span>
+        <p class="description" :title="item.description">简介:{{item.description}}</p>
       </span>
-      <span class="options"></span>
     </div>
   </div>
 </template>
@@ -18,7 +18,7 @@ import FilterOptions from '@/components/FilterOptions.vue'
 export default {  
  data() {
     return {
-      noticeData: [],
+      organizationList: [],
       options: [{
         name:'院校地址',
         key: 'address',
@@ -31,22 +31,22 @@ export default {
     }
   },
   mounted() {
-    // this._getNoticeList();
+    this._getNoticeList();
   },
   methods: {
     requestList(data){
       console.log(data);
     },
     _getNoticeList() {
-      api
-        .newsList({
-          infoType: 1,
-          topRow: 10
+      api.organizationList({
+          row: 10,
+          type: 2,
+          companyType: 2
         })
         .then(res => {
           if (res.code == 1) {
-            this.noticeData = res.data;
-            console.log(this.noticeData)
+            this.organizationList = res.data;
+            console.log(this.organizationList)
           }
         });
     },
@@ -76,6 +76,7 @@ export default {
     flex-wrap: wrap;
     justify-content: space-between;
     .options{
+      position: relative;
       width: 500px;
       height: 120px;
       border: 1px solid rgba(0,0,0,0.06);
@@ -84,8 +85,23 @@ export default {
       box-sizing: border-box;
       margin-bottom: 20px;
       cursor: pointer;
+      .schoolLogo{
+        position:absolute;
+        top:20px;
+        left:10px;
+        width: 120px;
+        height: 40px;
+      }
+      .paddingleft{
+        padding-left: 130px;
+      }
       h1{
         margin-bottom: 0;
+      }
+      p.description{
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
     }
   }

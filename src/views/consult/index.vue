@@ -36,7 +36,8 @@ export default {
     },
     goDetail(id) {
      
-      window.location.href = `/home.html#/newinfo?id=${id}`;
+      // window.location.href = `/home.html#/newinfo?id=${id}`;
+      this.$router.push(`/newInfo?id=${id}`)
     }
   }
 }

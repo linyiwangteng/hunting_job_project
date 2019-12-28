@@ -29,7 +29,7 @@ export default {
       margin: 0 auto;
       color: #ffffff;
       font-size: 14px;
-      
+      text-align: center;
       .f1{
         padding: 0 14px;
       }

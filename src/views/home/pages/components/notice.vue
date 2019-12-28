@@ -1,5 +1,5 @@
 <template>
-  <div class="notice-box">
+  <div class="notice-box" v-if="noticeData.length">
     <h1 class="notice-title">
       政策报告
       <span class="more">更多></span>

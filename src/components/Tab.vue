@@ -155,7 +155,7 @@ export default {
   },
   watch: {
     $route: function(to, from) {
-      this.routeName = to.name;
+      this.routeName = to.meta.key;
     },
     tab(nv, ov) {
       this.isShow = nv;

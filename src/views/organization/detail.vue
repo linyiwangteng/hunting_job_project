@@ -1,7 +1,7 @@
 <template>
   <div>
-    <intro></intro>
-    <div class="intro-content">
+    <intro :introInfo = 'schoolInfo'></intro>
+    <div class="intro-content" v-if="false">
       <div class="intro-left">
         <div class='title'>
           <span></span>
@@ -57,10 +57,26 @@
 import Intro from '@/components/Intro.vue';
 import OnlineApply from '@/components/OnlineApply.vue';
 import {Select} from 'ant-design-vue';
+import api from '@/api';
 export default {
+  data(){
+    return {
+      schoolInfo:{}
+    }
+  },
+  mounted(){
+    this._getInfoData();
+  },
   methods: {
     handleChange(){
 
+    },
+    _getInfoData(){
+      let {id} = this.$route.query;
+      api.orgDetail({id}).then(res=>{
+        this.schoolInfo = res.data;
+        this.schoolInfo.type = '机构';
+      })
     },
     goClassDetail(id){
       this.$router.push('/detail-class?id='+id);

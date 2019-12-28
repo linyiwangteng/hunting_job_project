@@ -2,11 +2,14 @@
   <div class="city-box">
       <span class="city-name">热招城市</span>
 			<ul class="city-list" v-if="hlj_province">
-				<li class="every-area" v-for="area in hotProvince" :key="area.code">
+				<li class="every-area" v-for="area in hotProvince" :key="area.id">
 					<span class="city">{{area.name}}</span>
-					<span class="areas" v-for="(item,index) in area.children" :key="item.code">
-						<template v-if="index < 5">{{item.name}}</template>
-					</span>
+					<template class="areas" v-for="(item,index) in area.childList">
+						<span  :key="item.id" v-if="index < 5" class="area">
+							{{item.name}}
+						</span>
+					</template>
+					
 				</li>
 			</ul>
   </div>
@@ -42,7 +45,7 @@ export default {
 				parentCode:'230000000000'
 			}).then(res=>{
 				this.hotProvince = res.data;
-
+				console.log(this.hotProvince);
 			})
 		}
 	}
@@ -87,7 +90,7 @@ export default {
 			line-height: 29px;
 			cursor: pointer;
 		}
-		.areas{
+		.area{
 			padding-right: 51px;
 			line-height: 29px;
 			word-break: keep-all;

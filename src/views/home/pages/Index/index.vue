@@ -3,9 +3,14 @@
     <div class="home-top">
       <div class="top-left">
         <div class="top-left-top">
-          <!-- <div class="banner"></div> -->
-          <banner class="banner"></banner>
-          <notice class="notice"></notice>
+         
+            <div class="banner">
+              <banner ></banner>
+            </div>
+            <div class="notice">
+               <notice></notice>
+            </div>
+         
         </div>
         <div class="top-left-middle">
           <search />
@@ -193,7 +198,9 @@ export default {
       footAdv: [],
       conpanyList: [],
       universityList: [],
-      organizationList: []
+      organizationList: [],
+      isShowNotice:false,
+      isShowBanner:false,
     };
   },
   mounted() {
