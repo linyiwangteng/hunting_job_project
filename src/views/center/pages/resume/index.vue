@@ -25,27 +25,26 @@
               <i class="icon-icon_resume_editor active-color"></i>编辑
             </em>
             <div class="basic-name-area">
-              <p class="basic-name female">边晓凯</p>
+              <p class="basic-name female" v-text="name"></p>
               <i class="icon-sex icon-sex__male"></i>
             </div>
-            <p>
+            <!-- <p>
               <span class="basic-company">北京拓课网络科技有限公司</span>
               <span>/</span>
               <span class="basic-job">WEB前端</span>
-            </p>
+            </p>-->
             <p class="basic-self">
-              <span class="basic-exp">4年工作经验</span>
-              <span class="basic-edu">/ 大专</span>
-              <span class="basic-age">/ 26岁</span>
+              <span class="basic-edu">{{ gender | genderFilter }}</span>
+              <span class="basic-age">&nbsp;/ {{ birthday | getAge }}</span>
             </p>
             <p>
               <span class="basic-tel">
                 <i class="basic-tel_icon"></i>
-                <span>17778141896</span>
+                <span v-text="mobile"></span>
               </span>
               <span class="basic-email">
                 <i class="basic-email_icon"></i>
-                <span>bxk0129@163.com</span>
+                <span v-text="email"></span>
               </span>
             </p>
           </div>
@@ -55,32 +54,8 @@
         <div class="mr-template_title">
           <span>自我描述</span>
         </div>
-        <div class="tagboard integrative-tag">
-          <!-- <div class="edit-btn">
-            <i class="icon-icon_resume_editor active-color"></i>
-            编辑
-          </div>-->
-          <!-- 个人标签 -->
-          <!-- <div class="integrative-tag_content">
-            <a-tag>责任心</a-tag>
-            <a-tag>责任心</a-tag>
-            <a-tag>责任心</a-tag>
-          </div>-->
-        </div>
         <div class="per-self_content">
-          <div class="per-self_des">
-            <ul>
-              <li>
-                <p>沉着冷静的我，相信遇到任何困难都会有它的解决办法。</p>
-              </li>
-              <li>
-                <p>喜欢学习一些新的前端技术级框架</p>
-              </li>
-              <li>
-                <p>运用所学技术开发一些项目</p>
-              </li>
-            </ul>
-          </div>
+          <div class="per-self_des" v-text="description"></div>
           <div class="editor-tool">
             <div class="edit-btn" @click="showSelfDesc('selfDescModal')">
               <i class="icon-icon_resume_editor active-color"></i>
@@ -93,7 +68,7 @@
       <div class="mr-template work-exp" id="workExp">
         <div class="mr-template_title">
           <span>工作经历</span>
-          <div class="add-btn" @click="showSelfDesc('jianliModal')">
+          <div class="add-btn" @click="()=>{this.companyId = 0;showSelfDesc('jianliModal')}">
             <i class="icon-icon_resume_add active-color"></i>
             添加
           </div>
@@ -105,12 +80,7 @@
                 <i class="icon-icon_resume_editor active-color"></i>
                 编辑
               </div>
-              <div
-                class="del-btn"
-                data-lg-tj-id="1jit"
-                data-lg-tj-no="0005"
-                data-lg-tj-cid="idnull"
-              >
+              <div class="del-btn">
                 <i class="icon-icon_resume_delete active-color"></i>
                 删除
               </div>
@@ -146,6 +116,142 @@
                 <br />
               </p>
             </div>
+          </li>
+        </ol>
+      </div>
+      <!-- 项目经历 -->
+      <div class="mr-template work-exp">
+        <div class="mr-template_title">
+          <span>项目经历</span>
+          <div class="add-btn" @click="()=>{this.projectId = 0;showSelfDesc('projectModal')}">
+            <i class="icon-icon_resume_add active-color"></i>
+            添加
+          </div>
+        </div>
+        <ol class="work-exp_group">
+          <li class="work-exp_list">
+            <div class="editor-tool">
+              <div class="edit-btn">
+                <i class="icon-icon_resume_editor active-color"></i>
+                编辑
+              </div>
+              <div class="del-btn">
+                <i class="icon-icon_resume_delete active-color"></i>
+                删除
+              </div>
+            </div>
+            <p class="exp-list_time">2018.04-至今</p>
+            <div class="exp-list_top">
+              <img
+                src="//www.lgstatic.com/i/image2/M00/1B/C5/CgotOVoDyFqATP28AAAPFZX7li4887.jpg"
+                alt="公司Logo"
+              />
+              <div class="exp-list_right">
+                <strong class="exp-list_title">
+                  <span>北京拓课网络科技有限公司</span>
+                  ／
+                  <span>研发部</span>
+                </strong>
+                <!-- <p>WEB前端</p> -->
+              </div>
+            </div>
+            <div class="exp-list_content">fasfdgavdfvadfga /></div>
+          </li>
+          <li class="work-exp_list">
+            <div class="editor-tool">
+              <div class="edit-btn">
+                <i class="icon-icon_resume_editor active-color"></i>
+                编辑
+              </div>
+              <div class="del-btn">
+                <i class="icon-icon_resume_delete active-color"></i>
+                删除
+              </div>
+            </div>
+            <p class="exp-list_time">2018.04-至今</p>
+            <div class="exp-list_top">
+              <img
+                src="//www.lgstatic.com/i/image2/M00/1B/C5/CgotOVoDyFqATP28AAAPFZX7li4887.jpg"
+                alt="公司Logo"
+              />
+              <div class="exp-list_right">
+                <strong class="exp-list_title">
+                  <span>北京拓课网络科技有限公司</span>
+                  ／
+                  <span>研发部</span>
+                </strong>
+                <!-- <p>WEB前端</p> -->
+              </div>
+            </div>
+            <div class="exp-list_content">fasfdgavdfvadfga /></div>
+          </li>
+        </ol>
+      </div>
+      <!-- 教育经历 -->
+      <div class="mr-template work-exp">
+        <div class="mr-template_title">
+          <span>教育经历</span>
+          <div class="add-btn" @click="()=>{this.projectId = 0;showSelfDesc('studyModal')}">
+            <i class="icon-icon_resume_add active-color"></i>
+            添加
+          </div>
+        </div>
+        <ol class="work-exp_group">
+          <li class="work-exp_list">
+            <div class="editor-tool">
+              <div class="edit-btn">
+                <i class="icon-icon_resume_editor active-color"></i>
+                编辑
+              </div>
+              <div class="del-btn">
+                <i class="icon-icon_resume_delete active-color"></i>
+                删除
+              </div>
+            </div>
+            <p class="exp-list_time">2018.04-至今</p>
+            <div class="exp-list_top">
+              <img
+                src="//www.lgstatic.com/i/image2/M00/1B/C5/CgotOVoDyFqATP28AAAPFZX7li4887.jpg"
+                alt="公司Logo"
+              />
+              <div class="exp-list_right">
+                <strong class="exp-list_title">
+                  <span>北京拓课网络科技有限公司</span>
+                  ／
+                  <span>研发部</span>
+                </strong>
+                <!-- <p>WEB前端</p> -->
+              </div>
+            </div>
+            <div class="exp-list_content">fasfdgavdfvadfga /></div>
+          </li>
+          <li class="work-exp_list">
+            <div class="editor-tool">
+              <div class="edit-btn">
+                <i class="icon-icon_resume_editor active-color"></i>
+                编辑
+              </div>
+              <div class="del-btn">
+                <i class="icon-icon_resume_delete active-color"></i>
+                删除
+              </div>
+            </div>
+            <p class="exp-list_time">2018.04-至今</p>
+            <div class="exp-list_top">
+              <img
+                src="//www.lgstatic.com/i/image2/M00/1B/C5/CgotOVoDyFqATP28AAAPFZX7li4887.jpg"
+                alt="公司Logo"
+              />
+              <div class="exp-list_right">
+                <strong class="exp-list_title">
+                  <span>北京拓课网络科技有限公司</span>
+                  ／
+                  <span>研发部</span>
+                </strong>
+                <!-- <p>WEB前端</p> -->
+              </div>
+            </div>
+            <div class="exp-list_content">fasfdgavdfvadfga /></div>
           </li>
         </ol>
       </div>
@@ -263,124 +369,48 @@
             </div>
           </div>
           <ul class="right-nav__content">
-            <li
-              class="right-nav__item active"
-              data-id="baseInfo"
-              data-lg-tj-id="1jit"
-              data-lg-tj-no="0023"
-              data-lg-tj-cid="idnull"
-            >
+            <li class="right-nav__item active">
               <i class="mr_base_i"></i>
               <span class="mr_m_name">基本信息</span>
             </li>
-            <li
-              class="right-nav__item"
-              data-id="perAbility"
-              data-lg-tj-id="1jit"
-              data-lg-tj-no="0024"
-              data-lg-tj-cid="idnull"
-            >
+            <li class="right-nav__item">
               <i class="mr_self_i"></i>
               <span class="mr_m_name">个人能力</span>
             </li>
-            <li
-              class="right-nav__item"
-              data-id="workExp"
-              data-lg-tj-id="1jit"
-              data-lg-tj-no="0025"
-              data-lg-tj-cid="idnull"
-            >
+            <li class="right-nav__item">
               <div class="editor-tool">
-                <em
-                  class="add-btn"
-                  data-lg-tj-id="1jit"
-                  data-lg-tj-no="0026"
-                  data-lg-tj-cid="idnull"
-                >添加</em>
+                <em class="add-btn">添加</em>
               </div>
               <i class="mr_works_i"></i>
               <span class="mr_m_name">工作经历</span>
             </li>
-            <li
-              class="right-nav__item"
-              data-id="proExp"
-              data-lg-tj-id="1jit"
-              data-lg-tj-no="0027"
-              data-lg-tj-cid="idnull"
-            >
+            <li class="right-nav__item">
               <div class="editor-tool">
-                <em
-                  class="add-btn"
-                  data-lg-tj-id="1jit"
-                  data-lg-tj-no="0028"
-                  data-lg-tj-cid="idnull"
-                >添加</em>
-                <em
-                  class="del-btn"
-                  data-lg-tj-id="1jit"
-                  data-lg-tj-no="0029"
-                  data-lg-tj-cid="idnull"
-                >删除</em>
+                <em class="add-btn">添加</em>
+                <em class="del-btn">删除</em>
               </div>
               <i class="mr_project_i"></i>
               <span class="mr_m_name">项目经验</span>
             </li>
-            <li
-              class="right-nav__item"
-              data-id="eduExp"
-              data-lg-tj-id="1jit"
-              data-lg-tj-no="0030"
-              data-lg-tj-cid="idnull"
-            >
+            <li class="right-nav__item">
               <div class="editor-tool">
-                <em
-                  class="add-btn"
-                  data-lg-tj-id="1jit"
-                  data-lg-tj-no="0031"
-                  data-lg-tj-cid="idnull"
-                >添加</em>
+                <em class="add-btn">添加</em>
               </div>
               <i class="mr_edu_i"></i>
               <span class="mr_m_name">教育经历</span>
             </li>
-            <li
-              class="right-nav__item"
-              data-id="socialPage"
-              data-lg-tj-id="1jit"
-              data-lg-tj-no="0032"
-              data-lg-tj-cid="idnull"
-            >
+            <li class="right-nav__item">
               <div class="editor-tool">
-                <em
-                  class="add-btn"
-                  data-lg-tj-id="1jit"
-                  data-lg-tj-no="0033"
-                  data-lg-tj-cid="idnull"
-                >添加</em>
-                <em
-                  class="del-btn dn"
-                  data-lg-tj-id="1jit"
-                  data-lg-tj-no="0034"
-                  data-lg-tj-cid="idnull"
-                >删除</em>
+                <em class="add-btn">添加</em>
+                <em class="del-btn dn">删除</em>
               </div>
               <i class="mr_social_account_i"></i>
               <span class="mr_m_name">社交主页</span>
             </li>
             <li class="right-nav__item" data-id="portfolioPage">
               <div class="editor-tool">
-                <em
-                  class="add-btn"
-                  data-lg-tj-id="1jit"
-                  data-lg-tj-no="0063"
-                  data-lg-tj-cid="idnull"
-                >添加</em>
-                <em
-                  class="del-btn dn"
-                  data-lg-tj-id="1jit"
-                  data-lg-tj-no="0064"
-                  data-lg-tj-cid="idnull"
-                >删除</em>
+                <em class="add-btn">添加</em>
+                <em>删除</em>
               </div>
               <i class="mr_portfolio_account_i"></i>
               <span class="mr_m_name">图片作品</span>
@@ -393,7 +423,7 @@
     <a-modal title="基本信息" v-model="selfModal" :footer="null" @ok="selfModal = false">
       <a-form :form="form" @submit="handleSelfInfoSubmit">
         <a-form-item v-bind="formItemLayout">
-          <span slot="label">姓名:</span>
+          <span slot="label">姓名</span>
           <a-input
             v-decorator="[
           'name',
@@ -404,7 +434,7 @@
           />
         </a-form-item>
         <a-form-item v-bind="formItemLayout">
-          <span slot="label">邮箱:</span>
+          <span slot="label">邮箱</span>
           <a-input
             v-decorator="[
           'email',
@@ -432,6 +462,7 @@
           }
           ]"
             @change="getGenger"
+            v-model="gender"
           >
             <a-radio value="1">男</a-radio>
             <a-radio value="0">女</a-radio>
@@ -465,30 +496,54 @@
     <!-- 自我描述 -->
     <a-modal title="自我描述" v-model="selfDescModal" :footer="null" @ok="selfDescModal = false">
       <a-form layout="inline" :form="form" @submit="editDescInfo">
-        <div class="self_desc_box">
-          <a-form-item>
-            <a-input
-              v-decorator="[
-          'desc',
-          { rules: [{ type:'string', required: true, message: '请输入描述!' }] },
-        ]"
-              placeholder="描述"
-            >
-              <!-- <a-icon slot="prefix" type="user" style="color:rgba(0,0,0,.25)" /> -->
-            </a-input>
-          </a-form-item>
-          <ul class="todo-list">
-            <li class="desc-item" :key="item.id" v-for="item in desc">{{ item.desc }}</li>
-          </ul>
-          <a-form-item>
-            <a-button type="primary" html-type="submit">添加</a-button>
-          </a-form-item>
-        </div>
+        <a-textarea style="width:100%;height:200px" v-model="description" placeholder="描述">
+          <!-- <a-icon slot="prefix" type="user" style="color:rgba(0,0,0,.25)" /> -->
+        </a-textarea>
+        <a-form-item>
+          <a-button type="primary" html-type="submit">保存</a-button>
+        </a-form-item>
       </a-form>
     </a-modal>
     <!-- 添加简历 -->
-    <a-modal title="基本信息" v-model="jianliModal" :footer="null" @ok="jianliModal = false">
-      <a-form :form="form" @submit="handleSelfInfoSubmit">
+    <a-modal title="工作经历" v-model="jianliModal" :footer="null" @ok="jianliModal = false">
+      <a-form :form="form" @submit="handleWordEdit">
+        <a-form-item v-bind="formItemLayout">
+          <span slot="label">公司名称</span>
+          <a-input
+            v-decorator="[
+          'CompanyName',
+          {
+            rules: [{ required: true, message: '请输入公司名称!', whitespace: true }],
+          },
+        ]"
+          />
+        </a-form-item>
+        <a-form-item v-bind="formItemLayout">
+          <span slot="label">加入时间</span>
+          <a-range-picker
+            format="YYYY-MM-DD"
+            :disabledDate="disabledDate"
+            v-decorator="['date', {rules: [{ type: 'array', required: true, message: '请输入在公司的时间!' }]} ]"
+          />
+        </a-form-item>
+        <a-form-item v-bind="formItemLayout" label="公司描述">
+          <a-textarea
+            v-decorator="[
+          'Description',
+          {
+            rules: [{ required: true, message: '请输入公司描述!' }],
+          },
+        ]"
+          ></a-textarea>
+        </a-form-item>
+        <a-form-item v-bind="tailFormItemLayout">
+          <a-button type="primary" html-type="submit">保存</a-button>
+        </a-form-item>
+      </a-form>
+    </a-modal>
+    <!-- 项目经历 -->
+    <a-modal title="项目经历" v-model="projectModal" :footer="null" @ok="projectModal = false">
+      <a-form :form="form" @submit="handleProjectSubmit">
         <a-form-item v-bind="formItemLayout">
           <span slot="label">项目名称</span>
           <a-input
@@ -501,29 +556,78 @@
           />
         </a-form-item>
         <a-form-item v-bind="formItemLayout">
-          <span slot="label">公司名称</span>
-          <a-input
+          <span slot="label">项目介绍</span>
+          <a-textarea
             v-decorator="[
-          'companyName',
+          'ProjectDescription',
           {
-            rules: [{ required: true, message: '请输入公司名称!', whitespace: true }],
+            rules: [{ required: true, message: '请输入项目介绍!', whitespace: true }],
           },
         ]"
           />
         </a-form-item>
         <a-form-item v-bind="formItemLayout">
           <span slot="label">项目周期</span>
-          <a-date-picker
-            placeholder
-            v-decorator="['date', {rules: [{ type: 'array', required: true, message: '请输入项目周期!' }]} ]"
+          <a-range-picker
+            format="YYYY-MM-DD"
+            :disabledDate="disabledDate"
+            v-decorator="['date', {rules: [{ type: 'array', required: true, message: '请输入在公司的时间!' }]} ]"
           />
         </a-form-item>
-        <a-form-item v-bind="formItemLayout" label="项目描述">
+        <a-form-item v-bind="formItemLayout" label="职责描述">
           <a-textarea
             v-decorator="[
-          'projectDesc',
+          'Description',
           {
-            rules: [{ required: true, message: '请输入项目描述!' }],
+            rules: [{ required: true, message: '请输入职责描述!' }],
+          },
+        ]"
+          ></a-textarea>
+        </a-form-item>
+        <a-form-item v-bind="tailFormItemLayout">
+          <a-button type="primary" html-type="submit">保存</a-button>
+        </a-form-item>
+      </a-form>
+    </a-modal>
+    <!-- 教育经历 -->
+    <a-modal title="教育经历" v-model="studyModal" :footer="null" @ok="studyModal = false">
+      <a-form :form="form" @submit="handleProjectSubmit">
+        <a-form-item v-bind="formItemLayout">
+          <span slot="label">项目名称</span>
+          <a-input
+            v-decorator="[
+          'projectName',
+          {
+            rules: [{ required: true, message: '请输入项目名称!', whitespace: true }],
+          },
+        ]"
+          />
+        </a-form-item>
+        <a-form-item v-bind="formItemLayout">
+          <span slot="label">项目介绍</span>
+          <a-textarea
+            v-decorator="[
+          'ProjectDescription',
+          {
+            rules: [{ required: true, message: '请输入项目介绍!', whitespace: true }],
+          },
+        ]"
+          />
+        </a-form-item>
+        <a-form-item v-bind="formItemLayout">
+          <span slot="label">项目周期</span>
+          <a-range-picker
+            format="YYYY-MM-DD"
+            :disabledDate="disabledDate"
+            v-decorator="['date', {rules: [{ type: 'array', required: true, message: '请输入在公司的时间!' }]} ]"
+          />
+        </a-form-item>
+        <a-form-item v-bind="formItemLayout" label="职责描述">
+          <a-textarea
+            v-decorator="[
+          'Description',
+          {
+            rules: [{ required: true, message: '请输入职责描述!' }],
           },
         ]"
           ></a-textarea>
@@ -535,7 +639,7 @@
     </a-modal>
     <!-- 求职意向 -->
     <a-modal title="求职意向" v-model="selfHopeModal" :footer="null" @ok="selfHopeModal = false">
-      <a-form :form="form" @submit="handleSelfInfoSubmit">
+      <a-form :form="form" @submit="handleGetJobHope">
         <a-form-item v-bind="formItemLayout" class="city_set">
           <span slot="label">期望城市</span>
           <a-select placeholder="请选择省份" @change="getZoneList">
@@ -555,21 +659,39 @@
         </a-form-item>
         <a-form-item v-bind="formItemLayout" class="city_set">
           <span slot="label">薪资范围</span>
-          <a-select @change="getZoneList">
-            <a-select-option :key="index" :value="item" v-for="(item,index) in oPrice">{{item}}</a-select-option>
-          </a-select>
-          <span>~</span>
-          <a-select @change="getCityCode" style="marginLeft:10px">
-            <a-select-option :key="index" :value="item" v-for="(item,index) in ePrice">{{item}}</a-select-option>
-          </a-select>
+          <a-input
+            style="width:80%;marginRight:10px"
+            v-decorator="[
+          'expectationSalary',
+          {
+            rules: [{ required: true, message: '请输入期望薪资!', whitespace: true }],
+          },
+        ]"
+          ></a-input>
+          <span>k</span>
         </a-form-item>
         <a-form-item v-bind="formItemLayout">
           <span slot="label">期望职业</span>
-          <a-input placeholder="WEB前端" v-model="expectationOccupation"></a-input>
+          <a-input
+            placeholder="WEB前端"
+            v-decorator="[
+          'expectationOccupation',
+          {
+            rules: [{ required: true, message: '请输入期望职业', whitespace: true }],
+          },
+        ]"
+          ></a-input>
         </a-form-item>
         <a-form-item v-bind="formItemLayout" class="city_set">
           <span slot="label">求职类型</span>
-          <a-select @change="onGetJobType">
+          <a-select
+            v-decorator="[
+          'jobWantedStatus',
+          {
+            rules: [{ type:'number',required: true, message: '请选择求职类型', whitespace: true }],
+          }
+        ]"
+          >
             <a-select-option :key="item.id" :value="item.id" v-for="item in getJobType">{{item.val}}</a-select-option>
           </a-select>
         </a-form-item>
@@ -587,6 +709,7 @@ import { tag, modal } from "ant-design-vue";
 import { uploadPhoto } from "@/api/center.js";
 import citydata from "@/assets/pca-code.js";
 import api from "@/api";
+import moment from "moment";
 // console.log(uploadPhoto);
 
 function getBase64(img, callback) {
@@ -595,8 +718,55 @@ function getBase64(img, callback) {
   reader.readAsDataURL(img);
 }
 export default {
+  filters: {
+    genderFilter(type) {
+      return type == 1 ? "男" : "女";
+    },
+    getAge(strBirthday) {
+      var returnAge;
+      var strBirthdayArr = strBirthday.split("-");
+      var birthYear = strBirthdayArr[0];
+      var birthMonth = strBirthdayArr[1];
+      var birthDay = strBirthdayArr[2];
+
+      var d = new Date();
+      var nowYear = d.getFullYear();
+      var nowMonth = d.getMonth() + 1;
+      var nowDay = d.getDate();
+
+      if (nowYear == birthYear) {
+        returnAge = 0; //同年 则为0岁
+      } else {
+        var ageDiff = nowYear - birthYear; //年之差
+        if (ageDiff > 0) {
+          if (nowMonth == birthMonth) {
+            var dayDiff = nowDay - birthDay; //日之差
+            if (dayDiff < 0) {
+              returnAge = ageDiff - 1;
+            } else {
+              returnAge = ageDiff;
+            }
+          } else {
+            var monthDiff = nowMonth - birthMonth; //月之差
+            if (monthDiff < 0) {
+              returnAge = ageDiff - 1;
+            } else {
+              returnAge = ageDiff;
+            }
+          }
+        } else {
+          returnAge = -1; //返回-1 表示出生日期输入错误 晚于今天
+        }
+      }
+
+      return returnAge + "岁"; //返回周岁年龄
+    }
+  },
   data() {
     return {
+      id: 0, //简历ID
+      companyId: 0, // 编辑还是添加公司 ID
+      projectId: 0, // 编辑还是添加公司 ID
       Province: [
         {
           name: "",
@@ -609,7 +779,6 @@ export default {
           code: 0
         }
       ],
-      oPrice: ["5K", "8k", "10k", "15k", "20k", "25k", "30k", "35k", "40k"],
       ePrice: [
         "10k",
         "15k",
@@ -663,8 +832,10 @@ export default {
       selfModal: false,
       selfDescModal: false,
       confirmDirty: false,
-      jianliModal: false,
+      jianliModal: false, //
       selfHopeModal: false, //求职意向
+      projectModal: false, //项目经验
+      studyModal: false, //项目经验
       desc: [
         {
           id: 1,
@@ -714,19 +885,53 @@ export default {
     this.getBaseInfo();
   },
   methods: {
-    // 添加工作经历
-    addWord(id){
-      api.workAdd({
-        id,
-        
-      })
+    disabledDate(current) {
+      return current > moment().endOf("day");
     },
-    getBaseInfo(){
-      api.getBaseInfo({})
-        .then(res=>{
-          console.log(res);
-          
-        })
+    // 添加工作经历
+    addWord(params) {
+      api.workAdd({
+        ...params
+      });
+    },
+    // 保存求职意向
+    handleGetJobHope(e) {
+      e.preventDefault();
+      this.form.validateFieldsAndScroll((err, values) => {
+        if (!err) {
+          let {
+            expectationSalary,
+            expectationOccupation,
+            jobWantedStatus
+          } = values;
+          this.expectationOccupation = expectationOccupation;
+          this.jobWantedStatus = jobWantedStatus;
+          this.expectationSalary = expectationSalary;
+          this.editJianli();
+
+          //       //期望职业
+          // expectationOccupation: "",
+          // //求值类型
+          // jobWantedStatus: 1,
+          // // 期望行业
+          // expectationIndustry: "",
+          // //薪资范围
+          // expectationSalary: "",
+        }
+      });
+    },
+    getBaseInfo() {
+      api.getBaseInfo({}).then(res => {
+        if (res.code == 1) {
+          this.name = res.data.name;
+          this.email = res.data.email;
+          this.gender = res.data.gender;
+          this.birthday = res.data.birthday;
+          this.mobile = res.data.mobile;
+          this.id = res.data.id;
+          this.description = res.data.description;
+        }
+      });
     },
     getGenger(val) {
       this.gender = val;
@@ -737,8 +942,9 @@ export default {
     onGetJobType(val) {
       console.log(val);
     },
-    editJianli(id) {
+    editJianli() {
       let {
+        id,
         tittle,
         email,
         expectationSalary,
@@ -758,21 +964,22 @@ export default {
       let subData = Object.assign(
         {},
         {
-          tittle:this.formatData(tittle),
-          email:this.formatData(email),
-          expectationSalary:this.formatData(expectationSalary),
-          name:this.formatData(name),
-          city:this.formatData(activeCity),
-          province:this.formatData(activeProvince),
-          height:this.formatData(height),
-          weight:this.formatData(weight),
-          mobile:this.formatData(mobile),
-          gender:this.formatData(gender),
-          description:this.formatData(description),
-          birthday:this.formatData(birthday),
-          jobWantedStatus:this.formatData(jobWantedStatus),
-          expectationIndustry:this.formatData(expectationIndustry),
-          expectationOccupation:this.formatData(expectationOccupation)
+          id,
+          tittle: this.formatData(tittle),
+          email: this.formatData(email),
+          expectationSalary: this.formatData(expectationSalary),
+          name: this.formatData(name),
+          city: this.formatData(activeCity),
+          province: this.formatData(activeProvince),
+          height: this.formatData(height),
+          weight: this.formatData(weight),
+          mobile: this.formatData(mobile),
+          gender: this.formatData(gender),
+          description: this.formatData(description, true),
+          birthday: this.formatData(birthday),
+          jobWantedStatus: this.formatData(jobWantedStatus),
+          expectationIndustry: this.formatData(expectationIndustry),
+          expectationOccupation: this.formatData(expectationOccupation)
         }
       );
 
@@ -781,7 +988,11 @@ export default {
           ...subData
         })
         .then(res => {
-          console.log(res);
+          if (res.code == 1) {
+            this.$message.success("保存成功");
+          } else {
+            this.$$message.success("保存失败");
+          }
         });
     },
     getZoneList() {
@@ -797,21 +1008,23 @@ export default {
             this.Province = res.data;
           } else {
             this.City = res.data;
-            this.activeProvince = this.Province[arguments[0]].code;
+            this.activeProvince = this.Province[arguments[0]].id;
           }
         }
       });
     },
-    formatData(data){
-      if(data == ''){
-        return 0
-      }
-      else{
+    formatData(data, isDay = false) {
+      if (data == "") {
+        if (isDay) {
+          return "0000-00-00";
+        }
+        return 0;
+      } else {
         return data;
       }
     },
     getCityCode() {
-      this.City[arguments[0]].code;
+      this.activeCity = this.City[arguments[0]].id;
     },
     addBaseInfo() {
       api.baseInfo({}).then(res => {
@@ -849,6 +1062,27 @@ export default {
       this[desc] = true;
     },
 
+    // 添加编辑工作经历
+
+    handleWordEdit(e) {
+      e.preventDefault();
+      this.form.validateFieldsAndScroll((err, values) => {
+        if (!err) {
+          let { companyArray, companyId } = this;
+          let newComp = {
+            id: companyId,
+            CompanyName: values.CompanyName,
+            Description: values.Description,
+            StartYear: Number(values.date[0].format("YYYY")),
+            StartMonth: Number(values.date[0].format("MM")),
+            EndYear: Number(values.date[1].format("YYYY")),
+            EndMonth: Number(values.date[1].format("MM"))
+          };
+          this.addWord(newComp);
+        }
+      });
+    },
+    //基本信息
     handleSelfInfoSubmit(e) {
       e.preventDefault();
       this.form.validateFieldsAndScroll((err, values) => {
@@ -862,16 +1096,44 @@ export default {
         }
       });
     },
-    editDescInfo(e) {
+    //项目信息
+    handleProjectSubmit(e) {
       e.preventDefault();
       this.form.validateFieldsAndScroll((err, values) => {
         if (!err) {
-          this.desc.push({
-            id: this.desc.length + 1,
-            desc: values.desc
-          });
+          let { projectId, id } = this;
+          let newComp = {
+            id: projectId,
+            CandidateId: id,
+            Description: values.Description,
+            ProjectDescription: values.ProjectDescription,
+            StartYear: Number(values.date[0].format("YYYY")),
+            StartMonth: Number(values.date[0].format("MM")),
+            EndYear: Number(values.date[1].format("YYYY")),
+            EndMonth: Number(values.date[1].format("MM"))
+          };
+          this.editProject(newComp);
         }
       });
+    },
+    editDescInfo(e) {
+      e.preventDefault();
+      this.editJianli();
+    },
+
+    // 项目经验编辑添加
+    editProject(params) {
+      api
+        .projectEdit({
+          ...params
+        })
+        .then(res => {
+          if (res.code == 1) {
+            this.$$message.success("保存成功");
+          } else {
+            this.$message.error(res.msg);
+          }
+        });
     }
   }
 };

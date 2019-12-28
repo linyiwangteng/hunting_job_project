@@ -26,9 +26,18 @@ instance.interceptors.request.use(function (config) {
 // 添加响应拦截器
 instance.interceptors.response.use(function (response) {
   // 对响应数据做点什么
+
   return response.data;
 }, function (error) {
   // 对响应错误做点什么
+  if (error.response) {
+    switch (error.response.status) {
+      case 401:
+        // 返回 401 清除token信息并跳转到登录页面
+        localStorage.clear();
+        location.href = '/login.html';
+    }
+  }
   return Promise.reject(error);
 });
 
