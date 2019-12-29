@@ -4,7 +4,7 @@
       <h1>{{introInfo.name}}</h1>
       <p>{{introInfo.description}}</p>
       <div class="bm_box">
-        <span class="baoming" @click="gobaoming">报名</span>
+        <span class="baoming" @click="gobaoming">申请</span>
       </div>
     </div>
     <!-- <intro :introInfo = 'schoolInfo'></intro> -->
@@ -83,7 +83,7 @@ export default {
         .then(res => {
           console.log(res);
           if (res.code == 1) {
-            this.$message.success("报名成功");
+            this.$message.success("申请成功");
           }
         });
     },

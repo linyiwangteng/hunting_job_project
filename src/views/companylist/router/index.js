@@ -8,5 +8,13 @@ export default {
         key:'companylist'
       }
     },
+    {
+      path: '/',
+      name: 'detail',
+      component: () => import('../detail.vue'),
+      meta: {
+        key:'detail'
+      }
+    },
   ]
 }

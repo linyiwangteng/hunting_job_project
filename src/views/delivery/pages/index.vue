@@ -13,7 +13,7 @@
             <div class="delivery_tabs">
               <ul class="reset">
                 <li class="current">
-                  <a href="/delivery.html">全部</a>
+                  <a href="delivery.html">全部</a>
                 </li>
               </ul>
             </div>

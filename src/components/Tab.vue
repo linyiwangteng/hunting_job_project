@@ -11,7 +11,7 @@
           <i class="icon-user"></i>
           <span v-if="!login">
             <span>
-              <a href="login.html#/">求职者登录</a>
+              <a href="login.html">求职者登录</a>
             </span>
             <i class="divide">｜</i>
             <span>
@@ -29,13 +29,13 @@
                   <a href="javascript:;" @click="goCenter">账户信息</a>
                 </a-menu-item>
                 <a-menu-item key="1">
-                  <a href="/delivery.html">我的院校</a>
+                  <a href="delivery.html">我的院校</a>
                 </a-menu-item>
                 <a-menu-item key="2">
-                  <a href="/delivery.html">报名机构</a>
+                  <a href="delivery.html">报名机构</a>
                 </a-menu-item>
                 <a-menu-item key="3">
-                  <a href="/delivery.html">职位投递</a>
+                  <a href="delivery.html">职位投递</a>
                 </a-menu-item>
                 <a-menu-item key="4" @click="outLogin">退出</a-menu-item>
               </a-menu>
@@ -142,14 +142,14 @@ export default {
   methods: {
     outLogin() {
       window.localStorage.removeItem("accessToken");
-      window.location.href = "/login.html";
+      window.location.href = "login.html";
     },
     goCenter() {
       let accessToken = localStorage.getItem("accessToken");
       if (accessToken != null && accessToken != "null") {
-        location.href = "/center.html";
+        location.href = "center.html";
       } else {
-        location.href = "/login.html";
+        location.href = "login.html";
       }
     }
   },

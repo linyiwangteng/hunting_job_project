@@ -9,6 +9,10 @@ const newsList = (params) => instance.get('/api/cms/cmsinfo/querytop',{params});
 const newsDetail = (params) => instance.get('/api/cms/cmsinfo/edit',{params});
 // 区域划分
 const zoneList = (params) => instance.get('/api/common/area/QueryByParentCode',{params});
+
+// 区域划分
+const zoneList__all = (params) => instance.get('/api/common/area/QueryChildren',{params});
+
 // 首页院校 企业 机构推荐首页院校 企业 机构推荐
 const  organizationList = (params) => instance.get('/api/personnelfiles/company/querytop',{params});
 
@@ -36,6 +40,7 @@ export default {
   schoolList,
   majorDetail,
   Authentication,
-  AuthenticationList
+  AuthenticationList,
+  zoneList__all,
   // getCity,
 }

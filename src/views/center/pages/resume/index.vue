@@ -14,7 +14,7 @@
             @change="handleChange"
             :headers="geHeader"
           >
-            <img v-if="imageUrl" :src="imageUrl" alt="avatar" />
+            <img v-if="headImg" :src="headImg" alt="avatar" />
             <div v-else>
               <a-icon :type="loading ? 'loading' : 'plus'" />
               <div class="ant-upload-text">上传头像</div>
@@ -180,18 +180,18 @@
           </em>
         </div>
         <ul class="job-objective__list">
-          <li class="job-objective__name dn">
+          <!-- <li class="job-objective__name dn">
             <i></i>
             <span>{{expectationOccupation}}</span>
-          </li>
+          </li>-->
           <li class="job-objective__type dn">
             <i></i>
-            <span v-text="jobWantedStatus"></span>
+            <span>{{ jobWantedStatus | jobStatusFilter }}</span>
           </li>
-          <li class="job-objective__city dn">
+          <!-- <li class="job-objective__city dn">
             <i></i>
             <span v-text="province"></span>
-          </li>
+          </li>-->
           <li class="job-objective__salary dn">
             <i></i>
             <span>{{expectationSalary}}k</span>
@@ -208,7 +208,7 @@
       <div class="right-nav">
         <div class="mr_upload dn">
           <i class="icon-attachment"></i>
-          <a class="inline cboxElement" href="#uploadFile" title="上传附件简历">我要上传附件简历</a>
+          <a class="inline cboxElement" href="javascript:;" title="上传附件简历">我要上传附件简历</a>
         </div>
 
         <div class="mr_uploaded clearfixs">
@@ -255,54 +255,24 @@
               <div class="mr_dashed" style="width: 250px;"></div>
             </div>
           </div>
-          <ul class="right-nav__content">
-            <li class="right-nav__item active">
-              <i class="mr_base_i"></i>
-              <span class="mr_m_name">基本信息</span>
-            </li>
-            <li class="right-nav__item">
-              <i class="mr_self_i"></i>
-              <span class="mr_m_name">个人能力</span>
-            </li>
-            <li class="right-nav__item">
-              <div class="editor-tool">
-                <em class="add-btn">添加</em>
-              </div>
-              <i class="mr_works_i"></i>
-              <span class="mr_m_name">工作经历</span>
-            </li>
-            <li class="right-nav__item">
-              <div class="editor-tool">
-                <em class="add-btn">添加</em>
-                <em class="del-btn">删除</em>
-              </div>
-              <i class="mr_project_i"></i>
-              <span class="mr_m_name">项目经验</span>
-            </li>
-            <li class="right-nav__item">
-              <div class="editor-tool">
-                <em class="add-btn">添加</em>
-              </div>
-              <i class="mr_edu_i"></i>
-              <span class="mr_m_name">教育经历</span>
-            </li>
-            <li class="right-nav__item">
-              <div class="editor-tool">
-                <em class="add-btn">添加</em>
-                <em class="del-btn dn">删除</em>
-              </div>
-              <i class="mr_social_account_i"></i>
-              <span class="mr_m_name">社交主页</span>
-            </li>
-            <li class="right-nav__item" data-id="portfolioPage">
-              <div class="editor-tool">
-                <em class="add-btn">添加</em>
-                <em>删除</em>
-              </div>
-              <i class="mr_portfolio_account_i"></i>
-              <span class="mr_m_name">图片作品</span>
-            </li>
-          </ul>
+          <!-- <ul class="right-nav__content">
+              <li class="right-nav__item active">
+                <i class="mr_base_i"></i>
+                <span class="mr_m_name">基本信息</span>
+              </li>
+              <li class="right-nav__item">
+                <i class="mr_works_i"></i>
+                <span class="mr_m_name">工作经历</span>
+              </li>
+              <li class="right-nav__item">
+                <i class="mr_project_i"></i>
+                <span class="mr_m_name">项目经验</span>
+              </li>
+              <li class="right-nav__item">
+                <i class="mr_edu_i"></i>
+                <span class="mr_m_name">教育经历</span>
+              </li>
+          </ul> -->
         </div>
       </div>
     </div>
@@ -546,29 +516,31 @@
           </a-select>
         </a-form-item>
         <a-form-item v-bind="formItemLayout" class="city_set">
-          <span slot="label">薪资范围</span>
+          <span slot="label">期望薪资</span>
           <a-input
-            style="width:80%;marginRight:10px"
+            style="width:70%;marginRight:10px"
             v-decorator="[
           'expectationSalary',
           {
             rules: [{ required: true, message: '请输入期望薪资!', whitespace: true }],
           },
         ]"
+            type="number"
           ></a-input>
-          <span>k</span>
+          <span>K(千元)</span>
         </a-form-item>
-        <a-form-item v-bind="formItemLayout">
+        <a-form-item v-bind="formItemLayout" class="city_set">
           <span slot="label">期望职业</span>
-          <a-input
-            placeholder="WEB前端"
-            v-decorator="[
-          'expectationOccupation',
-          {
-            rules: [{ required: true, message: '请输入期望职业', whitespace: true }],
-          },
-        ]"
-          ></a-input>
+          <a-select @change="_getjoblist">
+            <a-select-option :key="item.id" :value="item.id" v-for="item in jobList">{{item.name}}</a-select-option>
+          </a-select>
+          <a-select @change="getTwoJobId">
+            <a-select-option
+              :key="item.id"
+              :value="item.id"
+              v-for="item in twoJobList"
+            >{{item.name}}</a-select-option>
+          </a-select>
         </a-form-item>
         <a-form-item v-bind="formItemLayout" class="city_set">
           <span slot="label">求职类型</span>
@@ -610,6 +582,29 @@ export default {
   filters: {
     genderFilter(type) {
       return type == 1 ? "男" : "女";
+    },
+    jobStatusFilter(num) {
+      // { id: 1, val: "全职" },
+      // { id: 2, val: "兼职" },
+      // { id: 3, val: "实习" },
+      // { id: 4, val: "全/兼职" }
+      switch (num) {
+        case 1:
+          return "全职";
+          break;
+        case 2:
+          return "兼职";
+          break;
+        case 3:
+          return "实习";
+          break;
+        case 4:
+          return "全/兼职";
+          break;
+        default:
+          return "全职";
+          break;
+      }
     },
     getProvice(id) {},
     getAge(strBirthday) {
@@ -685,6 +680,7 @@ export default {
 
       activeProvince: 0,
       activeCity: 0,
+      headImg: "", //头像
 
       // 求职类型
       getJobType: [
@@ -695,6 +691,8 @@ export default {
       ],
       province: "",
       city: "",
+      jobList: [], //期望职业
+      twoJobList: [], //期望职业2
       // 公司列表
       companyWorkList: [],
       // 项目列表
@@ -773,7 +771,7 @@ export default {
   mounted() {
     let accessToken = localStorage.getItem("accessToken");
     if (accessToken == null || accessToken == "null") {
-      location.href = "/login.html";
+      location.href = "login.html";
     } else {
       this.geHeader = {
         Authorization: "Bearer " + accessToken
@@ -781,6 +779,8 @@ export default {
     }
 
     this.getZoneList();
+    // 期望职来
+    this._getjoblist();
   },
   methods: {
     closeModal() {
@@ -841,6 +841,26 @@ export default {
             this.getWorkList();
           } else {
             this.$message.error("删除失败");
+          }
+        });
+    },
+    getTwoJobId(id) {
+      this.expectationOccupation = id;
+    },
+    _getjoblist(id = 0) {
+      api
+        .joblist({
+          parentId: id
+        })
+        .then(res => {
+          if (res.code == 1) {
+            if (id == 0) {
+              this.jobList = [...res.data];
+
+              this._getjoblist(res.data[0].id);
+            } else {
+              this.twoJobList = [...res.data];
+            }
           }
         });
     },
@@ -930,10 +950,10 @@ export default {
         if (!err) {
           let {
             expectationSalary,
-            expectationOccupation,
+            // expectationOccupation,
             jobWantedStatus
           } = values;
-          this.expectationOccupation = expectationOccupation;
+
           this.jobWantedStatus = jobWantedStatus;
           this.expectationSalary = expectationSalary;
           this.editJianli();
@@ -1033,14 +1053,17 @@ export default {
     getZoneList() {
       let params =
         arguments.length == 0
-          ? {}
+          ? {
+              parentCode: 0
+            }
           : {
               parentCode: this.Province[arguments[0]].code
             };
-      api.zoneList(params).then(res => {
+      api.zoneList__all(params).then(res => {
         if (res.code == 1) {
           if (arguments.length == 0) {
             this.Province = res.data;
+            this.getBaseInfo();
           } else {
             this.City = res.data;
             this.activeProvince = this.Province[arguments[0]].id;
@@ -1070,7 +1093,7 @@ export default {
       if (info.file.status === "done") {
         // Get this url from response in real world.
         getBase64(info.file.originFileObj, imageUrl => {
-          this.imageUrl = imageUrl;
+          this.headImg = imageUrl;
           this.loading = false;
         });
       }

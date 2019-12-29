@@ -1,13 +1,36 @@
 <template>
   <div class="consult-container">
-    <filter-options :options="options" @requestList="requestList"></filter-options>
-    <div class="list-container">
-      <span class="options" v-for="item in organizationList" :key="item.id" @click="goDetail(item.id)">
-        <img :src="item.logo" alt="" class="schoolLogo">
-        <h1 class="paddingleft">{{item.name}}</h1>
-        <span class="paddingleft">已开设班级:</span>
-        <p class="description" :title="item.description">简介:{{item.description}}</p>
+    <div class="search_box">
+      <a-row :gutter="12">
+        <a-col :span="12">
+          <a-input style="width: 100%" placeholder="请输入企业" v-model="Name" @click="getPositionlist"></a-input>
+        </a-col>
+        <a-col :span="3">
+          <a-button @click="getPositionlist">搜索</a-button>
+        </a-col>
+      </a-row>
+    </div>
+    <filter-options :options="[]" @requestList="requestList"></filter-options>
+    <div style="padding:0 20px">
+      <hr />
+    </div>
+    <div class="list-container" v-if="schoolsList.length !== 0">
+      <span
+        class="options"
+        v-for="school in schoolsList"
+        :key="school.id"
+        @click="goDetail(school.id)"
+      >
+        <img :src="school.logo" alt class="schoolLogo" />
+        <h1 class="paddingleft">{{school.name}}</h1>
+        <!-- <span class="paddingleft">开设专业:</span> -->
+        <p class="description" :title="school.companyName">企业名称:{{school.companyName}}</p>
       </span>
+    </div>
+    <div class="list-container" v-else>
+      <div class="nodata">
+        <img :src="nodata" alt />
+      </div>
     </div>
   </div>
 </template>
@@ -38,7 +61,7 @@ export default {
       console.log(selectCityid,selectZoneId);
     },
     _getNoticeList() {
-      api.organizationList({
+      api.companyList({
           row: 10,
           type: 2,
           companyType: 2

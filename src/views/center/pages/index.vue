@@ -286,7 +286,7 @@ export default {
     isLogin() {
       let accessToken = localStorage.getItem("accessToken");
       if (accessToken == null || accessToken == "null") {
-        location.href = "/login.html";
+        location.href = "login.html";
       }
     }
   }
