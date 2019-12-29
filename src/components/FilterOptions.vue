@@ -1,18 +1,28 @@
 <template>
   <div class="filter-container">
-      <div v-for="(item,index) in options" :key="index" class="item-opt">
-        <span class="opt-name">{{item.name}}：</span>
-        <ul>
-          <li v-for="(opt,index1) in item.opts" 
-              :key="index1" 
-              :class="(item.key === 'address' && index1 === selectedopt.address) || (item.key === 'course' && index1 === selectedopt.course) ? 'active':''"
-              @click="selected(opt,item.key,index1)">{{opt}}</li>
-        </ul>
-      </div>
+    <div class="item-opt">
+      <span class="opt-name">城市：</span>
+      <ul>
+        <li v-for="(opt) in hotCities" 
+            :key="opt.id" 
+            :class="selectedCityId === opt.id ? 'active':''"
+            @click="selectedCity(opt.id)">{{opt.name}}</li>
+      </ul>
     </div>
+    <div class="item-opt">
+      <span class="opt-name">区域：</span>
+      <ul>
+        <li v-for="(opt) in selectZone" 
+            :key="opt.id" 
+            :class="selectedZoneId === opt.id ? 'active':''"
+            @click="selectedZone(opt.id)">{{opt.name}}</li>
+      </ul>
+    </div>
+  </div>
 </template>
 
 <script>
+import api from '@/api';
 export default {
   props: {
     options:{
@@ -29,19 +39,40 @@ export default {
       selectedContent:{
         address:'全国',
         course:'不限'
-      }
+      },
+      hotCities:[],
+      selectZone:[],
+      selectedCityId: 0,
+      selectedZoneId:0
     }
   },
+  mounted(){
+    api.zoneList({
+      parentCode:'230000000000'
+    }).then(res=>{
+      this.hotCities = res.data;
+      this.selectZone = this.hotCities[0].childList;
+      this.selectedCityId = this.hotCities[0].id;
+      this.selectedZoneId = this.hotCities[0].childList[0].id;
+
+       this.$emit('requestList',this.selectedZoneId,this.selectedZoneId);
+    })
+  },
   methods: {
-    selected(name,type,opt){
-      if(type === 'address') {
-        this.selectedopt.address = opt;
-        this.selectedContent.address = name;
-      }else if(type === 'course'){
-        this.selectedopt.course = opt;
-        this.selectedContent.course = name;
-      }
-      this.$emit('requestList',this.selectedContent);
+    selectedCity(cityId){
+      this.selectedCityId = cityId;
+      this.selectZone = this.hotCities.filter(item=>{
+        return item.id ===  cityId;
+      })[0].childList;
+      this.selectedZoneId = this.selectZone[0].id;
+
+      this.$emit('requestList',this.selectedZoneId,this.selectedZoneId);
+    },
+    selectedZone(zoneId){
+      this.selectedZoneId = this.selectZone.filter(item=>{
+        return item.id === zoneId
+      })[0].id;
+      this.$emit('requestList',this.selectedCityId,this.selectedZoneId)
     }
   }
 }
