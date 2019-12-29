@@ -29,13 +29,13 @@
                   <a href="javascript:;" @click="goCenter">账户信息</a>
                 </a-menu-item>
                 <a-menu-item key="1">
-                  <a href="/">我的院校</a>
+                  <a href="/delivery.html">我的院校</a>
                 </a-menu-item>
                 <a-menu-item key="2">
-                  <a href="/">报名机构</a>
+                  <a href="/delivery.html">报名机构</a>
                 </a-menu-item>
                 <a-menu-item key="3">
-                  <a href="/">职位投递</a>
+                  <a href="/delivery.html">职位投递</a>
                 </a-menu-item>
                 <a-menu-item key="4" @click="outLogin">退出</a-menu-item>
               </a-menu>

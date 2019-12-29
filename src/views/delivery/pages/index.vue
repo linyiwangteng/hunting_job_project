@@ -9,11 +9,11 @@
             </h1>
             <a class="d_refresh" href="javascript:;">刷新</a>
           </dt>
-          <dd>
+          <dd :key="index" v-for="(item,index) in list">
             <div class="delivery_tabs">
               <ul class="reset">
                 <li class="current">
-                  <a href="delivery.html?tag=-1">全部</a>
+                  <a href="/delivery.html">全部</a>
                 </li>
               </ul>
             </div>
@@ -21,28 +21,29 @@
               <ul class="reset my_delivery">
                 <li>
                   <div class="d_item">
-                    <h2 title="随便写">
-                      <a target="_blank" href="http://www.lagou.com/jobs/149594.html">
-                        <em>随便写</em>
-                        <span>（1k-2k）</span>
-                        <!--  -->
-                      </a>
-                    </h2>
-                    <div class="clear"></div>
-                    <a
-                      title="公司名称"
-                      class="d_jobname"
-                      target="_blank"
-                      href="http://www.lagou.com/c/25927.html"
-                    >
-                      公司名称
-                      <span>[上海]</span>
-                    </a>
-                    <span class="d_time">2014-07-01 17:15</span>
-                    <div class="clear"></div>
-                    <div class="d_resume">
-                      使用简历：
-                      <span>在线简历</span>
+                    <img :src="item.logo" class="left-logo" alt />
+                    <div>
+                      <h2 title="随便写">
+                        <a target="_blank" href="javascript:;">
+                          <em>随便写</em>
+                          <span>（1k-2k）</span>
+                          <!--  -->
+                        </a>
+                      </h2>
+                      <div class="clear"></div>
+                      <a
+                        title="公司名称"
+                        class="d_jobname"
+                        target="_blank"
+                        href="javascript:;"
+                        v-text="item.companyName"
+                      ></a>
+                      <span class="d_time">2014-07-01 17:15</span>
+                      <div class="clear"></div>
+                      <div class="d_resume">
+                        使用简历：
+                        <span>在线简历</span>
+                      </div>
                     </div>
                   </div>
                 </li>
@@ -149,4 +150,12 @@ export default {
 };
 </script>
 <style lang="less" scoped>
+.d_item{
+  display: flex;
+  flex-direction: row;
+  .left-logo{
+    width: 150px;
+    margin-right: 20px;
+  }
+}
 </style>
