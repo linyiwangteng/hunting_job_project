@@ -1,13 +1,12 @@
 <template>
   <div class="intro-detail">
     <h1>{{introInfo.name}}</h1>
-    <p>{{introInfo.description}}</p>
-    <ul class="intro-img-container">
-      <!-- <li v-for="(img,index) in introInfo.introImg" :key="index"><img :src="img" alt=""></li> -->
-      <li><img :src="introInfo.logo" alt=""></li>
-    </ul>
-    <h2>{{introInfo.typeName}}地址</h2>
-    <p>{{introInfo.address}}</p>
+    <p style="margin-bottom:40px;">{{introInfo.description}}</p>
+    <h2 style="font-size: 18px;">{{introInfo.name}}</h2>
+    <img :src="introInfo.logo" alt="" style="display:block; width:160px;height: auto;margin-bottom:20px;">
+    <h2>{{introInfo.typeName}}地址：{{introInfo.address}}</h2>
+    <h2>联系人：{{introInfo.contact}}</h2>
+    <h2>联系电话：{{introInfo.phone}}</h2>
     <span class="baoming" @click="gobaoming">报名</span>
   </div>
 </template>
@@ -54,6 +53,12 @@ export default {
     padding: 20px;
     box-sizing: border-box;
     background: #ffffff;
+    h1{
+      text-align: center;
+    }
+    p{
+      text-indent: 28px;
+    }
   }
   .intro-img-container{
     display: flex;

@@ -2,7 +2,7 @@
   <div class="consult-container">
     <filter-options @requestList="requestList"></filter-options>
     <div class="list-container">
-      <span class="options" v-for="school in schoolsList" :key="school.id" @click="goDetail(school.id,school.schoolName)">
+      <span class="options" v-for="school in schoolsList" :key="school.id" @click="goDetail(school.id,school.schoolID)">
         <img :src="school.logo" alt="" class="schoolLogo">
         <h1 class="paddingleft">{{school.name}}</h1>
         <span class="paddingleft">学校名称:{{school.schoolName}}</span>
@@ -51,8 +51,8 @@ export default {
           }
         });
     },
-    goDetail(id,name) {
-      this.$router.push(`/detail?id=${id}&name=${name}`);
+    goDetail(id,schoolID) {
+      this.$router.push(`/detail?id=${id}&schoolId=${schoolID}`);
     }
   },
   components: {
