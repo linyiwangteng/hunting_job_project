@@ -162,8 +162,8 @@
             >{{item.startYear}}.{{item.startMonth}}-{{item.endYear}}.{{item.endMonth}}</p>
             <div class="exp-list_top">
               <div class="exp-list_right">
-                    <strong v-text="item.schoolName"></strong>
-                    <p>{{item.speciality}} / {{item.education}}</p>
+                <strong v-text="item.schoolName"></strong>
+                <p>{{item.speciality}} / {{item.education}}</p>
               </div>
             </div>
             <div class="exp-list_content" v-text="item.description"></div>
@@ -202,27 +202,19 @@
             <span title="暂时不换工作">暂时不换工作</span>
 
             <span></span>
-          </li> -->
+          </li>-->
         </ul>
       </div>
       <div class="right-nav">
         <div class="mr_upload dn">
           <i class="icon-attachment"></i>
-          <a
-            class="inline cboxElement"
-            href="#uploadFile"
-            title="上传附件简历"
-          >我要上传附件简历</a>
+          <a class="inline cboxElement" href="#uploadFile" title="上传附件简历">我要上传附件简历</a>
         </div>
 
         <div class="mr_uploaded clearfixs">
           <p class="mr-upload__title">
             <strong>附件简历</strong>
-            <a
-              class="inline upload_add cboxElement"
-              href="#uploadFile"
-              title="上传附件简历"
-            >添加</a>
+            <a class="inline upload_add cboxElement" href="#uploadFile" title="上传附件简历">添加</a>
           </p>
           <!-- <div class="mr_upload_btn">
             <a class="inline" href="#uploadFile" title="上传附件简历">继续添加附件简历</a>
@@ -230,10 +222,7 @@
           <div class="nearbyResumes-group">
             <div class="mr_up_main" data-id="10706726">
               <i class="icon-attachment"></i>
-              <a
-                class="mr_up_text"
-                title="下载前端工程师边晓凯.pdf"
-              >前端工程师边晓凯.pdf</a>
+              <a class="mr_up_text" title="下载前端工程师边晓凯.pdf">前端工程师边晓凯.pdf</a>
               <!-- <p></p> -->
               <div class="mr_more clearfixs">
                 <ul class="more_action">
@@ -244,9 +233,7 @@
                     >预览</a>
                   </li>
                   <li class="download">
-                    <a
-                      title="下载前端工程师边晓凯.pdf"
-                    >下载</a>
+                    <a title="下载前端工程师边晓凯.pdf">下载</a>
                   </li>
                   <li class="delete" data-lg-webtj-_address_id="1nvi">删除</li>
                 </ul>
@@ -261,10 +248,7 @@
                 <em>简历完整度：</em>
                 <em class="mr-score">100分</em>
               </span>
-              <a
-                class="active-color"
-                href="#"
-              >预览简历</a>
+              <a class="active-color" href="#">预览简历</a>
             </div>
             <div class="mr_integrity_m">
               <div class="mr_solid" style="width: 250px;"></div>
@@ -627,9 +611,7 @@ export default {
     genderFilter(type) {
       return type == 1 ? "男" : "女";
     },
-    getProvice(id){
-
-    },
+    getProvice(id) {},
     getAge(strBirthday) {
       var returnAge;
       var strBirthdayArr = strBirthday.split("-");
@@ -711,8 +693,8 @@ export default {
         { id: 3, val: "实习" },
         { id: 4, val: "全/兼职" }
       ],
-      province:'',
-      city:'',
+      province: "",
+      city: "",
       // 公司列表
       companyWorkList: [],
       // 项目列表
@@ -801,6 +783,15 @@ export default {
     this.getZoneList();
   },
   methods: {
+    closeModal() {
+      this.selfModal = false;
+      this.selfDescModal = false;
+      this.confirmDirty = false;
+      this.jianliModal = false; //
+      this.selfHopeModal = false; //求职意向
+      this.projectModal = false; //项目经验
+      this.studyModal = false; //项目经验
+    },
     // 编辑工作经历弹窗
     alertCompanyEdit(id, type = "edit") {
       this.companyId = id;
@@ -927,6 +918,7 @@ export default {
         .then(res => {
           if (res.code == 1) {
             this.$message.success("添加成功");
+            this.closeModal();
             this.getWorkList();
           }
         });
@@ -968,7 +960,7 @@ export default {
           this.id = res.data.id;
           this.description = res.data.description;
           this.expectationSalary = res.data.expectationSalary;
-          
+
           // 初始化
           this.initPageData();
         }
@@ -1032,6 +1024,7 @@ export default {
           if (res.code == 1) {
             this.$message.success("保存成功");
             this.getWorkList();
+            this.closeModal();
           } else {
             this.$$message.success("保存失败");
           }
@@ -1205,6 +1198,7 @@ export default {
           if (res.code == 1) {
             this.$message.success("保存成功");
             this.getProjectList();
+            this.closeModal();
           } else {
             this.$message.error(res.msg);
           }
@@ -1220,6 +1214,7 @@ export default {
           if (res.code == 1) {
             this.$message.success("保存成功");
             this.getStudyList();
+            this.closeModal();
           } else {
             this.$message.error(res.msg);
           }

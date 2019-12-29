@@ -9,7 +9,7 @@
             </h1>
             <a class="d_refresh" href="javascript:;">刷新</a>
           </dt>
-          <dd :key="index" v-for="(item,index) in list">
+          <dd>
             <div class="delivery_tabs">
               <ul class="reset">
                 <li class="current">
@@ -19,17 +19,10 @@
             </div>
             <form id="deliveryForm">
               <ul class="reset my_delivery">
-                <li>
+                <li :key="index" v-for="(item,index) in list">
                   <div class="d_item">
                     <img :src="item.logo" class="left-logo" alt />
                     <div>
-                      <h2 title="随便写">
-                        <a target="_blank" href="javascript:;">
-                          <em>随便写</em>
-                          <span>（1k-2k）</span>
-                          <!--  -->
-                        </a>
-                      </h2>
                       <div class="clear"></div>
                       <a
                         title="公司名称"
@@ -55,7 +48,7 @@
         </dl>
       </div>
       <div class="content_r">
-        <div class="mycenterR" id="myInfo">
+        <!-- <div class="mycenterR" id="myInfo">
           <h2>我的信息</h2>
           <a href="collections.html">我收藏的职位</a>
           <br />
@@ -63,7 +56,7 @@
             我投递的职位
             <span id="noticeNoPage" class="red dn">&nbsp;(0)</span>
           </a>
-        </div>
+        </div> -->
         <!--end #myInfo-->
         <div class="mycenterR" id="myRecommend">
           <h2>
@@ -150,10 +143,10 @@ export default {
 };
 </script>
 <style lang="less" scoped>
-.d_item{
+.d_item {
   display: flex;
   flex-direction: row;
-  .left-logo{
+  .left-logo {
     width: 150px;
     margin-right: 20px;
   }

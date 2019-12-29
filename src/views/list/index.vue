@@ -93,8 +93,8 @@ export default {
       this.getPositionlist();
     },
     requestList(pro, cit) {
-      // this.CityId = pro;
-      // this.AreaId = cit;
+      this.CityId = pro;
+      this.AreaId = cit;
       this.getPositionlist();
     },
     searchJob() {},

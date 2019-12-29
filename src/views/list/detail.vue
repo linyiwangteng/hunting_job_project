@@ -73,10 +73,10 @@ export default {
   },
   methods: {
     gobaoming() {
-      let { id, jobFunctionId } = this.introInfo;
+      let { id, jobFunctionId, companyId } = this.introInfo;
       api
         .positionADD({
-          CompanyId: id,
+          CompanyId:companyId,
           Type: 0,
           RecruiitId: jobFunctionId
         })
