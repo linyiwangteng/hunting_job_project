@@ -1,6 +1,17 @@
 <template>
   <div>
-    <intro :introInfo = 'schoolInfo'></intro>
+    <!-- <intro :introInfo = 'schoolInfo'></intro> -->
+    <div class="intro-detail">
+      <h1>{{zhuanyelInfo.name}}</h1>
+      <p style="margin-bottom:40px;">{{zhuanyelInfo.description}}</p>
+      <h2 style="font-size: 18px;">{{schoolInfo.name}}</h2>
+      <img :src="schoolInfo.logo" alt="" style="display:block; width:160px;height: auto;margin-bottom:20px;">
+      <h2>{{schoolInfo.typeName}}地址：{{schoolInfo.address}}</h2>
+      <h2>联系人：{{schoolInfo.contact}}</h2>
+      <h2>联系电话：{{schoolInfo.phone}}</h2>
+      <span class="baoming" @click="gobaoming">报名</span>
+    </div>
+
     <div class="intro-content" v-if="false">
       <div class="intro-left">
         <div class='title'>
@@ -47,7 +58,8 @@ export default {
   data(){
     return {
       showall:false,
-      schoolInfo: {}
+      schoolInfo: {},
+      zhuanyelInfo:{}
     }
   },
   mounted(){
@@ -61,11 +73,27 @@ export default {
       this.showall = !this.showall;
     },
     _getInfoData(){
-      let {id,name} = this.$route.query;
+      let {id,schoolId} = this.$route.query;
       api.majorDetail({id}).then(res=>{
-        this.schoolInfo = res.data;
-        this.schoolInfo.address = name;
+        this.zhuanyelInfo = res.data;
         this.schoolInfo.typeName = '院校';
+        api.orgDetail({
+          id:schoolId
+        }).then(res2=>{
+          this.schoolInfo = res2.data;
+        })
+      });
+    },
+    gobaoming(){
+      let {id,type} = this.schoolInfo;
+      api.baoming({
+        CompanyId:id,
+        Type:type
+      }).then(res=>{
+        console.log(res);
+        if(res.code == 1){
+          message.success('报名成功')
+        }
       })
     }
   },
