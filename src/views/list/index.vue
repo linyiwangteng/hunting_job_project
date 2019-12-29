@@ -6,7 +6,7 @@
           <a-input style="width: 100%" placeholder="请输入职位" v-model="Name" @click="getPositionlist"></a-input>
         </a-col>
         <a-col :span="3">
-          <a-button>搜索</a-button>
+          <a-button @click="getPositionlist">搜索</a-button>
         </a-col>
       </a-row>
     </div>
@@ -17,10 +17,22 @@
         <ul>
           <li
             v-for="item in jobList"
-            :class="JobFunctionId == item.id ? 'active' : ''"
+            :class="JobOneFunctionId == item.id ? 'active' : ''"
             :key="item.id"
             v-text="item.name"
             @click="activeJob(item.id)"
+          ></li>
+        </ul>
+      </div>
+      <div class="item-opt two_item_opt">
+        <span class="opt-name"></span>
+        <ul>
+          <li
+            v-for="item in twoJobList"
+            :class="JobFunctionId == item.id ? 'active' : ''"
+            :key="item.id"
+            v-text="item.name"
+            @click="activeTwoJob(item.id)"
           ></li>
         </ul>
       </div>
@@ -29,10 +41,22 @@
         <ul>
           <li
             v-for="item in professList"
-            :class="ProfessionId == item.id ? 'active':''"
+            :class="ProfessionOneId == item.id ? 'active':''"
             :key="item.id"
             v-text="item.name"
             @click="activeProfess(item.id)"
+          ></li>
+        </ul>
+      </div>
+      <div class="item-opt two_item_opt">
+        <span class="opt-name"></span>
+        <ul>
+          <li
+            v-for="item in professTwoList"
+            :class="ProfessionId == item.id ? 'active':''"
+            :key="item.id"
+            v-text="item.name"
+            @click="activeTwoProfess(item.id)"
           ></li>
         </ul>
       </div>
@@ -50,7 +74,7 @@
         <img :src="school.logo" alt class="schoolLogo" />
         <h1 class="paddingleft">{{school.name}}</h1>
         <!-- <span class="paddingleft">开设专业:</span> -->
-        <p class="description" :title="school.description">简介:{{school.description}}</p>
+        <p class="description" :title="school.companyName">企业名称:{{school.companyName}}</p>
       </span>
     </div>
     <div class="list-container" v-else>
@@ -71,8 +95,12 @@ export default {
       Name: "",
       schoolsList: [],
       jobList: [],
+      twoJobList: [],
       professList: [],
+      professTwoList: [],
+      JobOneFunctionId: 0,
       JobFunctionId: -1,
+      ProfessionOneId: 0,
       ProfessionId: -1,
       CityId: -1,
       AreaId: -1,
@@ -85,10 +113,18 @@ export default {
   },
   methods: {
     activeJob(id) {
+      this.JobOneFunctionId = id;
+      this._getjoblist(id);
+    },
+    activeTwoJob(id) {
       this.JobFunctionId = id;
       this.getPositionlist();
     },
     activeProfess(id) {
+      this.ProfessionOneId = id;
+      this._getprofesslist(id);
+    },
+    activeTwoProfess(id) {
       this.ProfessionId = id;
       this.getPositionlist();
     },
@@ -98,25 +134,36 @@ export default {
       this.getPositionlist();
     },
     searchJob() {},
-    _getjoblist() {
+    _getjoblist(id = 0) {
       api
         .joblist({
-          parentId: 0
+          parentId: id
         })
         .then(res => {
           if (res.code == 1) {
-            this.jobList = [...res.data];
+            if (id == 0) {
+              this.jobList = [...res.data];
+
+              this._getjoblist(res.data[0].id);
+            } else {
+              this.twoJobList = [...res.data];
+            }
           }
         });
     },
-    _getprofesslist() {
+    _getprofesslist(id = 0) {
       api
         .professlist({
-          parentId: 0
+          parentId: id
         })
         .then(res => {
           if (res.code == 1) {
-            this.professList = [...res.data];
+            if (id == 0) {
+              this.professList = [...res.data];
+              this._getprofesslist(res.data[0].id);
+            } else {
+              this.professTwoList = [...res.data];
+            }
           }
         });
     },
@@ -126,15 +173,15 @@ export default {
     getPositionlist() {
       let { JobFunctionId, Name, ProfessionId, AreaId, CityId } = this;
       let params = {
-          Name,
-          Days: 100,
-          ProvinceId: 8587,
-          CityId,
-          AreaId,
-          JobFunctionId,
-          ProfessionId,
-        };
-        
+        Name,
+        Days: 100,
+        ProvinceId: 8587,
+        CityId,
+        AreaId,
+        JobFunctionId,
+        ProfessionId
+      };
+
       api
         .positionList({
           ...params
@@ -155,6 +202,9 @@ export default {
 </script>
 
 <style lang="less" scope>
+.two_item_opt {
+  background: #eee;
+}
 .nodata {
   width: 400px;
   margin: 0 auto;

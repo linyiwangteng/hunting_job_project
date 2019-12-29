@@ -104,8 +104,10 @@ export default {
             localStorage.setItem("accessToken", res.data.accessToken);
             this.$message.success("登录成功！");
             setTimeout(e => {
-              location.href = "/home.html";
+              location.href = "home.html";
             }, 1000);
+          }else{
+            this.$message.error(res.msg);
           }
         });
     },

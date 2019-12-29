@@ -115,6 +115,9 @@ export default {
   padding: 20px;
   box-sizing: border-box;
   background: #ffffff;
+  h1{
+    text-align: center;
+  }
 }
 .intro-img-container {
   display: flex;

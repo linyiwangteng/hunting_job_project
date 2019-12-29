@@ -97,12 +97,12 @@ export default {
       tabs: [
         {
           name: "首页",
-          path: _file + "/home.html#/",
+          path: _file + "home.html#/",
           routeName: "home"
         },
         {
           name: "职位",
-          path: _file + "/list.html#/",
+          path: _file + "list.html#/",
           routeName: "jobPosition"
         },
         {

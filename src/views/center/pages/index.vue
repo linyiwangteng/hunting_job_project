@@ -59,11 +59,11 @@
               <div class="icon icon_one">
                 <img :src="iconTwo" alt />
               </div>
-              <a href="/delivery.html" class="jianli-line">报名院校</a>
+              <a href="delivery.html" class="jianli-line">报名院校</a>
             </li>
             <li class="jianli-item">
               <div class="icon"></div>
-              <a href="/delivery.html" class="jianli-edit">报名机构</a>
+              <a href="delivery.html" class="jianli-edit">报名机构</a>
             </li>
           </ul>
         </div>
