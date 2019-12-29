@@ -8,6 +8,9 @@ const baseInfo = (params) => instance.post('/api/business/personcandidate/candid
 // 基本信息添加与修改
 const getBaseInfo = (params) => instance.get('/api/business/personcandidate/info');
 
+// 工作经历
+const workList = (params) => instance.get('/api/business/personcandidatework/querylistbycandidateid', { params });
+
 // 工作经历添加
 const workAdd = (params) => instance.post('/api/business/personcandidatework/add', { ...params });
 
@@ -15,10 +18,22 @@ const workAdd = (params) => instance.post('/api/business/personcandidatework/add
 const workEdit = (params) => instance.post('/api/business/personcandidatework/edit', { ...params });
 
 // 工作经历删除
-const workDelete = (params) => instance.post('/api/business/personcandidatework/delete', { ...params });
+const workDelete = (params) => instance.delete('/api/business/personcandidatework/delete', { params });
 
 // 项目经历编辑
 const projectEdit = (params) => instance.post('/api/business/personcandidateproject/add', { ...params });
+
+// 项目经历列表
+const projectList = (params) => instance.get('/api/business/personcandidateproject/QueryListByCandidateID', { params });
+// 项目经历删除
+const projectDelete = (params) => instance.delete('/api/business/personcandidateproject/delete', { params });
+
+// 教育列表
+const studyList = (params) => instance.get('/api/business/personcandidateedu/QueryListByCandidateID', { params });
+// 教育经历编辑
+const studyEdit = (params) => instance.post('/api/business/personcandidateedu/candidateeduadd', { ...params });
+// 教育经历删除
+const studyDelete = (params) => instance.delete('/api/business/personcandidateedu/delete', { params });
 
 
 export default {
@@ -27,5 +42,11 @@ export default {
     workEdit,
     workAdd,
     workDelete,
+    workList,
     projectEdit,
+    projectList,
+    projectDelete,
+    studyList,
+    studyEdit,
+    studyDelete
 }

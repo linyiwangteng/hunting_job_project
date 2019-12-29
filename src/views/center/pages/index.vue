@@ -280,7 +280,7 @@ export default {
   },
   created() {},
   mounted() {
-    isLogin();
+    this.isLogin();
   },
   methods: {
     isLogin() {

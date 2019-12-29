@@ -68,53 +68,35 @@
       <div class="mr-template work-exp" id="workExp">
         <div class="mr-template_title">
           <span>工作经历</span>
-          <div class="add-btn" @click="()=>{this.companyId = 0;showSelfDesc('jianliModal')}">
+          <div class="add-btn" @click="()=>{this.companyId= 0;showSelfDesc('jianliModal')}">
             <i class="icon-icon_resume_add active-color"></i>
             添加
           </div>
         </div>
         <ol class="work-exp_group">
-          <li class="work-exp_list">
+          <li class="work-exp_list" :key="index" v-for="(item, index) in companyWorkList">
             <div class="editor-tool">
-              <div class="edit-btn">
+              <div class="edit-btn" @click="alertCompanyEdit(item.id)">
                 <i class="icon-icon_resume_editor active-color"></i>
                 编辑
               </div>
-              <div class="del-btn">
+              <div class="del-btn" @click="alertCompanyEdit(item.id,'delete')">
                 <i class="icon-icon_resume_delete active-color"></i>
                 删除
               </div>
             </div>
-            <p class="exp-list_time">2018.04-至今</p>
+            <p
+              class="exp-list_time"
+            >{{item.startYear}}.{{item.startMonth}}-{{item.endYear}}.{{item.endMonth}}</p>
             <div class="exp-list_top">
-              <img
-                src="//www.lgstatic.com/i/image2/M00/1B/C5/CgotOVoDyFqATP28AAAPFZX7li4887.jpg"
-                alt="公司Logo"
-              />
               <div class="exp-list_right">
                 <strong class="exp-list_title">
-                  <span>北京拓课网络科技有限公司</span>
-                  ／
-                  <span>研发部</span>
+                  <span v-text="item.companyName"></span>
                 </strong>
-                <p>WEB前端</p>
               </div>
             </div>
-            <div class="tagboard">
-              <a-tag>React</a-tag>
-              <a-tag>Web前端</a-tag>
-            </div>
             <div class="exp-list_content">
-              <p>
-                <br />
-              </p>
-              <p>设计、编写可复用的用户界面组件、前端通用组件。&nbsp;</p>
-              <p>h5教室系统组件的开发与设计、教室回放播放器的开发。&nbsp;</p>
-              <p>与服务器端开发人员进行应用及系统整合，调试网站页面在不同浏览器下的兼容性。&nbsp;</p>
-              <p>跟踪前端技术的发展，掌握最新动态和主流技术。</p>
-              <p>
-                <br />
-              </p>
+              <p v-text="item.description"></p>
             </div>
           </li>
         </ol>
@@ -129,61 +111,28 @@
           </div>
         </div>
         <ol class="work-exp_group">
-          <li class="work-exp_list">
+          <li class="work-exp_list" :key="index" v-for="(item, index) in projectList">
             <div class="editor-tool">
-              <div class="edit-btn">
+              <div class="edit-btn" @click="alertProjectEdit(item.id)">
                 <i class="icon-icon_resume_editor active-color"></i>
                 编辑
               </div>
-              <div class="del-btn">
+              <div class="del-btn" @click="alertProjectEdit(item.id,'delete')">
                 <i class="icon-icon_resume_delete active-color"></i>
                 删除
               </div>
             </div>
-            <p class="exp-list_time">2018.04-至今</p>
+            <p
+              class="exp-list_time"
+            >{{item.startYear}}.{{item.startMonth}}-{{item.endYear}}.{{item.endMonth}}</p>
             <div class="exp-list_top">
-              <img
-                src="//www.lgstatic.com/i/image2/M00/1B/C5/CgotOVoDyFqATP28AAAPFZX7li4887.jpg"
-                alt="公司Logo"
-              />
               <div class="exp-list_right">
                 <strong class="exp-list_title">
-                  <span>北京拓课网络科技有限公司</span>
-                  ／
-                  <span>研发部</span>
+                  <span v-text="item.projectDescription"></span>
                 </strong>
-                <!-- <p>WEB前端</p> -->
               </div>
             </div>
-            <div class="exp-list_content">fasfdgavdfvadfga /></div>
-          </li>
-          <li class="work-exp_list">
-            <div class="editor-tool">
-              <div class="edit-btn">
-                <i class="icon-icon_resume_editor active-color"></i>
-                编辑
-              </div>
-              <div class="del-btn">
-                <i class="icon-icon_resume_delete active-color"></i>
-                删除
-              </div>
-            </div>
-            <p class="exp-list_time">2018.04-至今</p>
-            <div class="exp-list_top">
-              <img
-                src="//www.lgstatic.com/i/image2/M00/1B/C5/CgotOVoDyFqATP28AAAPFZX7li4887.jpg"
-                alt="公司Logo"
-              />
-              <div class="exp-list_right">
-                <strong class="exp-list_title">
-                  <span>北京拓课网络科技有限公司</span>
-                  ／
-                  <span>研发部</span>
-                </strong>
-                <!-- <p>WEB前端</p> -->
-              </div>
-            </div>
-            <div class="exp-list_content">fasfdgavdfvadfga /></div>
+            <div class="exp-list_content" v-text="item.description"></div>
           </li>
         </ol>
       </div>
@@ -191,67 +140,33 @@
       <div class="mr-template work-exp">
         <div class="mr-template_title">
           <span>教育经历</span>
-          <div class="add-btn" @click="()=>{this.projectId = 0;showSelfDesc('studyModal')}">
+          <div class="add-btn" @click="()=>{this.studyId = 0;showSelfDesc('studyModal')}">
             <i class="icon-icon_resume_add active-color"></i>
             添加
           </div>
         </div>
         <ol class="work-exp_group">
-          <li class="work-exp_list">
+          <li class="work-exp_list" :key="index" v-for="(item, index) in studyList">
             <div class="editor-tool">
-              <div class="edit-btn">
+              <div class="edit-btn" @click="alertProjectEdit(item.id)">
                 <i class="icon-icon_resume_editor active-color"></i>
                 编辑
               </div>
-              <div class="del-btn">
+              <div class="del-btn" @click="alertProjectEdit(item.id,'delete')">
                 <i class="icon-icon_resume_delete active-color"></i>
                 删除
               </div>
             </div>
-            <p class="exp-list_time">2018.04-至今</p>
+            <p
+              class="exp-list_time"
+            >{{item.startYear}}.{{item.startMonth}}-{{item.endYear}}.{{item.endMonth}}</p>
             <div class="exp-list_top">
-              <img
-                src="//www.lgstatic.com/i/image2/M00/1B/C5/CgotOVoDyFqATP28AAAPFZX7li4887.jpg"
-                alt="公司Logo"
-              />
               <div class="exp-list_right">
-                <strong class="exp-list_title">
-                  <span>北京拓课网络科技有限公司</span>
-                  ／
-                  <span>研发部</span>
-                </strong>
-                <!-- <p>WEB前端</p> -->
+                    <strong v-text="item.schoolName"></strong>
+                    <p>{{item.speciality}} / {{item.education}}</p>
               </div>
             </div>
-            <div class="exp-list_content">fasfdgavdfvadfga /></div>
-          </li>
-          <li class="work-exp_list">
-            <div class="editor-tool">
-              <div class="edit-btn">
-                <i class="icon-icon_resume_editor active-color"></i>
-                编辑
-              </div>
-              <div class="del-btn">
-                <i class="icon-icon_resume_delete active-color"></i>
-                删除
-              </div>
-            </div>
-            <p class="exp-list_time">2018.04-至今</p>
-            <div class="exp-list_top">
-              <img
-                src="//www.lgstatic.com/i/image2/M00/1B/C5/CgotOVoDyFqATP28AAAPFZX7li4887.jpg"
-                alt="公司Logo"
-              />
-              <div class="exp-list_right">
-                <strong class="exp-list_title">
-                  <span>北京拓课网络科技有限公司</span>
-                  ／
-                  <span>研发部</span>
-                </strong>
-                <!-- <p>WEB前端</p> -->
-              </div>
-            </div>
-            <div class="exp-list_content">fasfdgavdfvadfga /></div>
+            <div class="exp-list_content" v-text="item.description"></div>
           </li>
         </ol>
       </div>
@@ -264,30 +179,30 @@
             <i class="icon-icon_resume_editor active-color"></i>编辑
           </em>
         </div>
-        <ul class="job-objective__list" data-id="3494365">
+        <ul class="job-objective__list">
           <li class="job-objective__name dn">
             <i></i>
-            <span title="WEB前端" positiontypefirst="开发|测试|运维类" positiontypesecond="前端开发">WEB前端</span>
+            <span>{{expectationOccupation}}</span>
           </li>
           <li class="job-objective__type dn">
             <i></i>
-            <span title="全职">全职</span>
+            <span v-text="jobWantedStatus"></span>
           </li>
           <li class="job-objective__city dn">
             <i></i>
-            <span title="北京">北京</span>
+            <span v-text="province"></span>
           </li>
           <li class="job-objective__salary dn">
             <i></i>
-            <span title="15k-20k">15k-20k</span>
+            <span>{{expectationSalary}}k</span>
           </li>
-          <li class="job-objective__info dn">
+          <!-- <li class="job-objective__info dn">
             <i></i>
 
             <span title="暂时不换工作">暂时不换工作</span>
 
             <span></span>
-          </li>
+          </li> -->
         </ul>
       </div>
       <div class="right-nav">
@@ -297,9 +212,6 @@
             class="inline cboxElement"
             href="#uploadFile"
             title="上传附件简历"
-            data-lg-tj-id="1jit"
-            data-lg-tj-no="0018"
-            data-lg-tj-cid="idnull"
           >我要上传附件简历</a>
         </div>
 
@@ -307,7 +219,6 @@
           <p class="mr-upload__title">
             <strong>附件简历</strong>
             <a
-              data-lg-webtj-_address_id="1nvf"
               class="inline upload_add cboxElement"
               href="#uploadFile"
               title="上传附件简历"
@@ -320,7 +231,6 @@
             <div class="mr_up_main" data-id="10706726">
               <i class="icon-attachment"></i>
               <a
-                href="https://www.lagou.com/nearBy/downloadResume?id=10706726"
                 class="mr_up_text"
                 title="下载前端工程师边晓凯.pdf"
               >前端工程师边晓凯.pdf</a>
@@ -329,15 +239,12 @@
                 <ul class="more_action">
                   <li class="preview">
                     <a
-                      data-lg-webtj-_address_id="1nvg"
                       target="_blank"
                       href="https://www.lagou.com/resume/preview-attach-resume.html?id=10706726&amp;name=前端工程师边晓凯.pdf"
                     >预览</a>
                   </li>
                   <li class="download">
                     <a
-                      data-lg-webtj-_address_id="1nvh"
-                      href="https://www.lagou.com/nearBy/downloadResume?id=10706726"
                       title="下载前端工程师边晓凯.pdf"
                     >下载</a>
                   </li>
@@ -356,11 +263,7 @@
               </span>
               <a
                 class="active-color"
-                target="_blank"
-                data-lg-tj-id="1jit"
-                data-lg-tj-no="0017"
-                data-lg-tj-cid="idnull"
-                href="https://www.lagou.com/resume/preview.html"
+                href="#"
               >预览简历</a>
             </div>
             <div class="mr_integrity_m">
@@ -591,46 +494,47 @@
     </a-modal>
     <!-- 教育经历 -->
     <a-modal title="教育经历" v-model="studyModal" :footer="null" @ok="studyModal = false">
-      <a-form :form="form" @submit="handleProjectSubmit">
+      <a-form :form="form" @submit="handleStudySubmit">
         <a-form-item v-bind="formItemLayout">
-          <span slot="label">项目名称</span>
+          <span slot="label">学校名称</span>
           <a-input
             v-decorator="[
-          'projectName',
+          'SchoolName',
           {
-            rules: [{ required: true, message: '请输入项目名称!', whitespace: true }],
+            rules: [{ required: true, message: '请输入学校名称!', whitespace: true }],
           },
         ]"
           />
         </a-form-item>
         <a-form-item v-bind="formItemLayout">
-          <span slot="label">项目介绍</span>
+          <span slot="label">专业</span>
           <a-textarea
             v-decorator="[
-          'ProjectDescription',
+          'Speciality',
           {
-            rules: [{ required: true, message: '请输入项目介绍!', whitespace: true }],
+            rules: [{ required: true, message: '请输入专来!', whitespace: true }],
           },
         ]"
           />
         </a-form-item>
         <a-form-item v-bind="formItemLayout">
-          <span slot="label">项目周期</span>
+          <span slot="label">学历</span>
+          <a-textarea
+            v-decorator="[
+          'Education',
+          {
+            rules: [{ required: true, message: '请输入学历!', whitespace: true }],
+          },
+        ]"
+          />
+        </a-form-item>
+        <a-form-item v-bind="formItemLayout">
+          <span slot="label">学习时间</span>
           <a-range-picker
             format="YYYY-MM-DD"
             :disabledDate="disabledDate"
-            v-decorator="['date', {rules: [{ type: 'array', required: true, message: '请输入在公司的时间!' }]} ]"
+            v-decorator="['date', {rules: [{ type: 'array', required: true, message: '请输入学习的时间!' }]} ]"
           />
-        </a-form-item>
-        <a-form-item v-bind="formItemLayout" label="职责描述">
-          <a-textarea
-            v-decorator="[
-          'Description',
-          {
-            rules: [{ required: true, message: '请输入职责描述!' }],
-          },
-        ]"
-          ></a-textarea>
         </a-form-item>
         <a-form-item v-bind="tailFormItemLayout">
           <a-button type="primary" html-type="submit">保存</a-button>
@@ -710,6 +614,7 @@ import { uploadPhoto } from "@/api/center.js";
 import citydata from "@/assets/pca-code.js";
 import api from "@/api";
 import moment from "moment";
+import { isArray } from "util";
 // console.log(uploadPhoto);
 
 function getBase64(img, callback) {
@@ -721,6 +626,9 @@ export default {
   filters: {
     genderFilter(type) {
       return type == 1 ? "男" : "女";
+    },
+    getProvice(id){
+
     },
     getAge(strBirthday) {
       var returnAge;
@@ -766,7 +674,8 @@ export default {
     return {
       id: 0, //简历ID
       companyId: 0, // 编辑还是添加公司 ID
-      projectId: 0, // 编辑还是添加公司 ID
+      projectId: 0, // 编辑还是添加项目 ID
+      studyId: 0, // 编辑还是添加项目 ID
       Province: [
         {
           name: "",
@@ -802,6 +711,14 @@ export default {
         { id: 3, val: "实习" },
         { id: 4, val: "全/兼职" }
       ],
+      province:'',
+      city:'',
+      // 公司列表
+      companyWorkList: [],
+      // 项目列表
+      projectList: [],
+      // 教育列表
+      studyList: [],
       // 邮箱
       email: "",
       tittle: "",
@@ -882,17 +799,137 @@ export default {
     }
 
     this.getZoneList();
-    this.getBaseInfo();
   },
   methods: {
+    // 编辑工作经历弹窗
+    alertCompanyEdit(id, type = "edit") {
+      this.companyId = id;
+      if (type == "delete") {
+        // 删除简历
+        this.deleteWork(id);
+      } else {
+        this.jianliModal = true;
+      }
+    },
+    // 编辑项目经历弹窗
+    alertProjectEdit(id, type = "edit") {
+      this.projectId = id;
+      if (type == "delete") {
+        // 删除简历
+        this.deleteProject(id);
+      } else {
+        this.projectModal = true;
+      }
+    },
+    // 编辑教育经历弹窗
+    alertStudyEdit(id, type = "edit") {
+      this.studyId = id;
+      if (type == "delete") {
+        // 删除简历
+        this.deleteStudy(id);
+      } else {
+        this.studyModal = true;
+      }
+    },
+    // 初始化数据
+    initPageData() {
+      // 获取工作经历
+      this.getWorkList();
+      this.getProjectList();
+      this.getStudyList();
+    },
+    // 删除工作经历
+    deleteWork(Id) {
+      api
+        .workDelete({
+          Id
+        })
+        .then(res => {
+          if (res.code == 1) {
+            this.$message.success("删除成功");
+            this.getWorkList();
+          } else {
+            this.$message.error("删除失败");
+          }
+        });
+    },
+    // 删除教育经历
+    deleteStudy(Id) {
+      api
+        .studyDelete({
+          Id
+        })
+        .then(res => {
+          if (res.code == 1) {
+            this.$message.success("删除成功");
+            this.getStudyList();
+          } else {
+            this.$message.error("删除失败");
+          }
+        });
+    },
+    // 删除工作经历
+    deleteProject(Id) {
+      api
+        .projectDelete({
+          Id
+        })
+        .then(res => {
+          if (res.code == 1) {
+            this.$message.success("删除成功");
+            this.getProjectList();
+          } else {
+            this.$message.error("删除失败");
+          }
+        });
+    },
+    getWorkList() {
+      let { id } = this;
+      api
+        .workList({
+          candidateId: id
+        })
+        .then(res => {
+          if (res.code == 1) {
+            if (isArray(res.data)) {
+              this.companyWorkList = [...res.data];
+            }
+          } else {
+            console.error("获取工作经历失败");
+          }
+        });
+    },
+    getStudyList() {
+      let { id } = this;
+      api
+        .studyList({
+          candidateId: id
+        })
+        .then(res => {
+          if (res.code == 1) {
+            if (isArray(res.data)) {
+              this.studyList = [...res.data];
+            }
+          } else {
+            console.error("获取教育经历失败");
+          }
+        });
+    },
     disabledDate(current) {
       return current > moment().endOf("day");
     },
     // 添加工作经历
     addWord(params) {
-      api.workAdd({
-        ...params
-      });
+      api
+        .workAdd({
+          ...params
+        })
+        .then(res => {
+          if (res.code == 1) {
+            this.$message.success("添加成功");
+            this.getWorkList();
+          }
+        });
     },
     // 保存求职意向
     handleGetJobHope(e) {
@@ -930,6 +967,10 @@ export default {
           this.mobile = res.data.mobile;
           this.id = res.data.id;
           this.description = res.data.description;
+          this.expectationSalary = res.data.expectationSalary;
+          
+          // 初始化
+          this.initPageData();
         }
       });
     },
@@ -990,6 +1031,7 @@ export default {
         .then(res => {
           if (res.code == 1) {
             this.$message.success("保存成功");
+            this.getWorkList();
           } else {
             this.$$message.success("保存失败");
           }
@@ -1025,11 +1067,6 @@ export default {
     },
     getCityCode() {
       this.activeCity = this.City[arguments[0]].id;
-    },
-    addBaseInfo() {
-      api.baseInfo({}).then(res => {
-        console.log(res);
-      });
     },
     // 上传图片
     handleChange(info) {
@@ -1068,7 +1105,7 @@ export default {
       e.preventDefault();
       this.form.validateFieldsAndScroll((err, values) => {
         if (!err) {
-          let { companyArray, companyId } = this;
+          let { companyArray, companyId, id } = this;
           let newComp = {
             id: companyId,
             CompanyName: values.CompanyName,
@@ -1076,8 +1113,10 @@ export default {
             StartYear: Number(values.date[0].format("YYYY")),
             StartMonth: Number(values.date[0].format("MM")),
             EndYear: Number(values.date[1].format("YYYY")),
-            EndMonth: Number(values.date[1].format("MM"))
+            EndMonth: Number(values.date[1].format("MM")),
+            CandidateID: id
           };
+
           this.addWord(newComp);
         }
       });
@@ -1116,11 +1155,46 @@ export default {
         }
       });
     },
+    //教育信息
+    handleStudySubmit(e) {
+      e.preventDefault();
+      this.form.validateFieldsAndScroll((err, values) => {
+        if (!err) {
+          let { studyId, id } = this;
+          let newComp = {
+            id: studyId,
+            CandidateID: id,
+            SchoolName: values.SchoolName,
+            Speciality: values.Speciality,
+            Education: values.Education,
+            StartYear: Number(values.date[0].format("YYYY")),
+            StartMonth: Number(values.date[0].format("MM")),
+            EndYear: Number(values.date[1].format("YYYY")),
+            EndMonth: Number(values.date[1].format("MM"))
+          };
+          this.editStudy(newComp);
+        }
+      });
+    },
+    // 编辑项目
     editDescInfo(e) {
       e.preventDefault();
       this.editJianli();
     },
-
+    // 获取项目列表
+    getProjectList() {
+      api
+        .projectList({
+          candidateId: this.id
+        })
+        .then(res => {
+          if (res.code == 1) {
+            if (isArray(res.data)) {
+              this.projectList = [...res.data];
+            }
+          }
+        });
+    },
     // 项目经验编辑添加
     editProject(params) {
       api
@@ -1129,7 +1203,23 @@ export default {
         })
         .then(res => {
           if (res.code == 1) {
-            this.$$message.success("保存成功");
+            this.$message.success("保存成功");
+            this.getProjectList();
+          } else {
+            this.$message.error(res.msg);
+          }
+        });
+    },
+    // 教育编辑添加
+    editStudy(params) {
+      api
+        .studyEdit({
+          ...params
+        })
+        .then(res => {
+          if (res.code == 1) {
+            this.$message.success("保存成功");
+            this.getStudyList();
           } else {
             this.$message.error(res.msg);
           }
