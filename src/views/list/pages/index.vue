@@ -254,10 +254,7 @@
             <div class="hot_pos_l">
               <div class="mb10">
                 <a href="#/company/1" title="前端开发" target="_blank">
-                  <span>前</span>
-                  <span>端</span>
-                  <span>开</span>
-                  <span>发</span>
+                  <span>前端开发</span>
                 </a>
                 &nbsp;
                 <span class="c9">[北京]</span>

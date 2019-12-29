@@ -5,7 +5,7 @@ export default {
       name: 'company',
       component: () => import('../pages/company'),
       meta:{
-        key:'company'
+        key:'jobPosition'
       }
     },
     {
@@ -13,7 +13,7 @@ export default {
       name: 'jobPosition',
       component: () => import('../pages'),
       meta: {
-        key:'company'
+        key:'jobPosition'
       }
     },
   ]
