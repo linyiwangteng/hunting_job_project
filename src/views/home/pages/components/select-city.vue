@@ -45,7 +45,6 @@ export default {
 				parentCode:'230000000000'
 			}).then(res=>{
 				this.hotProvince = res.data;
-				console.log(this.hotProvince);
 			})
 		}
 	}
