@@ -6761,7 +6761,7 @@ a.greylink {
     font-size: 24px;
     font-weight: normal;
     height: 43px;
-    background: #91cebe;
+    background: #dd0101;
     margin: -8px 0 10px 48px;
     /*已投递简历状态:40px;old:20px*/
     padding: 0 20px;
@@ -6788,7 +6788,7 @@ a.greylink {
 .d_refresh {
     font-size: 18px;
     color: #555;
-    background: url(img/refresh.png) left center no-repeat;
+    /* background: url(img/refresh.png) left center no-repeat; */
     padding-left: 20px;
     position: absolute;
     right: 50px;
@@ -6831,11 +6831,11 @@ a.greylink {
 }
 
 .delivery_tabs li.current {
-    border-bottom: 4px solid #019875;
+    border-bottom: 4px solid #dd0101;
 }
 
 .delivery_tabs li.current a, .delivery_tabs li:hover a {
-    color: #019875;
+    color: #dd0101;
 }
 
 ul.my_delivery {
@@ -6849,7 +6849,7 @@ ul.my_delivery {
 }
 
 .my_delivery .d_item {
-    border-left: 3px solid #91cebe;
+    border-left: 3px solid #dd0101;
     overflow: hidden;
     padding: 3px 12px;
 }
@@ -6931,7 +6931,7 @@ ul.my_delivery {
 
 .my_delivery h2 em {
     font-size: 18px;
-    color: #0d9572;
+    color: #dd0101;
 }
 
 .my_delivery h2 span {

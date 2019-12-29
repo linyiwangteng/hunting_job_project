@@ -2,7 +2,7 @@ export default {
   routes: [
     {
       path:'/',
-      name:'login',
+      name:'delivery',
       component: ()=>import('../pages/index.vue')
     }
   ]

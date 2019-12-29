@@ -35,6 +35,10 @@ const studyEdit = (params) => instance.post('/api/business/personcandidateedu/ca
 // 教育经历删除
 const studyDelete = (params) => instance.delete('/api/business/personcandidateedu/delete', { params });
 
+// 投递列表
+const getTouDiList = (params) => instance.get('/api/business/Sign/QueryByPerson', { params });
+
+
 
 export default {
     baseInfo,
@@ -48,5 +52,6 @@ export default {
     projectDelete,
     studyList,
     studyEdit,
-    studyDelete
+    studyDelete,
+    getTouDiList,
 }

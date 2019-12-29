@@ -13,6 +13,12 @@ module.exports = {
             filename: 'home.html',
             title:'首页'
         },
+        delivery: {
+            entry: 'src/views/delivery/main.js',
+            template: 'public/index.html',
+            filename: 'delivery.html',
+            title:'投递列表'
+        },
         center: {
             entry: 'src/views/center/main.js',
             template: 'public/index.html',

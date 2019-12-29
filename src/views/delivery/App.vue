@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <tab :tab='false' ></tab>
+    <tab ></tab>
     <div class="center-warp">
       <router-view />
     </div>
