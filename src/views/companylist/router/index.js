@@ -8,7 +8,10 @@ export default {
     {
       path: '/',
       name: 'companylist',
-      component: () => import('../pages')
+      component: () => import('../pages'),
+      meta: {
+        key:'companylist'
+      }
     },
   ]
 }

@@ -5,10 +5,10 @@
 * Author : Vee
 * Contect : vee@3wcoffee.com
 **********************************************
-* background:#0d9572;             绿 背景色
-* background:#0d9572;             绿 按钮
+* background:#ff0000;             绿 背景色
+* background:#ff0000;             绿 按钮
 * background:#00694e;             绿 按钮 current
-* color:#019875;                  绿字体
+* color:#ff0000;                  绿字体
 * background:#fafafa;             灰 背景色
 * border:1px dashed #cfd0d2；     灰 边框
 * height:30px;                    list page btn
@@ -128,7 +128,7 @@ a {
 }
 
 a:hover {
-    color: #019875;
+    color: #ff0000;
 }
 
 dl, dd {
@@ -225,7 +225,7 @@ span.error {
     line-height: 0;
     border-width: 6px 5px 0;
     border-style: solid dashed;
-    border-color: #019875 transparent transparent;
+    border-color: #ff0000 transparent transparent;
     -webkit-transition: all 0.4s ease 0s;
     -moz-transition: all 0.4s ease 0s;
     -ms-transition: all 0.4s ease 0s;
@@ -276,7 +276,7 @@ ul, ol {
 }
 
 #remindActive .remind span {
-    color: #019875;
+    color: #ff0000;
 }
 
 #remindActive a {
@@ -286,14 +286,14 @@ ul, ol {
 
 #remindActive a.remindbtn {
     color: #fff;
-    background: #019875;
+    background: #ff0000;
 }
 
 #header {
     min-width: 1024px;
     height: 60px;
     background: #fafafa;
-    border-top: 3px solid #019875;
+    border-top: 3px solid #ff0000;
 }
 
 #header .wrapper {
@@ -345,7 +345,7 @@ ul, ol {
 
 #navheader li.current a {
     color: #333;
-    border-bottom: 3px solid #019875;
+    border-bottom: 3px solid #ff0000;
 }
 
 #navheader li a:hover {
@@ -390,7 +390,7 @@ ul, ol {
     float: left;
     color: #fff;
     height: 22px;
-    background: #019875;
+    background: #ff0000;
     padding: 4px 0;
 }
 
@@ -407,7 +407,7 @@ ul, ol {
     float: right;
     *max-width: 170px;
     color: #fff;
-    background: #019875;
+    background: #ff0000;
     position: absolute;
     right: 0;
     z-index: 101;
@@ -420,7 +420,7 @@ ul, ol {
     position: relative;
     color: #fff;
     padding: 0 40px 0 20px;
-    background: #019875;
+    background: #ff0000;
     min-width: 105px;
     overflow: hidden;
 }
@@ -441,7 +441,7 @@ ul, ol {
     top: 14px;
     right: 25px;
     border: 4px solid #fff;
-    border-color: #fff #019875 #019875;
+    border-color: #fff #ff0000 #ff0000;
     display: block;
     font-size: 0px;
     height: 0;
@@ -457,7 +457,7 @@ ul, ol {
     -moz-transform: rotate(180deg);
     transform: rotate(180deg);
     top: 12px;
-    border-color: #019875 #019875 #fff #019875\9;
+    border-color: #ff0000 #ff0000 #fff #ff0000\9;
 }
 
 #header dd {
@@ -472,7 +472,7 @@ ul, ol {
     display: block;
     color: #fff;
     padding: 0 20px;
-    background: #019875;
+    background: #ff0000;
 }
 
 #header dd a:hover, #header dd a.current {
@@ -488,7 +488,7 @@ ul, ol {
 }
 
 #noticeTip {
-    color: #019875;
+    color: #ff0000;
     background: #fff;
     position: relative;
     float: right;
@@ -522,7 +522,7 @@ ul, ol {
 }
 
 #noticeTip a {
-    color: #019875;
+    color: #ff0000;
 }
 
 #noticeTip a.closeNT {
@@ -575,7 +575,7 @@ ul, ol {
 }
 
 #search_box {
-    border: 2px solid #019875;
+    border: 2px solid #ff0000;
     width: 740px;
     height: 37px;
     position: relative;
@@ -598,13 +598,13 @@ ul, ol {
     color: #FFF;
     font-size: 18px;
     border: none;
-    background: #019875;
+    background: #ff0000;
     float: right;
     cursor: pointer;
 }
 
 #search_button:hover {
-    background: #028b6b;
+    background: #ff0000;
 }
 
 #searchType {
@@ -630,8 +630,8 @@ ul, ol {
 
 #searchType li.type_selected {
     height: 33px;
-    border-left: 2px solid #019875;
-    border-right: 2px solid #019875;
+    border-left: 2px solid #ff0000;
+    border-right: 2px solid #ff0000;
     border-top: 0;
     border-bottom: 0;
     display: block;
@@ -645,7 +645,7 @@ ul, ol {
     line-height: 0;
     border-width: 5px 5px 0;
     border-style: solid dashed;
-    border-color: #019875 transparent transparent;
+    border-color: #ff0000 transparent transparent;
     -webkit-transition: all 0.4s ease 0s;
     -moz-transition: all 0.4s ease 0s;
     -ms-transition: all 0.4s ease 0s;
@@ -719,8 +719,8 @@ ul, ol {
 }
 
 #sidebar .menu_main a:hover {
-    /* background:#019875; */
-    color: #019875;
+    /* background:#ff0000; */
+    color: #ff0000;
     text-decoration: underline;
 }
 
@@ -764,7 +764,7 @@ ul, ol {
 }
 
 #sidebar .menu_sub dt a:hover {
-    color: #019875;
+    color: #ff0000;
     text-decoration: underline;
 }
 
@@ -783,12 +783,12 @@ ul, ol {
 }
 
 #sidebar .menu_sub dd a:hover {
-    color: #019875;
+    color: #ff0000;
     text-decoration: underline;
 }
 
 #sidebar .menu_sub dd a.curr {
-    color: #019875;
+    color: #ff0000;
     background-position: -29px center !important;
 }
 
@@ -800,7 +800,7 @@ ul, ol {
     background: #fafafa url(img/sub_icon.png) 180px center no-repeat;
     padding: 0 80px 0 20px;
     margin-top: 12px;
-    border-bottom: 2px solid #019875;
+    border-bottom: 2px solid #ff0000;
 }
 
 /*index content*/
@@ -844,8 +844,8 @@ ul, ol {
     position: absolute;
     background: #333;
     background: rgba(1, 152, 117, 0.9);
-    *background: #0d9572;
-    background: #0d9572\0;
+    *background: #ff0000;
+    background: #ff0000\0;
     filter: alpha(Opacity=90);
     width: 100%;
     height: 100%;
@@ -903,7 +903,7 @@ ul.hot_tags {
 }
 
 .hot_tags li a:hover {
-    background: #019875;
+    background: #ff0000;
 }
 
 /*home banner*/
@@ -1079,7 +1079,7 @@ ul.hot_pos i {
 }
 
 .hot_pos a:hover {
-    color: #0d9572;
+    color: #ff0000;
 }
 
 .hot_pos a.btn:hover {
@@ -1105,7 +1105,7 @@ ul.hot_pos i {
 }
 
 .hot_pos_l a span {
-    color: #0d9572;
+    color: #ff0000;
     margin: 0;
 }
 
@@ -1130,7 +1130,7 @@ ul.hot_pos i {
 }
 
 .hot_pos_r a span {
-    color: #0d9572;
+    color: #ff0000;
     margin: 0;
 }
 
@@ -1181,7 +1181,7 @@ ul.hot_pos i {
 .btn {
     font-size: 16px;
     color: #fff;
-    background: #0d9572 url(img/arrow.png) 88px center no-repeat;
+    background: #ff0000 url(img/arrow.png) 88px center no-repeat;
     padding: 5px 40px 5px 15px;
     margin: 10px 0 0 0;
 }
@@ -1249,7 +1249,7 @@ ul.hot_pos i {
 
 .footer_qr i {
     display: none;
-    border: 3px solid #0D9572;
+    border: 3px solid #ff0000;
     background: url(img/qrcode.jpg) no-repeat;
     width: 242px;
     height: 242px;
@@ -1297,7 +1297,7 @@ ul.hot_pos i {
 }
 
 #selected li {
-    background: #0d9572;
+    background: #ff0000;
     white-space: nowrap;
     color: #fff;
     margin-bottom: 13px;
@@ -1397,12 +1397,12 @@ ul.hot_pos i {
 }
 
 .workplace a:hover {
-    background: #0d9572;
+    background: #ff0000;
     color: #fff;
 }
 
 .workplace a.current {
-    background: #0d9572;
+    background: #ff0000;
     color: #fff;
 }
 
@@ -1546,7 +1546,7 @@ ul.hot_pos i {
 /*login.html*/
 
 #login_bg {
-    /* background: #019875 url(img/bgwall.png) center 100px no-repeat;
+    /* background: #ff0000 url(img/bgwall.png) center 100px no-repeat;
     overflow: hidden; */
 }
 
@@ -1594,7 +1594,7 @@ ul.hot_pos i {
 }
 
 #loginForm a {
-    color: #019875;
+    color: #ff0000;
 }
 
 #loginForm input#email {
@@ -1624,7 +1624,7 @@ ul.hot_pos i {
 }
 
 #loginForm .fr:hover {
-    color: #019875;
+    color: #ff0000;
 }
 
 #loginForm label {
@@ -1796,7 +1796,7 @@ ul.hot_pos i {
     font-size: 18px;
     text-align: center;
     color: #fff;
-    background: #0d9572;
+    background: #ff0000;
     padding: 10px 0;
     margin: 0 30px 20px 2px;
 }
@@ -1867,12 +1867,12 @@ ul.hot_pos i {
 }
 
 .hc_tag dl a:hover {
-    background: #0d9572;
+    background: #ff0000;
     color: #fff;
 }
 
 .hc_tag dl a.current {
-    background: #0d9572;
+    background: #ff0000;
     color: #fff;
 }
 
@@ -1909,7 +1909,7 @@ ul.hot_pos i {
 }
 
 .hc_list a:hover h3 {
-    color: #0d9572;
+    color: #ff0000;
     text-decoration: underline;
 }
 
@@ -1957,8 +1957,8 @@ ul.hot_pos i {
 }
 
 .hc_list ul.ctags li.current {
-    border: 1px solid #0d9572;
-    color: #0d9572;
+    border: 1px solid #ff0000;
+    color: #ff0000;
 }
 
 .content_r {
@@ -1992,7 +1992,7 @@ ul.hot_pos i {
 }
 
 .subscribe_side em {
-    color: #0d9572;
+    color: #ff0000;
 }
 
 .subscribe_side div.why {
@@ -2052,7 +2052,7 @@ ul.hot_pos i {
 .upload_file {
     display: block;
     margin-top: 10px;
-    background: #0d9572 url(img/upload_file.png) 220px center no-repeat;
+    background: #ff0000 url(img/upload_file.png) 220px center no-repeat;
     color: #fff;
     font-size: 24px;
     height: 60px;
@@ -2193,7 +2193,7 @@ ul.hot_pos i {
 }
 
 .resume a:hover {
-    color: #019875;
+    color: #ff0000;
 }
 
 .resume span.c3 a {
@@ -2201,7 +2201,7 @@ ul.hot_pos i {
 }
 
 .resume span.c3 a:hover {
-    color: #019875;
+    color: #ff0000;
 }
 
 .resume div a {
@@ -2239,7 +2239,7 @@ ul.hot_pos i {
 }
 
 .unresume a:hover {
-    color: #019875;
+    color: #ff0000;
 }
 
 .resume input, .unresume input {
@@ -2269,7 +2269,7 @@ ul.hot_pos i {
 
 .job_company dt h2 {
     margin: 0;
-    color: #019875;
+    color: #ff0000;
 }
 
 .job_company dt div {
@@ -2319,7 +2319,7 @@ ul.hot_pos i {
 }
 
 .c_feature a:hover {
-    color: #019875;
+    color: #ff0000;
 }
 
 .job_company dd h4 {
@@ -2328,14 +2328,14 @@ ul.hot_pos i {
 }
 
 .edit_tag {
-    color: #019875;
+    color: #ff0000;
     text-decoration: underline;
     float: left;
     margin-top: 5px;
 }
 
 .edit_tag:hover {
-    color: #019875;
+    color: #ff0000;
 }
 
 .btn_apply {
@@ -2395,7 +2395,7 @@ ul.hot_pos i {
 
 .resumeSetForm label a:hover {
     text-decoration: underline;
-    color: #019875;
+    color: #ff0000;
 }
 
 .resumeSetForm div {
@@ -2408,7 +2408,7 @@ ul.hot_pos i {
 }
 
 .resumeSetForm div a:hover {
-    color: #019875;
+    color: #ff0000;
 }
 
 .resumeSetForm label.bgPink {
@@ -2574,7 +2574,7 @@ ul.hot_pos i {
 }
 
 #myRecommend_jd li a:hover span.f14 {
-    color: #019875;
+    color: #ff0000;
 }
 
 #myRecommend_jd li em {
@@ -2587,7 +2587,7 @@ ul.hot_pos i {
 
 #myRecommend_jd .more {
     float: right;
-    color: #019875;
+    color: #ff0000;
     text-decoration: none;
     margin-top: 10px;
 }
@@ -2670,7 +2670,7 @@ ul.hot_pos i {
 /* .jd_item_text i{width:26px;height:23px;background:url(img/jd_dot_r.png) 0 5px no-repeat;display:inline-block; margin:0 0 0 10px;} */
 
 .remarkMore {
-    color: #019875;
+    color: #ff0000;
     margin: 0 5px;
 }
 
@@ -2777,7 +2777,7 @@ ul.hot_pos i {
     border: none;
     height: 60px;
     line-height: 60px;
-    background: #0d9572;
+    background: #ff0000;
     float: left;
     margin: 15px 0 5px;
     overflow: hidden;
@@ -2795,7 +2795,7 @@ ul.hot_pos i {
 }
 
 .apply_num span {
-    color: #019875;
+    color: #ff0000;
 }
 
 .s_form {
@@ -3317,7 +3317,7 @@ ul.hot_pos i {
 }
 
 .c_box a.applyC {
-    background: #0d9572;
+    background: #ff0000;
     color: #fff;
     padding: 2px 6px;
     margin: 0 0 0 15px;
@@ -3428,7 +3428,7 @@ ul.hot_pos i {
 
 .jobsTotal i, .jobsTotalB i {
     font-style: normal;
-    color: #0d9572;
+    color: #ff0000;
     font-size: 18px;
 }
 
@@ -3500,7 +3500,7 @@ ul.hot_pos i {
 }
 
 #logoUploader .uploadBtn:hover {
-    background: #019875;
+    background: #ff0000;
 }
 
 #logoUploader .uploadBtn input {
@@ -3555,7 +3555,7 @@ ul.hot_pos i {
 }
 
 .saveLogoBtn:hover {
-    background: #019875;
+    background: #ff0000;
 }
 
 /*start job detail page add labels*/
@@ -3652,7 +3652,7 @@ ul.hot_pos i {
 
 #addLabels a.change {
     float: left;
-    color: #019875;
+    color: #ff0000;
     text-decoration: underline;
     margin-top: 5px;
 }
@@ -3707,7 +3707,7 @@ ul.hot_pos i {
     line-height: 40px;
     font-size: 18px;
     padding: 0 30px;
-    background: #0d9572;
+    background: #ff0000;
     float: left;
     margin: 15px 0 5px;
     transition: background 0.2s ease-in 0s;
@@ -4020,13 +4020,13 @@ ul.c_jobs {
     padding: 5px 0;
     margin: 0;
     font-size: 18px;
-    color: #0d9572;
+    color: #ff0000;
     font-weight: normal;
 }
 
 .c_jobs h3 span.pos {
     font-size: 18px;
-    color: #0d9572;
+    color: #ff0000;
     font-weight: normal;
 }
 
@@ -4072,14 +4072,14 @@ ul.c_jobs {
 }
 
 .c_tags td a {
-    color: #0d9572;
+    color: #ff0000;
     text-decoration: underline;
 }
 
 /*add by nancy*/
 
 .solveWrap td a {
-    color: #0d9572;
+    color: #ff0000;
     text-decoration: underline;
     overflow: hidden;
     white-space: nowrap;
@@ -4325,7 +4325,7 @@ ul.c_jobs {
 
 .addnew a {
     font-size: 16px;
-    color: #0d9572;
+    color: #ff0000;
     text-decoration: underline;
     float: left;
     margin: 10px 0 0 0;
@@ -4342,7 +4342,7 @@ ul.c_jobs {
 
 .addnew_right a {
     font-size: 16px;
-    color: #0d9572;
+    color: #ff0000;
     text-decoration: underline;
     float: left;
     margin: 10px 0 0 100px;
@@ -4384,7 +4384,7 @@ ul.my_jobs {
 
 .my_jobs h3 a {
     font-size: 18px;
-    color: #0d9572;
+    color: #ff0000;
 }
 
 .my_jobs h3 span {
@@ -4397,7 +4397,7 @@ ul.my_jobs {
 
 .my_jobs span.receivedResumeNo a {
     font-size: 16px;
-    color: #0d9572;
+    color: #ff0000;
 }
 
 .my_jobs span {
@@ -4423,13 +4423,13 @@ ul.my_jobs {
 }
 
 .links a {
-    color: #0d9572;
+    color: #ff0000;
     text-decoration: underline;
     margin-left: 8px;
 }
 
 .links a:hover {
-    color: #0d9572;
+    color: #ff0000;
     text-decoration: underline;
 }
 
@@ -4480,7 +4480,7 @@ ul.my_jobs {
 
 .c_section_mid dt span {
     font-size: 18px;
-    color: #0d9572;
+    color: #ff0000;
 }
 
 .c_section_mid h3 {
@@ -4607,11 +4607,11 @@ ul.my_jobs {
 }
 
 .c_notice h4 em {
-    color: #019875;
+    color: #ff0000;
 }
 
 .c_notice h4 a {
-    color: #019875;
+    color: #ff0000;
     text-decoration: none;
 }
 
@@ -4624,7 +4624,7 @@ ul.my_jobs {
 a.greenlink {
     font-size: 18px;
     margin-right: 60px;
-    color: #019875;
+    color: #ff0000;
     text-decoration: underline;
 }
 
@@ -4671,7 +4671,7 @@ a.greylink {
 }
 
 .c_addjob:hover {
-    color: #019875;
+    color: #ff0000;
 }
 
 .c_addjob:hover i {
@@ -5044,7 +5044,7 @@ a.greylink {
 }
 
 .add_member:hover {
-    color: #019875;
+    color: #ff0000;
 }
 
 .add_member:hover i {
@@ -5125,7 +5125,7 @@ a.greylink {
 
 .c_notice .emailus a {
     font-size: 18px;
-    color: #019875;
+    color: #ff0000;
 }
 
 .c_notice .btn_big {
@@ -5199,7 +5199,7 @@ a.greylink {
 }
 
 #suggestCompany dd a {
-    color: #019875;
+    color: #ff0000;
     font-size: 14px;
     float: right;
     text-decoration: underline;
@@ -5255,7 +5255,7 @@ a.greylink {
 }
 
 .sendemail a {
-    color: #019875;
+    color: #ff0000;
 }
 
 .find_psw a#submitLogin {
@@ -5268,7 +5268,7 @@ a.greylink {
 }
 
 .email_address a {
-    color: #019875;
+    color: #ff0000;
 }
 
 #tip {
@@ -5401,7 +5401,7 @@ a.greylink {
 }
 
 .c_certify h4 em {
-    color: #019875;
+    color: #ff0000;
 }
 
 .c_certify .f16 {
@@ -5459,7 +5459,7 @@ a.greylink {
 
 .aboutus div {
     margin-left: 196px;
-    background: #0d9572;
+    background: #ff0000;
     padding: 20px 30px;
     height: 145px;
 }
@@ -5489,7 +5489,7 @@ a.greylink {
     margin-top: 10px;
     padding: 5px 0 5px 7px;
     float: left;
-    background: #019875;
+    background: #ff0000;
     color: #fff;
 }
 
@@ -5540,7 +5540,7 @@ a.greylink {
 }
 
 .page404 div a {
-    color: #019875;
+    color: #ff0000;
     float: none;
     font-size: 24px;
 }
@@ -5556,7 +5556,7 @@ a.greylink {
 
 .page404 a.back_home {
     color: #fff;
-    background: #019875;
+    background: #ff0000;
     margin-right: 10px;
 }
 
@@ -5737,7 +5737,7 @@ a.greylink {
 }
 
 .bbs_list li a.count:hover {
-    background: #019875;
+    background: #ff0000;
 }
 
 .bbs_del {
@@ -5794,7 +5794,7 @@ a.greylink {
 }
 
 .topic_create:hover {
-    background: #019875;
+    background: #ff0000;
     color: #fff;
 }
 
@@ -5835,7 +5835,7 @@ a.greylink {
     color: #fff;
     font-size: 18px;
     line-height: 40px;
-    background: #0d9572;
+    background: #ff0000;
 }
 
 .bbs_bg .btn_create:hover {
@@ -5879,7 +5879,7 @@ a.greylink {
 }
 
 .topic_detail a {
-    color: #019875;
+    color: #ff0000;
     float: right;
 }
 
@@ -6327,7 +6327,7 @@ a.greylink {
 #container #weibolist .pttui {
     width: 442px;
     height: 40px;
-    background-color: #019875;
+    background-color: #ff0000;
 }
 
 #container #weibolist .pttui a {
@@ -6391,7 +6391,7 @@ a.greylink {
 }
 
 #container #weibolist .ptunder a.ptgaosu {
-    background: #0d9572;
+    background: #ff0000;
     margin-right: 20px;
     font-family: "微软雅黑";
     line-height: 24px;
@@ -6531,7 +6531,7 @@ a.greylink {
     font-family: "黑体";
     font-size: 30px;
     font-weight: bold;
-    color: #019875;
+    color: #ff0000;
     background: url('+defaults.imgdomain+'/hbzxrec/images/images/wj/okti.png) no-repeat;
     padding-left: 44px;
     margin-left: 40px;
@@ -6931,7 +6931,11 @@ ul.my_delivery {
 
 .my_delivery h2 em {
     font-size: 18px;
+<<<<<<< HEAD
     color: #dd0101;
+=======
+    color: #ff0000;
+>>>>>>> 527ac4622d7ac11e7e16f021a4897574c1b32683
 }
 
 .my_delivery h2 span {
@@ -6979,7 +6983,7 @@ ul.my_delivery {
 
 .btn_showprogress {
     float: right;
-    color: #019875;
+    color: #ff0000;
     font-size: 16px;
     margin: 5px 0;
     position: relative;
@@ -6997,7 +7001,7 @@ ul.my_delivery {
     line-height: 0;
     border-width: 6px 6px 0;
     border-style: solid dashed;
-    border-color: #019875 transparent transparent;
+    border-color: #ff0000 transparent transparent;
     -webkit-transition: all 0.4s ease 0s;
     -moz-transition: all 0.4s ease 0s;
     -ms-transition: all 0.4s ease 0s;
@@ -7094,7 +7098,7 @@ ul.my_delivery {
 .status_steps .status_line_done span {
     display: block;
     height: 4px;
-    background: #019875;
+    background: #ff0000;
 }
 
 .status_steps .status_line_grey span {
@@ -7161,7 +7165,7 @@ ul.my_delivery {
 }
 
 .status_list .top .list_body {
-    border-left: 3px solid #019875;
+    border-left: 3px solid #ff0000;
 }
 
 .status_list .top1 .list_body {
@@ -7179,7 +7183,7 @@ ul.my_delivery {
 }
 
 .status_list .top h3 {
-    color: #019875;
+    color: #ff0000;
 }
 
 .status_list .list_body div {
@@ -7208,7 +7212,7 @@ ul.my_delivery {
     line-height: 44px;
     color: #fff;
     height: 44px;
-    background: #019875;
+    background: #ff0000;
     padding: 0 15px;
 }
 
@@ -7258,11 +7262,11 @@ ul.my_delivery {
 }
 
 .record_radio li:hover {
-    border: 2px solid #019875;
+    border: 2px solid #ff0000;
 }
 
 .record_radio li.current {
-    border: 2px solid #019875;
+    border: 2px solid #ff0000;
 }
 
 .record_radio li em {
@@ -7435,7 +7439,7 @@ ul.my_delivery {
     line-height: 40px;
     font-size: 20px;
     padding: 0 20px;
-    background: #0d9572;
+    background: #ff0000;
     float: right;
     margin: 15px 0 5px;
     transition: background 0.2s ease-in 0s;
@@ -7556,7 +7560,7 @@ ul.my_delivery {
 
 .drawCode a {
     float: right;
-    color: #019875;
+    color: #ff0000;
 }
 
 .ggj_ad {
@@ -7731,7 +7735,7 @@ ul.my_delivery {
 
 .tipExpire a {
     margin-left: 30px;
-    color: #019875
+    color: #ff0000
 }
 
 .tipExpire a:hover {
@@ -8044,7 +8048,7 @@ ul.my_delivery {
 
 #box_expectCity dt {
     width: 68px;
-    color: #019875;
+    color: #ff0000;
     font-weight: normal;
     margin: 3px 0;
     *margin-left: -80px;
@@ -8087,7 +8091,7 @@ ul.my_delivery {
 }
 
 .btn_profile_save:hover {
-    background: #019875;
+    background: #ff0000;
     color: #fff;
 }
 
@@ -8155,12 +8159,12 @@ ul.my_delivery {
 
 #resume_name input[type="submit"] {
     background: none;
-    color: #019875;
+    color: #ff0000;
     padding: 0 5px;
 }
 
 #resume_name a, #resume_name span {
-    color: #019875;
+    color: #ff0000;
     padding: 0 5px;
     cursor: pointer;
 }
@@ -8262,7 +8266,7 @@ ul.my_delivery {
     cursor: pointer;
     margin: 0 0 0 150px;
     text-align: center;
-    background: #019875;
+    background: #ff0000;
     color: #fff;
     float: left;
     -webkit-transition: .2s;
@@ -8329,7 +8333,7 @@ ul.my_delivery {
 .profile_box .pAdd span {
     display: block;
     font-size: 16px;
-    color: #0d9572;
+    color: #ff0000;
     text-decoration: underline;
     margin-top: 5px;
 }
@@ -8653,7 +8657,7 @@ ul.my_delivery {
 }
 
 #worksShow .workShow li a {
-    color: #019875;
+    color: #ff0000;
     text-decoration: underline;
 }
 
@@ -8684,13 +8688,13 @@ ul.my_delivery {
     font-size: 14px;
     line-height: 26px;
     float: right;
-    color: #019875;
+    color: #ff0000;
     text-decoration: none;
     *margin-top: -25px;
 }
 
 .mycenterR h2 a:hover, .mycenterR h2 span:hover {
-    color: #019875
+    color: #ff0000
 }
 
 .mycenterR h2 i {
@@ -8710,11 +8714,11 @@ ul.my_delivery {
 }
 
 .mycenterR a:hover {
-    color: #019875
+    color: #ff0000
 }
 
 .mycenterR .resumeUploadDiv a.fr {
-    color: #019875;
+    color: #ff0000;
     text-decoration: none;
 }
 
@@ -8790,7 +8794,7 @@ ul.my_delivery {
 
 #myRecommend .more {
     float: right;
-    color: #019875;
+    color: #ff0000;
     text-decoration: none;
     margin-top: 10px;
 }
@@ -8802,13 +8806,13 @@ ul.my_delivery {
     font-weight: normal;
     margin: 0;
     padding-bottom: 10px;
-    border-bottom: 2px solid #019875;
+    border-bottom: 2px solid #ff0000;
 }
 
 .recommend_list h2 .more {
     float: right;
     font-size: 14px;
-    color: #019875;
+    color: #ff0000;
 }
 
 .recommend_list .hot_pos_l {
@@ -8831,7 +8835,7 @@ ul.my_delivery {
 
 #previewWrapper .preview_header {
     height: 26px;
-    background: #019875;
+    background: #ff0000;
     padding: 9px 20px;
     color: #fff;
     overflow: hidden
@@ -8870,7 +8874,7 @@ ul.my_delivery {
 }
 
 #downloadOnlineResume a:hover {
-    background-color: #019875;
+    background-color: #ff0000;
 }
 
 /*profile overlay*/
@@ -8911,7 +8915,7 @@ ul.my_delivery {
 }
 
 .position_del a {
-    background-color: #0d9572;
+    background-color: #ff0000;
     color: #fff;
     padding: 0 5px;
     margin-left: 10px;
@@ -8980,11 +8984,11 @@ ul.my_delivery {
 }
 
 .position_expired span {
-    color: #019875;
+    color: #ff0000;
 }
 
 .position_expired a {
-    color: #019875;
+    color: #ff0000;
     text-decoration: underline;
 }
 
@@ -9019,7 +9023,7 @@ ul.my_delivery {
 
 /* bbs 合伙人入口  */
 
-/* .partner_enter{display:block;font-size:18px;height:46px;line-height:46px;background:#fafafa url(img/partner_enter.png) 20px center no-repeat;padding-left:60px;margin-top:12px;border-bottom:2px solid #019875;} */
+/* .partner_enter{display:block;font-size:18px;height:46px;line-height:46px;background:#fafafa url(img/partner_enter.png) 20px center no-repeat;padding-left:60px;margin-top:12px;border-bottom:2px solid #ff0000;} */
 
 ul.bbsTabs {
     font-size: 0;
@@ -9037,7 +9041,7 @@ ul.bbsTabs li {
 }
 
 ul.bbsTabs li.current {
-    border-bottom: 3px solid #0D9572;
+    border-bottom: 3px solid #ff0000;
     color: #333;
 }
 
@@ -9054,7 +9058,7 @@ ul.bbsTabs li a {
 .companyListPage dt a {
     font-size: 24px;
     line-height: 36px;
-    color: #019875;
+    color: #ff0000;
     margin-bottom: 10px;
 }
 
@@ -9081,7 +9085,7 @@ ul.bbsTabs li a {
 }
 
 .inviteWrapper .invite_num span {
-    color: #019875;
+    color: #ff0000;
 }
 
 .inviteWrapper .invite_rule {
@@ -9190,7 +9194,7 @@ ul.bbsTabs li a {
 }
 
 .work_place a {
-    color: #0d9572;
+    color: #ff0000;
     margin-left: 20px;
 }
 
@@ -9229,7 +9233,7 @@ ul.bbsTabs li a {
 
 .positions_more:hover {
     color: #fff;
-    background-color: #019875;
+    background-color: #ff0000;
 }
 
 .c_section_mid dd.pt30 {
@@ -9338,12 +9342,12 @@ i.speed1 {
 
 .optionsDiv dd.opts a.curr {
     color: #fff;
-    background: #0d9572;
+    background: #ff0000;
 }
 
 .optionsDiv dd.opts a:hover {
     color: #fff;
-    background: #0d9572;
+    background: #ff0000;
 }
 
 .optionsDiv dl.file dt {
@@ -9393,7 +9397,7 @@ i.speed1 {
 }
 
 .my_jobs a.link {
-    color: #019875;
+    color: #ff0000;
     font-size: 16px;
     float: right;
     margin-top: -30px;
@@ -9456,14 +9460,14 @@ i.speed1 {
 
 /* 
 .noResumeReceived{font-size:18px;height:200px;line-height:32px;	background:url(img/noResumeReceived.png) 30px 30px no-repeat;	padding:40px 0 0 150px;	margin:20px 0 0 0;}
-.noResumeReceived a{color:#019875;}
+.noResumeReceived a{color:#ff0000;}
 ul.resumeLists{	margin:20px 0;}
 ul.resumeLists li.onlineResume{height:138px;margin-bottom:27px;}
 ul.resumeLists li.onlineResume .resumeShow{padding:10px;background:#fff;}
 ul.resumeLists .resumeShow img{width:90px;height:90px;position:absolute;float:left;}
 ul.resumeLists li.onlineResume .resumeIntro{margin-left:100px;}
 .resumeIntro h3{margin:0;font-weight:normal;}
-.resumeIntro h3 a{color:#019875;font-size:18px;}
+.resumeIntro h3 a{color:#ff0000;font-size:18px;}
 .resumeIntro span{margin:-20px 0 0 0;font-size:12px;color:#999;}
 .resumeLists .links{float:right;margin-top:-25px;}
 .contactInfo{clear:both;background:#f2f2f2;	border-top:1px dashed #d9d9d9;padding:5px 10px;}
@@ -9566,7 +9570,7 @@ ul.resumeLists li.fileResume .resumeIntro span{	margin-top:-30px;}
 
 .sidebar .btn_create:hover {
     color: #fff;
-    background-color: #019875
+    background-color: #ff0000
 }
 
 .company_center_aside {
@@ -9627,7 +9631,7 @@ ul.resumeLists li.fileResume .resumeIntro span{	margin-top:-30px;}
 }
 
 .company_center_aside dd.current a {
-    color: #019875
+    color: #ff0000
 }
 
 .company_center_aside dd:hover span, .company_center_aside dd.current span {
@@ -9684,7 +9688,7 @@ ul.resumeLists li.fileResume .resumeIntro span{	margin-top:-30px;}
 }
 
 .company_center_content>dd .ccc_tr span {
-    color: #019875;
+    color: #ff0000;
     font-weight: 600
 }
 
@@ -9715,7 +9719,7 @@ ul.resumeLists li.fileResume .resumeIntro span{	margin-top:-30px;}
 }
 
 .company_center_content .no_resume_tip a {
-    color: #019875;
+    color: #ff0000;
     text-decoration: underline
 }
 
@@ -9906,7 +9910,7 @@ ul.resumeLists li.fileResume .resumeIntro span{	margin-top:-30px;}
 }
 
 .filter_actions a:hover {
-    background: #019875
+    background: #ff0000
 }
 
 #filter_btn {
@@ -9988,7 +9992,7 @@ ul.resumeLists li.fileResume .resumeIntro span{	margin-top:-30px;}
 
 .filter_options dd a.current, .filter_options dd a:hover {
     color: #fff;
-    background: #019875
+    background: #ff0000
 }
 
 /* resumes_pending.html */
@@ -10081,7 +10085,7 @@ ul.resumeLists li.fileResume .resumeIntro {
 }
 
 .resumeIntro h3 a {
-    color: #019875;
+    color: #ff0000;
     font-size: 18px;
     margin-right: 10px;
 }
@@ -10208,7 +10212,7 @@ ul.resumeLists .resumeIntro h3.read em {
 }
 
 .filter_tip span {
-    color: #019875
+    color: #ff0000
 }
 
 .company_center_content .addnew {
@@ -10238,7 +10242,7 @@ ul.resumeLists .resumeIntro h3.read em {
 }
 
 .publish_tip a:hover {
-    color: #019875
+    color: #ff0000
 }
 
 .company_center_content .my_jobs {
@@ -10348,7 +10352,7 @@ ul.resumeLists .resumeIntro h3.read em {
 
 #box_job dt {
     float: left;
-    color: #019875;
+    color: #ff0000;
     font-size: 16px;
     font-weight: bold;
     width: 100px;
@@ -10430,7 +10434,7 @@ ul.resumeLists .resumeIntro h3.read em {
 
 .btn_32:hover {
     color: #fff;
-    background: #019875;
+    background: #ff0000;
 }
 
 /*resume popup*/
@@ -10575,7 +10579,7 @@ ul.resumeLists .resumeIntro h3.read em {
 }
 
 .unHandle_links span {
-    color: #019875
+    color: #ff0000
 }
 
 .unHandle_links a {
@@ -10593,7 +10597,7 @@ ul.resumeLists .resumeIntro h3.read em {
     background: #fafafa;
     text-align: center;
     margin-top: 12px;
-    border-bottom: 2px solid #019875
+    border-bottom: 2px solid #ff0000
 }
 
 .company_center_content .Pagination {
@@ -10766,7 +10770,7 @@ ul.resumeLists .resumeIntro h3.read em {
 }
 
 #weixinQR a.qr_cancel:hover {
-    color: #019875
+    color: #ff0000
 }
 
 .weixin .qr {
@@ -10805,14 +10809,14 @@ ul.resumeLists .resumeIntro h3.read em {
 .weixin .qr_text span {
     font-size: 18px;
     display: block;
-    color: #019875;
+    color: #ff0000;
     margin-top: 16px
 }
 
 #weixinQR .qr_text span {
     font-size: 18px;
     float: left;
-    color: #019875;
+    color: #ff0000;
     margin-top: 16px
 }
 
@@ -11104,7 +11108,7 @@ ul.resumeLists .resumeIntro h3.read em {
 }
 
 .corp_form h3 a {
-    color: #019875;
+    color: #ff0000;
     text-decoration: underline
 }
 
@@ -11133,7 +11137,7 @@ ul.resumeLists .resumeIntro h3.read em {
 }
 
 .corp_form input[type="submit"]:hover {
-    background: #019875
+    background: #ff0000
 }
 
 .goback {
@@ -11142,7 +11146,7 @@ ul.resumeLists .resumeIntro h3.read em {
     margin-left: 30px
 }
 
-/* .corp_form ul{margin:10px 50px 10px 20px}.corp_form li{padding:10px 0;border-bottom:1px dashed #e1e1e1}.corp_form li a{float:right;color:#019875}.corp_form a.f16{font-size:16px;float:right;color:#019875;margin:0 50px 80px 0} */
+/* .corp_form ul{margin:10px 50px 10px 20px}.corp_form li{padding:10px 0;border-bottom:1px dashed #e1e1e1}.corp_form li a{float:right;color:#ff0000}.corp_form a.f16{font-size:16px;float:right;color:#ff0000;margin:0 50px 80px 0} */
 
 .open_service_result {
     width: 590px;
@@ -11160,7 +11164,7 @@ ul.resumeLists .resumeIntro h3.read em {
 }
 
 .open_service_result h3 a {
-    color: #019875;
+    color: #ff0000;
     text-decoration: underline
 }
 
@@ -11176,13 +11180,13 @@ ul.resumeLists .resumeIntro h3.read em {
 
 .open_service_result li a {
     float: right;
-    color: #019875;
+    color: #ff0000;
     *margin-top: -30px
 }
 
 .open_service_result a.f16 {
     float: right;
-    color: #019875;
+    color: #ff0000;
     margin: 10px 0;
 }
 
@@ -11259,7 +11263,7 @@ ul.resumeLists li.job_item .checkbox {
 
 .jobListShow h3 a {
     font-size: 18px;
-    color: #0d9572;
+    color: #ff0000;
 }
 
 .jobListShow h3 span {
@@ -11277,12 +11281,12 @@ ul.resumeLists li.job_item .checkbox {
 }
 
 .jobListShow .links a {
-    color: #0d9572;
+    color: #ff0000;
     text-decoration: none;
 }
 
 .jobListShow .links a:hover {
-    color: #0d9572;
+    color: #ff0000;
 }
 
 .check_popbox {
@@ -11377,7 +11381,7 @@ ul.resumeLists li.job_item .checkbox {
 }
 
 .check_popbox a.cancel:hover {
-    color: #019875 !important;
+    color: #ff0000 !important;
 }
 
 .check_popbox a.close {
@@ -11404,7 +11408,7 @@ ul.resumeLists li.job_item .checkbox {
 
 .check_popbox .btn_confirm {
     color: #fff !important;
-    background: #019875;
+    background: #ff0000;
     margin: 0 20px 0 0;
     -webkit-transition: .2s;
     -moz-transition: .2s;
@@ -11469,7 +11473,7 @@ ul.resumeLists li.job_item .checkbox {
 }
 
 .accounts_list a:hover {
-    background: #019875;
+    background: #ff0000;
 }
 
 #verifyAll, #failAll {
@@ -11582,12 +11586,12 @@ ul.resumeLists li.job_item .checkbox {
 }
 
 .links_middle a {
-    color: #0d9572;
+    color: #ff0000;
     margin-left: 8px;
 }
 
 .links_middle a:hover {
-    color: #0d9572;
+    color: #ff0000;
     text-decoration: underline;
 }
 
@@ -11648,7 +11652,7 @@ ul.resumeLists li.job_item .checkbox {
 }
 
 .jd_collection_success a.jd_collection_page {
-    color: #019875;
+    color: #ff0000;
 }
 
 .jd_collection_tip {
@@ -11742,13 +11746,13 @@ ul.my_collections li .co_item {
 
 ul.my_collections h2 {
     font-size: 18px;
-    color: #0d9572;
+    color: #ff0000;
     margin: 0 0 3px;
     float: left;
 }
 
 ul.my_collections h2 a {
-    color: #0d9572;
+    color: #ff0000;
 }
 
 ul.my_collections h2 a span {
@@ -11769,7 +11773,7 @@ ul.my_collections .co_cate {
 
 .collection_link {
     font-size: 14px;
-    color: #019875;
+    color: #ff0000;
     float: right;
     margin-left: 10px;
     *margin-top: -22px;
@@ -11907,7 +11911,7 @@ ul.my_collections li i {
     color: #333;
     padding: 20px 0;
     margin-left: 20px;
-    color: #019875
+    color: #ff0000
 }
 
 .user_warnLogin {
@@ -11934,7 +11938,7 @@ ul.my_collections li i {
 .user_bindLogin input[type="submit"] {
     display: block;
     padding: 5px 13px;
-    background: #019875;
+    background: #ff0000;
     color: #fff;
     font-size: 18px;
     margin-top: 25px;
@@ -12055,7 +12059,7 @@ ul.my_collections li i {
 }
 
 .user_noAccountform label.user_modifyYangshi a {
-    color: #019875
+    color: #ff0000
 }
 
 #user_saveRegAccount {
@@ -12114,7 +12118,7 @@ ul.my_collections li i {
 }
 
 .noModify li a {
-    color: #019875
+    color: #ff0000
 }
 
 .user_thirdLogin {
@@ -12142,7 +12146,7 @@ ul.my_collections li i {
 }
 
 .user_thirdLogin dd a {
-    color: #019875
+    color: #ff0000
 }
 
 .c_section #pad {
@@ -12181,7 +12185,7 @@ ul.my_collections li i {
 }
 
 .user_noReceiveEmail li a, .noreceive li a, .user_verEmailTxt li a {
-    color: #0d9572;
+    color: #ff0000;
 }
 
 .user_verEmailTxt li {
@@ -12225,7 +12229,7 @@ ul.my_collections li i {
     display: inline-block;
     font-size: 16px;
     height: 46px;
-    background: #019875;
+    background: #ff0000;
     color: #fff;
     line-height: 46px;
     margin: 20px 30px;
@@ -12260,7 +12264,7 @@ ul.my_collections li i {
     height: 40px;
     line-height: 40px;
     text-align: center;
-    background: #019875
+    background: #ff0000
 }
 
 .user_chooseLoginType li.jinru a {
@@ -12309,7 +12313,7 @@ ul.my_collections li i {
 .savePassword td input[type="submit"] {
     height: 35px;
     color: #fff;
-    background: #019875;
+    background: #ff0000;
     font-size: 18px;
     padding: 0 20px;
     line-height: 35px;
@@ -12336,7 +12340,7 @@ ul.my_collections li i {
 }
 
 .user_nobindModify li a {
-    color: #019875
+    color: #ff0000
 }
 
 /*end user setting*/

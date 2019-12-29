@@ -6,12 +6,15 @@
       <!-- <li v-for="(img,index) in introInfo.introImg" :key="index"><img :src="img" alt=""></li> -->
       <li><img :src="introInfo.logo" alt=""></li>
     </ul>
-    <h2>{{introInfo.type}}地址</h2>
+    <h2>{{introInfo.typeName}}地址</h2>
     <p>{{introInfo.address}}</p>
+    <span class="baoming" @click="gobaoming">报名</span>
   </div>
 </template>
 
 <script>
+import api from '@/api';
+import {message} from 'ant-design-vue'
 export default {
   props:{
     introInfo:{
@@ -24,6 +27,20 @@ export default {
         type:'机构'
       })
     }
+  },
+  methods:{
+    gobaoming(){
+      let {id,type} = this.introInfo;
+      api.baoming({
+        CompanyId:id,
+        Type:type
+      }).then(res=>{
+        console.log(res);
+        if(res.code == 1){
+          message.success('报名成功')
+        }
+      })
+    }
   }
 
 }
@@ -31,6 +48,7 @@ export default {
 
 <style lang="less" scope>
   .intro-detail{
+    position: relative;
     width: 1080px;
     margin: 0 auto;
     padding: 20px;
@@ -49,6 +67,22 @@ export default {
         width: 100%;
         height: auto;
       }
+    }
+  }
+  .baoming{
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    width: 120px;
+    height: 44px;
+    text-align: center;
+    background: #ff0000;
+    color: #ffffff;
+    line-height: 44px;
+    border-radius: 4px;
+    cursor: pointer;
+    &:active{
+      background: rgba(255,0,0,0.6);
     }
   }
 </style>

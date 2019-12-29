@@ -64,7 +64,7 @@ export default {
       let {id} = this.$route.query;
       api.orgDetail({id}).then(res=>{
         this.schoolInfo = res.data;
-        this.schoolInfo.type = '院校';
+        this.schoolInfo.typeName = '院校';
       })
     }
   },
