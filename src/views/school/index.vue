@@ -1,12 +1,12 @@
 <template>
   <div class="consult-container">
-    <filter-options :options="options" @requestList="requestList"></filter-options>
+    <filter-options @requestList="requestList"></filter-options>
     <div class="list-container">
-      <span class="options" v-for="school in schoolsList" :key="school.id" @click="goDetail(school.id)">
+      <span class="options" v-for="school in schoolsList" :key="school.id" @click="goDetail(school.id,school.schoolName)">
         <img :src="school.logo" alt="" class="schoolLogo">
         <h1 class="paddingleft">{{school.name}}</h1>
-        <span class="paddingleft">开设专业:</span>
-        <p class="description" :title="school.description">简介:{{school.description}}</p>
+        <span class="paddingleft">学校名称:{{school.schoolName}}</span>
+        <!-- <p class="description" :title="school.description">简介:{{school.description}}</p> -->
       </span>
     </div>
   </div>
@@ -31,27 +31,28 @@ export default {
     };
   },
   mounted() {
-    this._getNoticeList();
+    // this._getNoticeList();
   },
   methods: {
-    requestList(data){
-      console.log(data);
+    requestList(selectCity,selectZone){
+      this._getNoticeList(selectCity,selectZone)
     },
-    _getNoticeList() {
-      api.organizationList({
-          row: 10,
-          type: 2,
-          companyType: 1
+    _getNoticeList(selectCity,selectZone) {
+      api.schoolList({
+          Days: 3,
+          ProvinceId:8587,
+          CityId: selectCity,
+          AreaId: selectZone
         })
         .then(res => {
           if (res.code == 1) {
-            this.schoolsList = res.data;
+            this.schoolsList = res.data.rows;
             console.log(this.schoolsList)
           }
         });
     },
-    goDetail(id) {
-      this.$router.push(`/detail?id=${id}`);
+    goDetail(id,name) {
+      this.$router.push(`/detail?id=${id}&name=${name}`);
     }
   },
   components: {
@@ -78,7 +79,7 @@ export default {
     .options{
       position: relative;
       width: 500px;
-      height: 120px;
+      height: 86px;
       border: 1px solid rgba(0,0,0,0.06);
       border-radius: 4px;
       padding: 10px;

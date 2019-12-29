@@ -3,6 +3,7 @@
     <div class="item-opt">
       <span class="opt-name">城市：</span>
       <ul>
+        <li :class="selectedCityId === -1? 'active':''" @click="selectedCity(-1)">全部</li>
         <li v-for="(opt) in hotCities" 
             :key="opt.id" 
             :class="selectedCityId === opt.id ? 'active':''"
@@ -12,6 +13,7 @@
     <div class="item-opt">
       <span class="opt-name">区域：</span>
       <ul>
+        <li :class="selectedZoneId === -1 ? 'active':''" @click="selectedZone(-1)">全部</li>
         <li v-for="(opt) in selectZone" 
             :key="opt.id" 
             :class="selectedZoneId === opt.id ? 'active':''"
@@ -27,7 +29,9 @@ export default {
   props: {
     options:{
       type: Array,
-      default:[]
+      default:()=>{
+        return []
+      }
     }
   },
   data(){
@@ -42,8 +46,8 @@ export default {
       },
       hotCities:[],
       selectZone:[],
-      selectedCityId: 0,
-      selectedZoneId:0
+      selectedCityId: -1,
+      selectedZoneId:-1,
     }
   },
   mounted(){
@@ -52,26 +56,36 @@ export default {
     }).then(res=>{
       this.hotCities = res.data;
       this.selectZone = this.hotCities[0].childList;
-      this.selectedCityId = this.hotCities[0].id;
-      this.selectedZoneId = this.hotCities[0].childList[0].id;
-
+      // this.selectedCityId = this.hotCities[0].id;
+      // this.selectedZoneId = this.hotCities[0].childList[0].id;
        this.$emit('requestList',this.selectedCityId,this.selectedZoneId);
     })
   },
   methods: {
     selectedCity(cityId){
-      this.selectedCityId = cityId;
-      this.selectZone = this.hotCities.filter(item=>{
-        return item.id ===  cityId;
-      })[0].childList;
-      this.selectedZoneId = this.selectZone[0].id;
-
+      if(cityId === -1){
+        this.selectedCityId = -1;
+        this.selectedZoneId = -1;
+      }else{
+        this.selectedCityId = cityId;
+        this.selectZone = this.hotCities.filter(item=>{
+          return item.id ===  cityId;
+        })[0].childList;
+        this.selectedZoneId = -1;
+        // this.selectedZoneId = this.selectZone[0].id;
+      }
+      
       this.$emit('requestList',this.selectedCityId,this.selectedZoneId);
     },
     selectedZone(zoneId){
-      this.selectedZoneId = this.selectZone.filter(item=>{
-        return item.id === zoneId
-      })[0].id;
+      if(zoneId === -1){
+        this.selectedZoneId = -1;
+      }else{
+        this.selectedZoneId = this.selectZone.filter(item=>{
+          return item.id === zoneId
+        })[0].id;
+      }
+      
       this.$emit('requestList',this.selectedCityId,this.selectedZoneId)
     }
   }

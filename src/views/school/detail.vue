@@ -61,9 +61,10 @@ export default {
       this.showall = !this.showall;
     },
     _getInfoData(){
-      let {id} = this.$route.query;
-      api.orgDetail({id}).then(res=>{
+      let {id,name} = this.$route.query;
+      api.majorDetail({id}).then(res=>{
         this.schoolInfo = res.data;
+        this.schoolInfo.address = name;
         this.schoolInfo.typeName = '院校';
       })
     }

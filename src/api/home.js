@@ -17,6 +17,11 @@ const orgDetail = (params) => instance.get('/api/personnelfiles/company/edit',{p
 // const getCity = () => instance.get('http://pv.sohu.com/cityjson?ie=utf-8')
 // 投递职位 报名院校、机构
 const baoming = (params) => instance.post('/api/business/Deliver/add',params);
+
+
+const schoolList =(params) => instance.get('/api/business/RecruitStudents/QueryByPerson',{params});
+const majorDetail = (params) => instance.get('/api/business/RecruitStudents/edit',{params});
+const orgList = (params) => instance.get('/api/admin/Authentication/QueryChildren',{params});
 export default {
   bannerList,
   advList,
@@ -25,6 +30,10 @@ export default {
   organizationList,
   orgDetail,
   newsDetail,
-  baoming
+  baoming,
+
+  schoolList,
+  majorDetail,
+  orgList,
   // getCity,
 }

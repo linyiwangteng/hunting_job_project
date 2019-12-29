@@ -1,12 +1,22 @@
 <template>
   <div class="consult-container">
     <filter-options :options="options" @requestList="requestList"></filter-options>
+    <div class="item-opt">
+      <span class="opt-name">专业：</span>
+      <ul>
+        <li :class="selectedZoneId === -1 ? 'active':''" @click="selectedZone(-1)">全部</li>
+        <li v-for="(opt) in selectZone" 
+            :key="opt.id" 
+            :class="selectedZoneId === opt.id ? 'active':''"
+            @click="selectedZone(opt.id)">{{opt.name}}</li>
+      </ul>
+    </div>
     <div class="list-container">
       <span class="options" v-for="item in organizationList" :key="item.id" @click="goDetail(item.id)">
         <img :src="item.logo" alt="" class="schoolLogo">
         <h1 class="paddingleft">{{item.name}}</h1>
         <span class="paddingleft">已开设班级:</span>
-        <p class="description" :title="item.description">简介:{{item.description}}</p>
+        <!-- <p class="description" :title="item.description">简介:{{item.description}}</p> -->
       </span>
     </div>
   </div>
@@ -31,17 +41,18 @@ export default {
     }
   },
   mounted() {
-    this._getNoticeList();
+    // this._getNoticeList();
   },
   methods: {
-    requestList(data){
-      console.log(data);
+    requestList(selectCity,selectZone){
+      this._getNoticeList(selectCity,selectZone)
     },
-    _getNoticeList() {
-      api.organizationList({
-          row: 10,
-          type: 2,
-          companyType: 2
+    _getNoticeList(selectCity,selectZone) {
+      api.orgList({
+          Days: 3,
+          ProvinceId:8587,
+          CityId: selectCity,
+          AreaId: selectZone
         })
         .then(res => {
           if (res.code == 1) {
@@ -50,8 +61,8 @@ export default {
           }
         });
     },
-    goDetail(id) {
-      this.$router.push(`/detail?id=${id}`);
+    goDetail(id,name) {
+      this.$router.push(`/detail?id=${id}&name=${name}`);
     }
   },
   components: {
@@ -78,7 +89,7 @@ export default {
     .options{
       position: relative;
       width: 500px;
-      height: 120px;
+      height: 86px;
       border: 1px solid rgba(0,0,0,0.06);
       border-radius: 4px;
       padding: 10px;
