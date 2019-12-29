@@ -1,20 +1,20 @@
 export default {
   routes: [
     {
-      path: '/company/:id',
-      name: 'company',
-      component: () => import('../pages/company'),
+      path: '/',
+      name: 'postion',
+      component: () => import('../index.vue'),
       meta:{
-        key:'jobPosition'
+        key: 'postion'
       }
     },
     {
-      path: '/',
-      name: 'jobPosition',
-      component: () => import('../pages'),
-      meta: {
-        key:'jobPosition'
+      path: '/detail',
+      name: 'postion_detail',
+      component: () => import('../detail.vue'),
+      meta:{
+        key:'postion'
       }
-    },
+    }
   ]
 }

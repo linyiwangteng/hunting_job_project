@@ -179,33 +179,6 @@
                   <a href="javascript:void(0)">招聘</a>
                 </dd>
               </dl>
-              <!-- <dl>
-	                            <dt>热门标签：</dt>
-	                            <dd>
-	                                	                                			                               	<a href="javascript:void(0)">年底双薪</a>
-		                                	                                	                                			                               	<a href="javascript:void(0)">专项奖金</a>
-		                                	                                	                                			                               	<a href="javascript:void(0)">股票期权</a>
-		                                	                                	                                			                               	<a href="javascript:void(0)">绩效奖金</a>
-		                                	                                	                                			                               	<a href="javascript:void(0)">年终分红</a>
-		                                	                                	                                			                               	<a href="javascript:void(0)">带薪年假</a>
-		                                	                                	                                			                               	<a href="javascript:void(0)">交通补助</a>
-		                                	                                	                                			                               	<a href="javascript:void(0)">通讯津贴</a>
-		                                	                                	                                			                               	<a href="javascript:void(0)">午餐补助</a>
-		                                	                                	                                			                               	<a href="javascript:void(0)">定期体检</a>
-		                                	                                	                                			                               	<a href="javascript:void(0)">弹性工作</a>
-		                                	                                	                                			                               	<a href="javascript:void(0)">年度旅游</a>
-		                                	                                	                                			                               	<a href="javascript:void(0)">节日礼物</a>
-		                                	                                	                                			                               	<a href="javascript:void(0)">免费班车</a>
-		                                	                                	                                			                               	<a href="javascript:void(0)">帅哥多</a>
-		                                	                                	                                			                               	<a href="javascript:void(0)">美女多</a>
-		                                	                                	                                			                               	<a href="javascript:void(0)">领导好</a>
-		                                	                                	                                			                               	<a href="javascript:void(0)">扁平管理</a>
-		                                	                                	                                			                               	<a href="javascript:void(0)">管理规范</a>
-		                                	                                	                                			                               	<a href="javascript:void(0)">技能培训</a>
-		                                	                                	                                			                               	<a href="javascript:void(0)">岗位晋升</a>
-		                                	                                	                                			                               	<a href="javascript:void(0)">五险一金</a>
-		                                	                                	                            </dd>
-              </dl>-->
             </dd>
           </dl>
           <ul class="hc_list reset">
@@ -623,33 +596,10 @@
         </form>
       </div>
       <div class="content_r">
-        <div class="subscribe_side">
-          <a href="subscribe.html" target="_blank">
-            <div class="subpos">
-              <span>订阅</span> 职位
-            </div>
-            <div class="c7">拉勾网会根据你的筛选条件，定期将符合你要求的职位信息发给你</div>
-            <div class="count">
-              已有
-              <em>3</em>
-              <em>4</em>
-              <em>2</em>
-              <em>1</em>
-              <em>0</em>
-              人订阅
-            </div>
-            <i>我也要订阅职位</i>
-          </a>
-        </div>
-        <div class="greybg qrcode mt20">
-          <img src="style/images/companylist_qr.png" width="242" height="242" alt="拉勾微信公众号二维码" />
-          <span class="c7">扫描拉勾二维码，微信轻松搜工作</span>
-        </div>
-        <!-- <a href="h/speed/speed3.html" target="_blank" class="adSpeed"></a> -->
-        <a href="h/subject/jobguide.html" target="_blank" class="eventAd">
+        <a href="javascript:;" target="_blank" class="eventAd">
           <img src="style/images/subject280.jpg" width="280" height="135" />
         </a>
-        <a href="h/subject/risingPrice.html" target="_blank" class="eventAd">
+        <a href="javascript:;" target="_blank" class="eventAd">
           <img src="style/images/rising280.png" width="280" height="135" />
         </a>
       </div>
