@@ -21,7 +21,8 @@ const baoming = (params) => instance.post('/api/business/Deliver/add',params);
 
 const schoolList =(params) => instance.get('/api/business/RecruitStudents/QueryByPerson',{params});
 const majorDetail = (params) => instance.get('/api/business/RecruitStudents/edit',{params});
-const orgList = (params) => instance.get('/api/admin/Authentication/QueryChildren',{params});
+const Authentication = (params) => instance.get('/api/admin/Authentication/QueryChildren',{params});
+const AuthenticationList = (params) => instance.get('/api/business/Occupation/QueryByPerson',{params});
 export default {
   bannerList,
   advList,
@@ -34,6 +35,7 @@ export default {
 
   schoolList,
   majorDetail,
-  orgList,
+  Authentication,
+  AuthenticationList
   // getCity,
 }
