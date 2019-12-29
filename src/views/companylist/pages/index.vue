@@ -15,7 +15,7 @@
 <script>
 import api from "@/api/index.js";
 import FilterOptions from '@/components/FilterOptions.vue'
-export default {  
+export default {
  data() {
     return {
       organizationList: [],

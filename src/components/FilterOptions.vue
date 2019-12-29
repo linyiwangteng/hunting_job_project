@@ -55,7 +55,7 @@ export default {
       this.selectedCityId = this.hotCities[0].id;
       this.selectedZoneId = this.hotCities[0].childList[0].id;
 
-       this.$emit('requestList',this.selectedZoneId,this.selectedZoneId);
+       this.$emit('requestList',this.selectedCityId,this.selectedZoneId);
     })
   },
   methods: {
@@ -66,7 +66,7 @@ export default {
       })[0].childList;
       this.selectedZoneId = this.selectZone[0].id;
 
-      this.$emit('requestList',this.selectedZoneId,this.selectedZoneId);
+      this.$emit('requestList',this.selectedCityId,this.selectedZoneId);
     },
     selectedZone(zoneId){
       this.selectedZoneId = this.selectZone.filter(item=>{

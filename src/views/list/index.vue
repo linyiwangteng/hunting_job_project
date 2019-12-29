@@ -3,20 +3,44 @@
     <div class="search_box">
       <a-row :gutter="12">
         <a-col :span="12">
-          <a-input style="width: 100%">
-            <a-select slot="addonBefore" style="width: 70px">
-              <a-select-option value="86">+86</a-select-option>
-              <a-select-option value="87">+87</a-select-option>
-            </a-select>
-          </a-input>
+          <a-input style="width: 100%" placeholder="请输入职位" v-model="Name" @click="getPositionlist"></a-input>
         </a-col>
         <a-col :span="3">
           <a-button>搜索</a-button>
         </a-col>
       </a-row>
     </div>
-    <filter-options :options="options" @requestList="requestList"></filter-options>
-    <div class="list-container">
+    <filter-options :options="[]" @requestList="requestList"></filter-options>
+    <div class="filter-container">
+      <div class="item-opt">
+        <span class="opt-name">职能：</span>
+        <ul>
+          <li
+            v-for="item in jobList"
+            :class="JobFunctionId == item.id ? 'active' : ''"
+            :key="item.id"
+            v-text="item.name"
+            @click="activeJob(item.id)"
+          ></li>
+        </ul>
+      </div>
+      <div class="item-opt">
+        <span class="opt-name">行业：</span>
+        <ul>
+          <li
+            v-for="item in professList"
+            :class="ProfessionId == item.id ? 'active':''"
+            :key="item.id"
+            v-text="item.name"
+            @click="activeProfess(item.id)"
+          ></li>
+        </ul>
+      </div>
+    </div>
+    <div style="padding:0 20px">
+      <hr />
+    </div>
+    <div class="list-container" v-if="schoolsList.length !== 0">
       <span
         class="options"
         v-for="school in schoolsList"
@@ -25,9 +49,14 @@
       >
         <img :src="school.logo" alt class="schoolLogo" />
         <h1 class="paddingleft">{{school.name}}</h1>
-        <span class="paddingleft">开设专业:</span>
+        <!-- <span class="paddingleft">开设专业:</span> -->
         <p class="description" :title="school.description">简介:{{school.description}}</p>
       </span>
+    </div>
+    <div class="list-container" v-else>
+      <div class="nodata">
+        <img :src="nodata" alt />
+      </div>
     </div>
   </div>
 </template>
@@ -35,75 +64,88 @@
 <script>
 import api from "@/api/index.js";
 import FilterOptions from "@/components/FilterOptions.vue";
+const nodata = require("./nodata.png");
 export default {
   data() {
     return {
+      Name: "",
       schoolsList: [],
-      options: [
-        {
-          name: "院校地址",
-          key: "address",
-          opts: ["全国", "北京", "上海", "广州", "杭州", "深圳"]
-        },
-        {
-          name: "培训课程",
-          key: "course",
-          opts: [
-            "不限",
-            "电子商务",
-            "游戏",
-            "媒体",
-            "广告营销",
-            "数据服务",
-            "医疗健康",
-            "生活服务",
-            "o2o",
-            "不限",
-            "电子商务",
-            "游戏",
-            "媒体",
-            "广告营销",
-            "数据服务",
-            "医疗健康",
-            "生活服务",
-            "o2o",
-            "不限",
-            "电子商务",
-            "游戏",
-            "媒体",
-            "广告营销",
-            "数据服务",
-            "医疗健康",
-            "生活服务",
-            "o2o"
-          ]
-        }
-      ]
+      jobList: [],
+      professList: [],
+      JobFunctionId: -1,
+      ProfessionId: -1,
+      CityId: -1,
+      AreaId: -1,
+      nodata
     };
   },
   mounted() {
-    this._getNoticeList();
+    this._getjoblist();
+    this._getprofesslist();
   },
   methods: {
-    requestList(data) {
-      console.log(data);
+    activeJob(id) {
+      this.JobFunctionId = id;
+      this.getPositionlist();
     },
-    _getNoticeList() {
+    activeProfess(id) {
+      this.ProfessionId = id;
+      this.getPositionlist();
+    },
+    requestList(pro, cit) {
+      // this.CityId = pro;
+      // this.AreaId = cit;
+      this.getPositionlist();
+    },
+    searchJob() {},
+    _getjoblist() {
       api
-        .organizationList({
-          row: 10,
-          type: 2,
-          companyType: 1
+        .joblist({
+          parentId: 0
         })
         .then(res => {
           if (res.code == 1) {
-            this.schoolsList = res.data;
-            console.log(this.schoolsList);
+            this.jobList = [...res.data];
+          }
+        });
+    },
+    _getprofesslist() {
+      api
+        .professlist({
+          parentId: 0
+        })
+        .then(res => {
+          if (res.code == 1) {
+            this.professList = [...res.data];
           }
         });
     },
     goDetail(id) {
       this.$router.push(`/detail?id=${id}`);
+    },
+    getPositionlist() {
+      let { JobFunctionId, Name, ProfessionId, AreaId, CityId } = this;
+      let params = {
+          Name,
+          Days: 100,
+          ProvinceId: 8587,
+          CityId,
+          AreaId,
+          JobFunctionId,
+          ProfessionId,
+        };
+        
+      api
+        .positionList({
+          ...params
+        })
+        .then(res => {
+          if (res.code == 1) {
+            this.schoolsList = [...res.data.rows];
+          } else {
+            // this.$message.error(res.msg);
+          }
+        });
     }
   },
   components: {
@@ -113,10 +155,54 @@ export default {
 </script>
 
 <style lang="less" scope>
-.search_box{
+.nodata {
+  width: 400px;
+  margin: 0 auto;
+  padding: 40px;
+  img {
+    width: 100%;
+  }
+}
+.filter-container {
+  padding: 0 20px 0 20px !important;
+  margin-bottom: 0 !important;
+  .item-opt {
+    display: flex;
+    padding: 10px 0 10px 0;
+    .opt-name {
+      width: 95px;
+      flex: 0 0 95px;
+    }
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: 0 !important;
+      li {
+        padding: 0 4px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        cursor: pointer;
+        &.active {
+          color: #ffffff;
+          background: #dc0101;
+        }
+      }
+    }
+  }
+}
+.search_box {
   padding: 20px 0 20px 20px;
-  .ant-input{
-    border: 1px solid #dd0101!important;
+  .ant-input {
+    border: 1px solid #dd0101 !important;
+  }
+  .ant-btn {
+    border: #dd0101 !important;
+    background: #dd0101 !important;
+    color: #fff;
+  }
+  .ant-input-group-addon {
+    border: 1px solid #dd0101;
+    border-right: none;
   }
 }
 .consult-container {
@@ -130,6 +216,7 @@ export default {
 }
 .list-container {
   padding: 0 20px;
+  margin-bottom: 100px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -152,6 +239,7 @@ export default {
     }
     .paddingleft {
       padding-left: 130px;
+      margin-bottom: 30px;
     }
     h1 {
       margin-bottom: 0;
