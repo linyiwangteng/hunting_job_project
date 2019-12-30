@@ -76,14 +76,15 @@ export default {
       let { id, jobFunctionId, companyId } = this.introInfo;
       api
         .positionADD({
-          CompanyId:companyId,
+          CompanyId: companyId,
           Type: 0,
           RecruiitId: jobFunctionId
         })
         .then(res => {
-          console.log(res);
           if (res.code == 1) {
             this.$message.success("申请成功");
+          } else {
+            this.$message.success(res.msg);
           }
         });
     },
@@ -103,7 +104,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.bm_box{
+.bm_box {
   position: relative;
   width: 100%;
   height: 200px;
@@ -115,7 +116,7 @@ export default {
   padding: 20px;
   box-sizing: border-box;
   background: #ffffff;
-  h1{
+  h1 {
     text-align: center;
   }
 }

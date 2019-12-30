@@ -3,7 +3,7 @@
     <div class="search_box">
       <a-row :gutter="12">
         <a-col :span="12">
-          <a-input style="width: 100%" placeholder="请输入职位" v-model="Name" @click="getPositionlist"></a-input>
+          <a-input style="width: 100%" placeholder="请输入职位" v-model="Name" ></a-input>
         </a-col>
         <a-col :span="3">
           <a-button @click="getPositionlist">搜索</a-button>

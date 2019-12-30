@@ -1,7 +1,7 @@
 <template>
   <div class="footer">
     <div class="footer-content">
-      <span class="f1">Copyryght</span>
+      <span class="f1">Copyright</span>
       <span class="f2">© 2019 黑ICP备19008166号</span>
       <span class="f4"><i></i>电子营业执照 </span> 
       <span class="f5">京公网安备11010502032801<i></i></span>

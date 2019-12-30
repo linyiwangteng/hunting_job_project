@@ -9,7 +9,7 @@ export default {
       }
     },
     {
-      path: '/',
+      path: '/detail',
       name: 'detail',
       component: () => import('../detail.vue'),
       meta: {

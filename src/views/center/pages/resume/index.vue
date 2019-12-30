@@ -1046,7 +1046,7 @@ export default {
             this.getWorkList();
             this.closeModal();
           } else {
-            this.$$message.success("保存失败");
+            this.$message.success("保存失败");
           }
         });
     },

@@ -8,7 +8,7 @@ const positionInfo = (params) => instance.get('/api/business/recruit/edit',{para
 const positionADD = (params) => instance.post('/api/business/Deliver/add',{...params});
 
 // 企业列表
-const companyList = (params) => instance.get('/api/personnelfiles/company/query',{...params});
+const companyList = (params) => instance.get('/api/personnelfiles/company/query',{params});
 
 export default {
     joblist,

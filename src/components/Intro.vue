@@ -34,9 +34,10 @@ export default {
         CompanyId:id,
         Type:type
       }).then(res=>{
-        console.log(res);
         if(res.code == 1){
-          message.success('报名成功')
+          message.success('报名成功');
+        }else{
+          message.success(res.msg);
         }
       })
     }
