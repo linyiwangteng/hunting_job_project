@@ -76,7 +76,7 @@
         <ol class="work-exp_group">
           <li class="work-exp_list" :key="index" v-for="(item, index) in companyWorkList">
             <div class="editor-tool">
-              <div class="edit-btn" @click="alertCompanyEdit(item.id)">
+              <div class="edit-btn" @click="alertCompanyEdit(item.id,'edit',index)">
                 <i class="icon-icon_resume_editor active-color"></i>
                 编辑
               </div>
@@ -113,7 +113,7 @@
         <ol class="work-exp_group">
           <li class="work-exp_list" :key="index" v-for="(item, index) in projectList">
             <div class="editor-tool">
-              <div class="edit-btn" @click="alertProjectEdit(item.id)">
+              <div class="edit-btn" @click="alertProjectEdit(item.id,'edit',index)">
                 <i class="icon-icon_resume_editor active-color"></i>
                 编辑
               </div>
@@ -148,7 +148,7 @@
         <ol class="work-exp_group">
           <li class="work-exp_list" :key="index" v-for="(item, index) in studyList">
             <div class="editor-tool">
-              <div class="edit-btn" @click="alertProjectEdit(item.id)">
+              <div class="edit-btn" @click="alertProjectEdit(item.id,'edit',index)">
                 <i class="icon-icon_resume_editor active-color"></i>
                 编辑
               </div>
@@ -188,10 +188,10 @@
             <i></i>
             <span>{{ jobWantedStatus | jobStatusFilter }}</span>
           </li>
-          <!-- <li class="job-objective__city dn">
+          <li class="job-objective__city dn">
             <i></i>
-            <span v-text="province"></span>
-          </li>-->
+            <span v-text="cityName"></span>
+          </li>
           <li class="job-objective__salary dn">
             <i></i>
             <span>{{expectationSalary}}k</span>
@@ -272,7 +272,7 @@
                 <i class="mr_edu_i"></i>
                 <span class="mr_m_name">教育经历</span>
               </li>
-          </ul> -->
+          </ul>-->
         </div>
       </div>
     </div>
@@ -312,14 +312,15 @@
         <a-form-item v-bind="formItemLayout">
           <span slot="label">姓别</span>
           <a-radio-group
+            defa
             v-decorator="[
           'gender',
           {
+            initialValue:'0',
             rules: [{ required: true, message: '请选择性别!', whitespace: true }],
           }
           ]"
             @change="getGenger"
-            v-model="gender"
           >
             <a-radio value="1">男</a-radio>
             <a-radio value="0">女</a-radio>
@@ -401,7 +402,7 @@
     <!-- 项目经历 -->
     <a-modal title="项目经历" v-model="projectModal" :footer="null" @ok="projectModal = false">
       <a-form :form="form" @submit="handleProjectSubmit">
-        <a-form-item v-bind="formItemLayout">
+        <!-- <a-form-item v-bind="formItemLayout">
           <span slot="label">项目名称</span>
           <a-input
             v-decorator="[
@@ -411,7 +412,7 @@
           },
         ]"
           />
-        </a-form-item>
+        </a-form-item>-->
         <a-form-item v-bind="formItemLayout">
           <span slot="label">项目介绍</span>
           <a-textarea
@@ -712,12 +713,19 @@ export default {
       expectationSalary: "",
       // 姓名
       name: "",
+      cityName: "",
       //性别
       gender: 1,
       //生日
       birthday: "",
       //手机
       mobile: "",
+
+      // show
+      jianIndex: 0,
+      projectIndex: 0,
+      studyIndex: 0,
+
       weight: 0,
       height: 0,
       description: "",
@@ -765,7 +773,7 @@ export default {
     };
   },
   created() {
-    this.form = this.$form.createForm(this, { name: "register" });
+    this.form = this.$form.createForm(this);
   },
   computed: {},
   mounted() {
@@ -793,33 +801,88 @@ export default {
       this.studyModal = false; //项目经验
     },
     // 编辑工作经历弹窗
-    alertCompanyEdit(id, type = "edit") {
+    alertCompanyEdit(id, type = "edit", index = 0) {
+      this.jianIndex = index;
       this.companyId = id;
       if (type == "delete") {
         // 删除简历
         this.deleteWork(id);
       } else {
         this.jianliModal = true;
+        let { companyWorkList } = this;
+
+        setTimeout(() => {
+          this.form.setFieldsValue({
+            CompanyName: companyWorkList[index].companyName,
+            Description: companyWorkList[index].description
+          });
+        }, 500);
       }
+
+      // // 公司列表
+      // companyWorkList: [],
+      // // 项目列表
+      // projectList: [],
+      // // 教育列表
+      // studyList: [],
+      // // 邮箱
+      // email: "",
+      // tittle: "",
+      // //期望职业
+      // expectationOccupation: "",
+      // //求值类型
+      // jobWantedStatus: 1,
+      // // 期望行业
+      // expectationIndustry: "",
+      // //薪资范围
+      // expectationSalary: "",
+      // // 姓名
+      // name: "",
+      // cityName: "",
+      // //性别
+      // gender: 1,
+      // //生日
+      // birthday: "",
+      // //手机
+      // mobile: "",
     },
     // 编辑项目经历弹窗
-    alertProjectEdit(id, type = "edit") {
+    alertProjectEdit(id, type = "edit", index = 0) {
       this.projectId = id;
+      this.projectIndex = index;
       if (type == "delete") {
         // 删除简历
         this.deleteProject(id);
       } else {
         this.projectModal = true;
+        let { projectList } = this;
+
+        setTimeout(() => {
+          this.form.setFieldsValue({
+            Description: projectList[index].description,
+            ProjectDescription: projectList[index].projectDescription
+          });
+        }, 500);
       }
     },
     // 编辑教育经历弹窗
-    alertStudyEdit(id, type = "edit") {
+    alertStudyEdit(id, type = "edit", index = 0) {
       this.studyId = id;
+      this.studyIndex = index;
       if (type == "delete") {
         // 删除简历
         this.deleteStudy(id);
       } else {
         this.studyModal = true;
+        let { studyList } = this;
+
+        setTimeout(() => {
+          this.form.setFieldsValue({
+            SchoolName: studyList[index].schoolName,
+            Speciality: studyList[index].speciality,
+            Education: studyList[index].education
+          });
+        }, 500);
       }
     },
     // 初始化数据
@@ -972,14 +1035,17 @@ export default {
     getBaseInfo() {
       api.getBaseInfo({}).then(res => {
         if (res.code == 1) {
-          this.name = res.data.name;
-          this.email = res.data.email;
-          this.gender = res.data.gender;
-          this.birthday = res.data.birthday;
-          this.mobile = res.data.mobile;
-          this.id = res.data.id;
-          this.description = res.data.description;
-          this.expectationSalary = res.data.expectationSalary;
+          let data = res.data[0];
+          this.name = data.name;
+          this.email = data.email;
+          this.gender = data.gender;
+          this.birthday = data.birthday;
+          this.mobile = data.mobile;
+          this.id = data.id;
+          this.description = data.description;
+          this.expectationSalary = data.expectationSalary;
+          this.jobWantedStatus = data.jobWantedStatus;
+          this.cityName = data.cityName;
 
           // 初始化
           this.initPageData();
@@ -1109,10 +1175,77 @@ export default {
       // }
       // return isJPG && isLt2M;
     },
-    showSelfDesc(desc) {
-      console.log(desc);
-
+    showSelfDesc(desc, index = 0) {
       this[desc] = true;
+      let {
+        name,
+        gender,
+        mobile,
+        email,
+        jobWantedStatus,
+        expectationSalary,
+        cityName,
+        companyWorkList,
+        projectList,
+        studyList
+      } = this;
+      // selfModal: false,
+      // selfDescModal: false,
+      // confirmDirty: false,
+      // jianliModal: false, //
+      // selfHopeModal: false, //求职意向
+      // projectModal: false, //项目经验
+      // studyModal: false, //项目经验
+
+      // // 公司列表
+      // companyWorkList: [],
+      // // 项目列表
+      // projectList: [],
+      // // 教育列表
+      // studyList: [],
+      // // 邮箱
+      // email: "",
+      // tittle: "",
+      // //期望职业
+      // expectationOccupation: "",
+      // //求值类型
+      // jobWantedStatus: 1,
+      // // 期望行业
+      // expectationIndustry: "",
+      // //薪资范围
+      // expectationSalary: "",
+      // // 姓名
+      // name: "",
+      // cityName: "",
+      // //性别
+      // gender: 1,
+      // //生日
+      // birthday: "",
+      // //手机
+      // mobile: "",
+      switch (desc) {
+        case "selfModal":
+          setTimeout(() => {
+            this.form.setFieldsValue({
+              name,
+              gender,
+              mobile,
+              email
+            });
+          }, 500);
+          break;
+        case "selfHopeModal":
+          setTimeout(() => {
+            this.form.setFieldsValue({
+              jobWantedStatus,
+              expectationSalary,
+              cityName
+            });
+          }, 500);
+          break;
+        default:
+          break;
+      }
     },
 
     // 添加编辑工作经历

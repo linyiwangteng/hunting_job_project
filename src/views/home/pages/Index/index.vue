@@ -209,6 +209,7 @@ export default {
     this._getCompany();
     this._getUniverties();
     this._getOrganization();
+    this._getHomeJob();
   },
   methods: {
     _getMiddleAdv() {
@@ -220,6 +221,16 @@ export default {
         .then(res => {
           if (res.code == 1) {
             this.middleAdv = res.data;
+          }
+        });
+    },
+    _getHomeJob() {
+      api
+        .homeJobList()
+        .then(res => {
+          if (res.code == 1) {
+            console.log(res.data);
+            
           }
         });
     },

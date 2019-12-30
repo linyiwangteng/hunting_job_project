@@ -23,6 +23,9 @@ const orgDetail = (params) => instance.get('/api/personnelfiles/company/edit',{p
 const baoming = (params) => instance.post('/api/business/Deliver/add',params);
 
 
+const homeJobList = (params) => instance.post('/Api/deliver/JobFunctionCount',params);
+
+
 const schoolList =(params) => instance.get('/api/business/RecruitStudents/QueryByPerson',{params});
 const majorDetail = (params) => instance.get('/api/business/RecruitStudents/edit',{params});
 const Authentication = (params) => instance.get('/api/admin/Authentication/QueryChildren',{params});
@@ -42,5 +45,6 @@ export default {
   Authentication,
   AuthenticationList,
   zoneList__all,
+  homeJobList,
   // getCity,
 }
