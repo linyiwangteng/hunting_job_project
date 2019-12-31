@@ -108,7 +108,6 @@ export default {
     };
   },
   mounted() {
-    alert(this.$route.query.id);
     if (this.$route.query.id) {
       this.JobFunctionId = this.$route.query.id;
     }
