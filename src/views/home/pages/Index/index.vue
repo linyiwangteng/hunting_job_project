@@ -3,14 +3,12 @@
     <div class="home-top">
       <div class="top-left">
         <div class="top-left-top">
-         
-            <div class="banner">
-              <banner ></banner>
-            </div>
-            <div class="notice">
-               <notice></notice>
-            </div>
-         
+          <div class="banner">
+            <banner></banner>
+          </div>
+          <div class="notice">
+            <notice></notice>
+          </div>
         </div>
         <div class="top-left-middle">
           <search />
@@ -48,82 +46,18 @@
           <section class="content-box">
             <!-- <p class="every-content" v-for="item in 11" :key="item"> -->
             <p class="every-content">
-              <span class="type-name">技术</span>
               <span class="type-content">
-                <a href="javascript:;">Java</a>
-                <a href="javascript:;">PHP</a>
-                <a href="javascript:;">web前端</a>
-                <a href="javascript:;">算法工程师</a>
+                <a
+                  href="javascript:;"
+                  @click="goList(item.jobFunctionLv2Id)"
+                  v-for="item in HotJobList"
+                  :key="item.jobFunctionLv2Id"
+                  v-text="item.name"
+                ></a>
               </span>
-              <i class="more">></i>
-            </p>
-            <p class="every-content">
-              <span class="type-name">产品</span>
-              <span class="type-content">
-                <a href="javascript:;">产品经理</a>
-                <a href="javascript:;">产品总监</a>
-                <a href="javascript:;">数据产品</a>
-              </span>
-              <i class="more">></i>
-            </p>
-            <p class="every-content">
-              <span class="type-name">设计</span>
-              <span class="type-content">
-                <a href="javascript:;">UI设计师</a>
-                <a href="javascript:;">平面设计师</a>
-                <a href="javascript:;">交互设计</a>
-              </span>
-              <i class="more">></i>
-            </p>
-            <p class="every-content">
-              <span class="type-name">运营</span>
-              <span class="type-content">
-                <a href="javascript:;">新媒体运营</a>
-                <a href="javascript:;">产品运营</a>
-                <a href="javascript:;">网络推广</a>
-              </span>
-              <i class="more">></i>
-            </p>
-            <p class="every-content">
-              <span class="type-name">市场</span>
-              <span class="type-content">
-                <a href="javascript:;">市场营销</a>
-                <a href="javascript:;">市场推广</a>
-                <a href="javascript:;">品牌公关</a>
-              </span>
-              <i class="more">></i>
-            </p>
-            <p class="every-content">
-              <span class="type-name">人事</span>
-              <span class="type-content">
-                <a href="javascript:;">人事/HR</a>
-                <a href="javascript:;">行政</a>
-                <a href="javascript:;">财务</a>
-                <a href="javascript:;">培训</a>
-              </span>
-              <i class="more">></i>
-            </p>
-            <p class="every-content">
-              <span class="type-name">销售</span>
-              <span class="type-content">
-                <a href="javascript:;">销售专员</a>
-                <a href="javascript:;">销售经理</a>
-                <a href="javascript:;">销售工程师</a>
-              </span>
-              <i class="more">></i>
-            </p>
-            <p class="every-content">
-              <span class="type-name">媒体</span>
-              <span class="type-content">
-                <a href="javascript:;">文案</a>
-                <a href="javascript:;">广告创意</a>
-                <a href="javascript:;">编辑</a>
-                <a href="javascript:;">记者</a>
-              </span>
-              <i class="more">></i>
             </p>
           </section>
-          <span class="show-all">显示全部职位</span>
+          <!-- <span class="show-all">显示全部职位</span> -->
         </div>
         <!-- 具体职位 -->
         <div class="recommend-right">
@@ -144,7 +78,7 @@
                 <span class="xinzi">25k-45k</span>
               </div>
               <div class="company-info">
-                <img src='@/assets/company_1.png' alt />
+                <img src="@/assets/company_1.png" alt />
                 <span class="info-text">
                   <span>奇虎360金融</span>
                   <span>金融 上市公司 北京</span>
@@ -191,6 +125,7 @@ import Search from "../components/search";
 import SelectCity from "../components/select-city";
 import schoolRecommend from "../components/school-recommend";
 import api from "@/api/index.js";
+import { isArray } from "util";
 export default {
   data() {
     return {
@@ -199,8 +134,9 @@ export default {
       conpanyList: [],
       universityList: [],
       organizationList: [],
-      isShowNotice:false,
-      isShowBanner:false,
+      isShowNotice: false,
+      isShowBanner: false,
+      HotJobList: []
     };
   },
   mounted() {
@@ -209,7 +145,7 @@ export default {
     this._getCompany();
     this._getUniverties();
     this._getOrganization();
-    this._getHomeJob();
+    this._getHotHomeJob();
   },
   methods: {
     _getMiddleAdv() {
@@ -224,15 +160,14 @@ export default {
           }
         });
     },
-    _getHomeJob() {
-      api
-        .homeJobList()
-        .then(res => {
-          if (res.code == 1) {
-            console.log(res.data);
-            
+    _getHotHomeJob() {
+      api.homeHotJobList().then(res => {
+        if (res.code == 1) {
+          if (isArray(res.data)) {
+            this.HotJobList = [...res.data];
           }
-        });
+        }
+      });
     },
     _getFootAdv() {
       api
@@ -284,8 +219,11 @@ export default {
           this.organizationList = res.data;
         });
     },
-    goIntroDetail(id){
+    goIntroDetail(id) {
       this.$router.push(`/organization?id=${id}`);
+    },
+    goList(id) {
+      location.href = "list.html#/?id=" + id;
     }
   },
   components: {
@@ -439,9 +377,13 @@ export default {
               display: inline-block;
               width: 228px;
               line-height: 18px;
+              display: flex;
+              flex-wrap: wrap;
               a {
                 margin-right: 4px;
                 color: #000;
+                display: block;
+                padding: 10px 10px 6px 0;
               }
             }
             .more {
@@ -500,8 +442,8 @@ export default {
             padding: 18px 18px 0;
             box-sizing: border-box;
             margin-top: 12px;
-            &:hover{
-              background: rgba(0,0,0,0.06);
+            &:hover {
+              background: rgba(0, 0, 0, 0.06);
             }
             .company-zhiwei {
               border-bottom: 1px dashed #9fa0a0;
