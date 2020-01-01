@@ -27,6 +27,7 @@
       <div class="item-opt two_item_opt">
         <span class="opt-name"></span>
         <ul>
+          <li :class="JobFunctionId == -1 ? 'active' : ''" @click="activeTwoJob(-1)">全部</li>
           <li
             v-for="item in twoJobList"
             :class="JobFunctionId == item.id ? 'active' : ''"
@@ -51,6 +52,7 @@
       <div class="item-opt two_item_opt">
         <span class="opt-name"></span>
         <ul>
+          <li :class="ProfessionId == -1 ? 'active' : ''" @click="activeTwoProfess(-1)">全部</li>
           <li
             v-for="item in professTwoList"
             :class="ProfessionId == item.id ? 'active':''"
@@ -82,6 +84,9 @@
         <img :src="nodata" alt />
       </div>
     </div>
+    <div style="textAlign:center;margin:30px 0 30px 0">
+      <a-pagination v-model="current" :total="total" />
+    </div>
   </div>
 </template>
 
@@ -104,15 +109,22 @@ export default {
       ProfessionId: -1,
       CityId: -1,
       AreaId: -1,
-      nodata
+      nodata,
+      total: 0,
+      current: 1
     };
   },
   mounted() {
     if (this.$route.query.id) {
       this.JobFunctionId = this.$route.query.id;
     }
-    this._getjoblist();
+
+    if (this.$route.query.v) {
+      this.Name = this.$route.query.v;
+    }
+
     this._getprofesslist();
+    this._getjoblist();
   },
   methods: {
     activeJob(id) {
@@ -192,6 +204,7 @@ export default {
         .then(res => {
           if (res.code == 1) {
             this.schoolsList = [...res.data.rows];
+            this.total = res.data.total;
           } else {
             // this.$message.error(res.msg);
           }

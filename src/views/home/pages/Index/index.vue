@@ -61,27 +61,21 @@
         </div>
         <!-- 具体职位 -->
         <div class="recommend-right">
-          <h2 class="header">
-            <span class="item">IT互联网</span>
-            <span class="item">金融房地产</span>
-            <span class="item">建筑教育</span>
-            <i class="more">更多></i>
-          </h2>
           <ul class="recommend-content">
-            <li v-for="item in 6" :key="item">
-              <div class="company-zhiwei">
+            <li v-for="(item,index) in HomeJobList" :key="index">
+              <!-- <div class="company-zhiwei">
                 <h3>
                   数据分析师
                   <i>[16:04发布]</i>
                 </h3>
                 <p>经验5-10年 本科</p>
                 <span class="xinzi">25k-45k</span>
-              </div>
+              </div> -->
               <div class="company-info">
-                <img src="@/assets/company_1.png" alt />
+                <img :src="item.logo" alt />
                 <span class="info-text">
-                  <span>奇虎360金融</span>
-                  <span>金融 上市公司 北京</span>
+                  <span v-text="item.companyName"></span>
+                  <span>{{item.city}} {{item.area}}</span>
                 </span>
               </div>
             </li>
@@ -146,8 +140,21 @@ export default {
     this._getUniverties();
     this._getOrganization();
     this._getHotHomeJob();
+    this.getGobTuijian();
   },
   methods: {
+    getGobTuijian() {
+      api
+        .hometuijian({
+          type: 1,
+          row: 1
+        })
+        .then(res => {
+          if (res.code == 1) {
+            this.HomeJobList = res.data;
+          }
+        });
+    },
     _getMiddleAdv() {
       api
         .advList({
@@ -433,7 +440,7 @@ export default {
           margin: 0;
           display: flex;
           flex-wrap: wrap;
-          justify-content: space-around;
+          // justify-content: space-around;
           align-items: flex-start;
           li {
             width: 250px;

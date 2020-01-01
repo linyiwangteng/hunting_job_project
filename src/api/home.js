@@ -30,6 +30,10 @@ const schoolList =(params) => instance.get('/api/business/RecruitStudents/QueryB
 const majorDetail = (params) => instance.get('/api/business/RecruitStudents/edit',{params});
 const Authentication = (params) => instance.get('/api/admin/Authentication/QueryChildren',{params});
 const AuthenticationList = (params) => instance.get('/api/business/Occupation/QueryByPerson',{params});
+
+
+const hometuijian = (params) => instance.get('/api/business/recruit/querytop',{params});
+
 export default {
   bannerList,
   advList,
@@ -47,4 +51,6 @@ export default {
   zoneList__all,
   homeHotJobList,
   // getCity,
+
+  hometuijian,
 }

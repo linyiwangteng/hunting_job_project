@@ -3,7 +3,7 @@
     <div class="search_box">
       <a-row :gutter="12">
         <a-col :span="12">
-          <a-input style="width: 100%" placeholder="请输入企业" v-model="Name" ></a-input>
+          <a-input style="width: 100%" placeholder="请输入企业" v-model="Name"></a-input>
         </a-col>
         <a-col :span="3">
           <a-button @click="_getNoticeList">搜索</a-button>
@@ -32,16 +32,21 @@
         <img :src="nodata" alt />
       </div>
     </div>
+    <div style="textAlign:center;margin:30px 0 30px 0">
+      <a-pagination v-model="current" :total="total" />
+    </div>
   </div>
 </template>
 
 <script>
 import api from "@/api/index.js";
 import FilterOptions from "@/components/FilterOptions.vue";
-const nodata = require('@/views/list/nodata.png');
+const nodata = require("@/views/list/nodata.png");
 export default {
   data() {
     return {
+      total:0,
+      current:1,
       nodata,
       Name: "",
       organizationList: [],
@@ -87,9 +92,7 @@ export default {
       ]
     };
   },
-  mounted() {
-    
-  },
+  mounted() {},
   methods: {
     requestList(selectCityid, selectZoneId) {
       this.CityId = selectCityid;
@@ -101,7 +104,7 @@ export default {
       api
         .companyList({
           Name,
-          ProvinceId:8587,
+          ProvinceId: 8587,
           CityId,
           AreaId,
           Type: 0
@@ -109,6 +112,7 @@ export default {
         .then(res => {
           if (res.code == 1) {
             this.organizationList = res.data.rows;
+            this.total = res.data.total;
           }
         });
     },
