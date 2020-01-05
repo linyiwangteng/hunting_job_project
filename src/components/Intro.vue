@@ -3,9 +3,9 @@
     <div class="intro-content">
       <div class="intro-left">
         <div class="title">
-          <h1>{{zhuanyelInfo.name}}</h1>
+          <h1>{{introInfo.name}}</h1>
         </div>
-        <div class="school-desc">{{zhuanyelInfo.description}}</div>
+        <div class="school-desc" v-html="introInfo.description"></div>
       </div>
       <div class="intro-right">
         <div style="margin-left:5px;">

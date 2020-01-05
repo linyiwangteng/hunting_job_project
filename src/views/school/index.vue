@@ -6,7 +6,7 @@
         class="options"
         v-for="school in schoolsList"
         :key="school.id"
-        @click="goDetail(school.id,school.schoolID)"
+        @click="goDetail(school.schoolID)"
       >
         <img :src="school.logo || placehoderListImg()" alt class="schoolLogo" />
         <h1 class="paddingleft">{{school.name}}</h1>

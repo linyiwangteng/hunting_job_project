@@ -90,7 +90,8 @@ export default {
   width: 1024px;
   margin: 0 auto;
   overflow: hidden;
-  padding-top:20px; 
+  padding:20px; 
+  background: #fff;
 }
 .comp_desc_icon {
   font-size: 16px;

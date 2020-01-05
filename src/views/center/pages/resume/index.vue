@@ -170,40 +170,6 @@
           </li>
         </ol>
       </div>
-      <!-- 教育经历 -->
-      <div class="mr-template work-exp">
-        <div class="mr-template_title">
-          <span>教育经历</span>
-          <div class="add-btn" @click="()=>{this.studyId = 0;showSelfDesc('studyModal')}">
-            <i class="icon-icon_resume_add active-color"></i>
-            添加
-          </div>
-        </div>
-        <ol class="work-exp_group">
-          <li class="work-exp_list" :key="item.id" v-for="(item, index) in studyList">
-            <div class="editor-tool">
-              <div class="edit-btn" @click="alertStudyEdit(item.id,'edit',index)">
-                <i class="icon-icon_resume_editor active-color"></i>
-                编辑
-              </div>
-              <div class="del-btn" @click="alertStudyEdit(item.id,'delete')">
-                <i class="icon-icon_resume_delete active-color"></i>
-                删除
-              </div>
-            </div>
-            <p
-              class="exp-list_time"
-            >{{item.startYear}}.{{item.startMonth}}-{{item.endYear}}.{{item.endMonth}}</p>
-            <div class="exp-list_top">
-              <div class="exp-list_right">
-                <strong v-text="item.schoolName"></strong>
-                <p>{{item.speciality}} / {{item.education}}</p>
-              </div>
-            </div>
-            <div class="exp-list_content" v-text="item.description"></div>
-          </li>
-        </ol>
-      </div>
     </div>
     <div class="mr-myresume-right">
       <div class="right-nav">
@@ -213,7 +179,7 @@
             <a-upload
               name="formFile"
               listType="text"
-              accept=".pdf, .word"
+              accept=".pdf, .doc, .docx"
               :multiple="false"
               :showUploadList="false"
               :action="uploadJianli"
@@ -229,23 +195,30 @@
           <div class="nearbyResumes-group">
             <div class="mr_up_main">
               <span class="mr_up_text">{{ jianliName }}</span>
-              <!-- <p></p> -->
-              <div class="mr_more clearfixs">
-                <ul class="more_action">
-                  <li class="preview">
-                    <a target="_blank" :href="jianliUrl">预览</a>
-                  </li>
-                  <!-- <li class="download">
-                    <a :title="jianliName" :href="jianliUrl">下载</a>
-                  </li>-->
-                  <!-- <li class="delete" data-lg-webtj-_address_id="1nvi">删除</li> -->
-                </ul>
-              </div>
             </div>
           </div>
         </div>
       </div>
-      <hot-job style="width:100%"/>
+      <div class="right-nav">
+        <div class="scroll-fix">
+          <ul class="right-nav__content">
+            <li class="right-nav__item" @click="goTouDi(1)" >
+              <i class="mr_base_i"></i>
+              <span class="mr_m_name">我的院校</span>
+            </li>
+            <li class="right-nav__item" @click="goTouDi(2)">
+              <i class="mr_self_i"></i>
+              <span class="mr_m_name">报名机构</span>
+            </li>
+            <li class="right-nav__item" @click="goTouDi(0)">
+              <i class="mr_works_i"></i>
+              <span class="mr_m_name">我的投递</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- <hot-job style="width:100%" /> -->
     </div>
     <!-- 基本信息 -->
     <a-modal title="基本信息" v-model="selfModal" :footer="null" @ok="selfModal = false">
@@ -566,7 +539,7 @@ export default {
       //性别
       gender: 1,
       //生日
-      birthday: "",
+      birthday: moment().format("YYYY-MM-DD"),
       //手机
       mobile: "",
 
@@ -675,6 +648,9 @@ export default {
     this._getjoblist();
   },
   methods: {
+    goTouDi(type){
+      location.href = `delivery.html?type=${type}`;
+    },
     closeModal() {
       this.selfModal = false;
       this.confirmDirty = false;
@@ -903,32 +879,6 @@ export default {
           }
         });
     },
-    // 保存求职意向
-    handleGetJobHope(e) {
-      e.preventDefault();
-      this.form.validateFieldsAndScroll((err, values) => {
-        if (!err) {
-          let {
-            expectationSalary,
-            // expectationOccupation,
-            jobWantedStatus
-          } = values;
-
-          this.jobWantedStatus = jobWantedStatus;
-          this.expectationSalary = expectationSalary;
-          this.editJianli();
-
-          //       //期望职业
-          // expectationOccupation: "",
-          // //求值类型
-          // jobWantedStatus: 1,
-          // // 期望行业
-          // expectationIndustry: "",
-          // //薪资范围
-          // expectationSalary: "",
-        }
-      });
-    },
     getBaseInfo() {
       api.getBaseInfo({}).then(res => {
         if (res.code == 1) {
@@ -1113,6 +1063,7 @@ export default {
       // return isJPG && isLt2M;
     },
     showSelfDesc(desc, id = 0) {
+      this.clearFormText();
       this[desc] = true;
       let {
         name,
@@ -1160,6 +1111,24 @@ export default {
     schoolDateChange(date, dateStr) {
       this.schoolDateStr = dateStr;
       this.schoolDate = date;
+    },
+
+    clearFormText() {
+      this.workCompanyName = "";
+      this.workDescription = "";
+      this.workDateStr = [];
+      this.workDate = [];
+
+      this.projectDescription = "";
+      this.projectDescriptionMsg = "";
+      this.projectDate = [];
+      this.projectDateStr = [];
+
+      this.schoolName = "";
+      this.schoolSpeciality = "";
+      this.schoolEducation = "";
+      this.schoolDate = [];
+      this.schoolDateStr = [];
     },
     handleWordEdit(e) {
       e.preventDefault();

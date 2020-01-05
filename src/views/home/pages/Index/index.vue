@@ -22,7 +22,7 @@
         <div class="enter-company">
           <h1>入驻企业 / 院校</h1>
           <ul class="companyList">
-            <li v-for="company in conpanyList" :key="company.id" @click="goIntroDetail(company.id)">
+            <li v-for="company in conpanyList" :key="company.id" @click="goIntroDetail('companylist',company.id)">
               <span>
                 <img :src="company.logo || placehoderListImg()" alt />
               </span>
@@ -67,12 +67,13 @@
               class="position_list_item default_list"
               v-for="(item,index) in HomeJobList"
               :key="index"
+              @click="goIntroDetail('list',item.id)"
             >
               <span class="top_icon direct_recruitment" style="display: inline;"></span>
               <div class="position-top">
                 <div class="position-item-title">
                   {{item.name}}
-                  <span class="title-tip">[{{item.publishedTime}}]</span>
+                  <!-- <span class="title-tip">[{{item.publishedTime}}]</span> -->
                 </div>
                 <div class="position-title-desc">经验{{item.workExpName}}年 {{item.eduName}}</div>
                 <div class="postion-money">{{item.moneyMin}}-{{item.moneyMax}}k</div>
@@ -84,7 +85,7 @@
                   </div>
                   <div class="cmp-msg">
                     <div class="cmp-name">{{item.companyName}}</div>
-                    <div class="cmp-desc">{{item.description}}</div>
+                    <!-- <div class="cmp-desc">{{item.description}}</div> -->
                     <div class="cmp-address">{{item.city}} {{item.area}}</div>
                   </div>
                 </div>
@@ -241,8 +242,8 @@ export default {
           this.organizationList = res.data;
         });
     },
-    goIntroDetail(id) {
-      location.href = `companylist.html#/detail?id=${id}`;
+    goIntroDetail(type, id) {
+      location.href = `${type}.html#/detail?id=${id}`;
       // location.reload();
     },
     goList(id) {
@@ -327,6 +328,9 @@ export default {
         }
         .cmp-msg {
           text-align: left;
+          .cmp-name{
+            color: #000;
+          }
           .cmp-desc {
             display: inline-block;
             width: 80px;

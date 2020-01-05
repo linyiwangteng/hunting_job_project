@@ -5,12 +5,11 @@
       <span class="recommend-more" @click="goSchool(recommendTitle == '名校热推'?1:2)">更多></span>
     </h2>
     <ul class="recommend-list">
-      <li v-for="item in organizationList" :key="item.id" @click="goDetail(item.id)">
+      <li v-for="item in organizationList" :key="item.id" @click="goDetail(recommendTitle == '名校热推'?1:2,item.id)">
           <slot name="default" :item="item">
             <div class="school-logo">
               <img :src="item.logo || placehoderListImg()" alt="" class="logo-img">
             </div>
-            <!-- <p>成立于****年  ****   ****<br/>招聘*****人</p> -->
           </slot>
       </li>
     </ul>
@@ -36,8 +35,12 @@ export default {
     }
   },
   methods:{
-    goDetail(id){
-      this.$router.push(`/organization?id=${id}`);
+    goDetail(t,id, cId=0){
+      if( t == 1 ){
+        location.href = `school.html#/detail?id=${id}`;
+      }else{
+        location.href = `companylist.html#/detail?id=${id}`;
+      }
     },
     goSchool(t){
       location.href = t == 1 ?'school.html' : 'organization.html';

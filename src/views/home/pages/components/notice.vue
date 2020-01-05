@@ -38,7 +38,7 @@ export default {
         });
     },
     goDetail(id) {
-      this.$router.push(`/newinfo?id=${id}`);
+      location.href = `consult.html#/newinfo?id=${id}`;
     }
   }
 };

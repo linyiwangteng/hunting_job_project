@@ -164,7 +164,7 @@ export default {
         .positionADD({
           CompanyId: companyId,
           Type: 0,
-          RecruiitId: jobFunctionId
+          RecruitId: jobFunctionId
         })
         .then(res => {
           if (res.code == 1) {
@@ -192,6 +192,8 @@ export default {
 <style lang="less" scoped>
 ._container {
   background: #fff;
+  width: 1080px;
+  margin: 0 auto;
 }
 .container {
   width: 1024px;

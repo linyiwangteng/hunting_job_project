@@ -35,7 +35,7 @@
                   <a href="delivery.html?type=2">报名机构</a>
                 </a-menu-item>
                 <a-menu-item key="3">
-                  <a href="delivery.html?type=-1">职位投递</a>
+                  <a href="delivery.html?type=0">职位投递</a>
                 </a-menu-item>
                 <a-menu-item key="4" @click="outLogin">退出</a-menu-item>
               </a-menu>

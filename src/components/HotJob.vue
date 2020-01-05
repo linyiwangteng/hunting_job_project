@@ -27,7 +27,7 @@ export default {
   methods: {
     goIntroDetail(id) {
         location.href = `companylist.html#/detail?id=${id}`;
-        location.reload();
+        // location.reload();
     },
     // 名企推荐
     _getCompany() {

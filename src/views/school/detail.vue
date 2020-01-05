@@ -3,15 +3,18 @@
     <div class="intro-content">
       <div class="intro-left">
         <div class="title">
-          <h1>{{zhuanyelInfo.name}}</h1>
+          <h1>{{schoolInfo.name}}</h1>
         </div>
-        <div class="school-desc">
-          {{zhuanyelInfo.description}}
-        </div>
+        <div class="school-desc" v-html="schoolInfo.description"></div>
       </div>
       <div class="intro-right">
         <div style="margin-left:5px;">
-          <online-apply :logo="schoolInfo.logo" :name="schoolInfo.name" :type="1" :id="schoolInfo.id" ></online-apply>
+          <online-apply
+            :logo="schoolInfo.logo"
+            :name="schoolInfo.name"
+            :type="1"
+            :id="schoolInfo.id"
+          ></online-apply>
           <div class="all-school">
             <div class="school-container">
               <h2>{{schoolInfo.typeName}}地址：{{schoolInfo.address}}</h2>
@@ -47,18 +50,16 @@ export default {
       this.showall = !this.showall;
     },
     _getInfoData() {
-      let { id, schoolId } = this.$route.query;
-      api.majorDetail({ id }).then(res => {
-        this.zhuanyelInfo = res.data;
-        this.schoolInfo.typeName = "院校";
-        api
-          .orgDetail({
-            id: schoolId
-          })
-          .then(res2 => {
+      let { id } = this.$route.query;
+      api
+        .orgDetail({
+          id
+        })
+        .then(res2 => {
+          if (res2) {
             this.schoolInfo = res2.data;
-          });
-      });
+          }
+        });
     },
     gobaoming() {
       let { id, type } = this.schoolInfo;

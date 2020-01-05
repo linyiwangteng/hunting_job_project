@@ -1,6 +1,6 @@
 <template>
   <div>
-    <intro :introInfo = 'schoolInfo' :zhuanyelInfo="zhuanyelInfo" :id="schoolInfo.schoolId" :type="2"></intro>
+    <intro :introInfo = 'schoolInfo' :id="schoolInfo.schoolId" :type="2"></intro>
   </div>
 </template>
 

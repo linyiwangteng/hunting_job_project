@@ -5,7 +5,8 @@
         <dl class="c_delivery">
           <dt>
             <h1>
-              <em></em>已投递简历状态
+              <em></em>
+              {{ type | formatTitle }}
             </h1>
             <a class="d_refresh" href="javascript:;" @click="getToudiList()">刷新</a>
           </dt>
@@ -13,7 +14,7 @@
             <div class="delivery_tabs">
               <ul class="reset">
                 <li class="current">
-                  <a href="delivery.html">全部</a>
+                  <a href="javascript:;">全部</a>
                 </li>
               </ul>
             </div>
@@ -31,12 +32,9 @@
                         href="javascript:;"
                         v-text="item.companyName"
                       ></a>
-                      <span class="d_time">2014-07-01 17:15</span>
+                      <!-- <span class="d_time">2014-07-01 17:15</span> -->
                       <div class="clear"></div>
-                      <div class="d_resume">
-                        使用简历：
-                        <span>在线简历</span>
-                      </div>
+                      <div class="d_resume">{{ item.recruitName }}</div>
                     </div>
                   </div>
                 </li>
@@ -47,61 +45,30 @@
           </dd>
         </dl>
       </div>
-      <!-- <div class="content_r">
-        <div class="mycenterR" id="myInfo">
-          <h2>我的信息</h2>
-          <a href="collections.html">我收藏的职位</a>
-          <br />
-          <a href="toudi.html" target="_blank">
-            我投递的职位
-            <span id="noticeNoPage" class="red dn">&nbsp;(0)</span>
-          </a>
+      <div class="content_r">
+        <div class="right-nav">
+          <div class="scroll-fix">
+            <ul class="right-nav__content">
+              <li class="right-nav__item" @click="goTouDi(3)">
+                <i class="mr_base_i"></i>
+                <span class="mr_m_name">我的简历</span>
+              </li>
+              <li class="right-nav__item" @click="goTouDi(1)">
+                <i class="mr_edu_i"></i>
+                <span class="mr_m_name">我的院校</span>
+              </li>
+              <li class="right-nav__item" @click="goTouDi(2)">
+                <i class="mr_self_i"></i>
+                <span class="mr_m_name">报名机构</span>
+              </li>
+              <li class="right-nav__item" @click="goTouDi(0)">
+                <i class="mr_works_i"></i>
+                <span class="mr_m_name">我的投递</span>
+              </li>
+            </ul>
+          </div>
         </div>
-        <div class="mycenterR" id="myRecommend">
-          <h2>
-            可能适合你的职位
-            <i>匹配度</i>
-          </h2>
-          <ul class="reset">
-            <li>
-              <a target="_blank" href="http://www.lagou.com/jobs/22194.html">
-                <span class="f16">产品经理</span>
-                <span class="c7">广州百田</span>
-                <em>92%</em>
-              </a>
-            </li>
-            <li>
-              <a target="_blank" href="http://www.lagou.com/jobs/148004.html">
-                <span class="f16">产品经理</span>
-                <span class="c7">短讯神州</span>
-                <em>92%</em>
-              </a>
-            </li>
-            <li>
-              <a target="_blank" href="http://www.lagou.com/jobs/46793.html">
-                <span class="f16">产品经理</span>
-                <span class="c7">爱拍</span>
-                <em>89%</em>
-              </a>
-            </li>
-            <li>
-              <a target="_blank" href="http://www.lagou.com/jobs/99307.html">
-                <span class="f16">产品经理</span>
-                <span class="c7">一彩票</span>
-                <em>88%</em>
-              </a>
-            </li>
-            <li>
-              <a target="_blank" href="http://www.lagou.com/jobs/147510.html">
-                <span class="f16">产品经理</span>
-                <span class="c7">林安集团</span>
-                <em>88%</em>
-              </a>
-            </li>
-          </ul>
-          <a target="_blank" class="more" href="mList.html">更多推荐职位&gt;&gt;</a>
-        </div>
-      </div> -->
+      </div>
     </div>
   </div>
 </template>
@@ -111,9 +78,27 @@
 import api from "@/api";
 import { isArray } from "util";
 export default {
+  filters: {
+    formatTitle(t) {
+      switch (t) {
+        case "1":
+          return "我的院校";
+          break;
+        case "2":
+          return "报名机构";
+          break;
+        case "0":
+          return "职位投递";
+          break;
+        default:
+          break;
+      }
+    }
+  },
   data() {
     return {
-      list: []
+      list: [],
+      type: this.getURIParam("type")
     };
   },
   beforeCreate() {},
@@ -122,14 +107,21 @@ export default {
     this.getToudiList();
   },
   methods: {
+    goTouDi(type) {
+      if (type == 3) {
+        location.href = `center.html#/resume`;
+      } else {
+        location.href = `delivery.html?type=${type}`;
+      }
+    },
     getURIParam(key) {
-      var reg = new RegExp("(^|&)"+ key +"=([^&]*)(&|$)");
+      var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
       var r = window.location.search.substr(1).match(reg);
-      if(r!=null)return  unescape(r[2]); return null;
+      if (r != null) return unescape(r[2]);
+      return null;
     },
     getToudiList() {
-      console.log(this.getURIParam('type'));
-      let type = this.getURIParam('type');
+      let type = this.getURIParam("type");
       api
         .getTouDiList({
           StartTime: "1990-01-01",
@@ -149,6 +141,14 @@ export default {
 };
 </script>
 <style lang="less" scoped>
+.my_delivery li {
+  height: 100px;
+  margin-bottom: 10px;
+}
+.d_item .left-logo {
+  width: 150px;
+  height: 65px;
+}
 .d_item {
   display: flex;
   flex-direction: row;
@@ -156,5 +156,114 @@ export default {
     width: 150px;
     margin-right: 20px;
   }
+}
+
+.right-nav .right-nav__content {
+  border: 1px solid #f2f2f2;
+}
+
+.right-nav .right-nav__content .right-nav__item {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #333;
+  height: 50px;
+  border-left: 3px solid transparent;
+  line-height: 50px;
+  margin-left: -1.5px;
+  position: relative;
+  cursor: pointer;
+}
+
+.right-nav .right-nav__content .right-nav__item i {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  background: url(//www.lgstatic.com/lg-www-fed/mycenter/modules/common/img/icons_mr_0ef4596.png)
+    no-repeat;
+  margin: 0 15px 0 31px;
+}
+
+.right-nav .right-nav__content .right-nav__item .mr_base_i {
+  background-position: -24px -117px;
+}
+
+.right-nav .right-nav__content .right-nav__item .mr_self_i {
+  background-position: -67px -262px;
+}
+
+.right-nav .right-nav__content .right-nav__item .mr_works_i {
+  background-position: -24px -137px;
+}
+
+.right-nav .right-nav__content .right-nav__item .mr_project_i {
+  background-position: -67px -177px;
+}
+
+.right-nav .right-nav__content .right-nav__item .mr_edu_i {
+  background-position: -24px -156px;
+}
+
+.right-nav .right-nav__content .right-nav__item .mr_social_account_i {
+  background: url(//www.lgstatic.com/lg-www-fed/mycenter/modules/common/img/social_account_a5d472f.png)
+    no-repeat;
+  background-position: -5px -5px;
+}
+
+.right-nav .right-nav__content .right-nav__item .mr_portfolio_account_i {
+  background: url(//www.lgstatic.com/lg-www-fed/mycenter/modules/myresume_new/img/photo@2x_defa2c7.png)
+    no-repeat;
+  background-size: contain;
+}
+
+.right-nav .right-nav__content .right-nav__item .editor-tool {
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 0;
+  right: 20px;
+}
+
+.right-nav .right-nav__content .right-nav__item .editor-tool .del-btn {
+  margin-left: 20px;
+}
+
+.right-nav .right-nav__content .right-nav__item.active {
+  color: #00b88d;
+  border-color: #00b88d;
+  border-width: 3px;
+}
+
+.right-nav .right-nav__content .right-nav__item.active .mr_base_i {
+  background-position: -5px -117px;
+}
+
+.right-nav .right-nav__content .right-nav__item.active .mr_self_i {
+  background-position: -5px -262px;
+}
+
+.right-nav .right-nav__content .right-nav__item.active .mr_works_i {
+  background-position: -5px -137px;
+}
+
+.right-nav .right-nav__content .right-nav__item.active .mr_project_i {
+  background-position: -5px -177px;
+}
+
+.right-nav .right-nav__content .right-nav__item.active .mr_edu_i {
+  background-position: -5px -156px;
+}
+
+.right-nav .right-nav__content .right-nav__item.active .mr_social_account_i {
+  background: url(//www.lgstatic.com/lg-www-fed/mycenter/modules/common/img/social_account_a5d472f.png)
+    no-repeat;
+  background-position: -5px -36px;
+}
+
+.right-nav .right-nav__content .right-nav__item:hover {
+  background: #fafafa;
+}
+
+.right-nav .right-nav__content .right-nav__item:hover .editor-tool {
+  visibility: visible;
 }
 </style>

@@ -72,7 +72,7 @@
     <div style="padding:0 20px">
       <hr />
     </div>
-    <ul class="position_list_ul clearfix" v-if="schoolsList.length !== 0">
+    <ul class="position_list_ul" v-if="schoolsList.length !== 0">
       <!-- <div
         class="options"
         v-for="school in schoolsList"
@@ -261,11 +261,14 @@ export default {
 .position_list_ul {
   width: 100%;
   padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
   .position_list_item {
     overflow: hidden;
     float: left;
     position: relative;
-    width: 250px;
+    width: 290px;
     height: 150px;
     margin: 12px 12px 0 0;
     padding: 20px 18px 0;
