@@ -1,55 +1,6 @@
 <template>
   <div>
-    <intro :introInfo = 'schoolInfo'></intro>
-    <div class="intro-content" v-if="false">
-      <div class="intro-left">
-        <div class='title'>
-          <span></span>
-          <div class="select-box">
-              <span style="margin-right:20px;">筛选专业</span>
-              <a-select defaultValue="选择专业" style="width: 120px;margin-right:20px;" @change="handleChange">
-                <a-select-option value="lucy">Lucy</a-select-option>
-                <a-select-option value="disabled" >Disabled</a-select-option>
-                <a-select-option value="Yiminghe">yiminghe</a-select-option>
-              </a-select>
-              <a-select defaultValue="选择科目" style="width: 120px" @change="handleChange">
-                <a-select-option value="jack">Jack</a-select-option>
-                <a-select-option value="lucy">Lucy</a-select-option>
-                <a-select-option value="disabled">Disabled</a-select-option>
-                <a-select-option value="Yiminghe">yiminghe</a-select-option>
-              </a-select>
-          </div>
-           
-        </div>
-        <ul class="classList">
-          <li v-for="i in 6" :key="i" @click="goClassDetail(i)">
-            <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577388785184&di=c620e89d4a07e85b07f8ea26d49f3ac8&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201802%2F12%2F20180212023234_kUciF.jpeg" alt="">
-            <span class="classInfo">
-                <span>班级：高级电工</span>
-                <span>学费：¥201-¥301</span>
-                <span>培训时间：1年</span>
-                <span>培训证书：证书1</span>
-                <span>所学科目：计算机/电工专业</span>
-                <span>开班地址：北京</span>
-            </span>
-            <span class="class-status">报名中</span>
-          </li>
-        </ul>
-      </div>
-      <div class="intro-right">
-        <div style="margin-left:5px;">
-          <online-apply></online-apply>
-          <div class="all-school">
-            <h1>全国分校</h1>
-            <div class="school-container">
-              <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577388785184&di=c620e89d4a07e85b07f8ea26d49f3ac8&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201802%2F12%2F20180212023234_kUciF.jpeg" alt="" class="school-img">
-              <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577388785184&di=c620e89d4a07e85b07f8ea26d49f3ac8&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201802%2F12%2F20180212023234_kUciF.jpeg" alt="" class="school-img">
-            </div>
-            
-          </div>
-        </div>
-      </div>
-    </div>
+    <intro :introInfo = 'schoolInfo' :zhuanyelInfo="zhuanyelInfo" :id="schoolInfo.schoolId" :type="2"></intro>
   </div>
 </template>
 
@@ -61,7 +12,8 @@ import api from '@/api';
 export default {
   data(){
     return {
-      schoolInfo:{}
+      schoolInfo:{},
+      zhuanyelInfo:{},
     }
   },
   mounted(){
@@ -73,10 +25,20 @@ export default {
     },
     _getInfoData(){
       let {id} = this.$route.query;
-      api.orgDetail({id}).then(res=>{
-        this.schoolInfo = res.data;
-        this.schoolInfo.typeName = '机构';
-      })
+      // api.majorDetail({ id }).then(r => {
+      //   if(r.code == 1){
+      //     this.zhuanyelInfo = r.data;
+          api.jigouDetail({id}).then(res=>{
+            this.zhuanyelInfo = {
+              name: res.data.name,
+              description:res.data.description
+            }
+            this.schoolInfo = res.data;
+            this.schoolInfo.typeName = '机构';
+          })
+        // }
+      // })
+      
     },
     goClassDetail(id){
       this.$router.push('/detail-class?id='+id);

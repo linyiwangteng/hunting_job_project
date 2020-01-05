@@ -2,13 +2,21 @@
   <div id="app">
     <tab></tab>
     <div class="center-warp">
-      <router-view />
+      <a-locale-provider :locale="zhCN">
+        <router-view />
+      </a-locale-provider>
     </div>
   </div>
 </template>
 <script>
 import Tab from "@/components/Tab";
+import zhCN from 'ant-design-vue/lib/locale-provider/zh_CN'
 export default {
+  data() {
+    return {
+      zhCN
+    }
+  },
   components: {
     Tab
   }

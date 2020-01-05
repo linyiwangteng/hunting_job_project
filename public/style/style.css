@@ -2069,7 +2069,7 @@ ul.hot_pos i {
 
 .job_detail {
     padding-bottom: 30px;
-    background: #fafafa;
+    /* background: #fafafa; */
     margin-top: 6px;
 }
 
@@ -2124,18 +2124,9 @@ ul.hot_pos i {
     clear: both;
     font-size: 20px;
     line-height: 40px;
-    border-bottom: 1px solid #e5e5e5;
+    /* border-bottom: 1px solid #e5e5e5; */
 }
 
-.job_request span {
-    padding-left: 20px;
-    background: url(img/jd_icon.png) left center no-repeat;
-}
-
-.job_request span.red {
-    color: #e6775c;
-    font-size: 24px;
-}
 
 .job_request div {
     font-size: 14px;
@@ -2263,9 +2254,6 @@ ul.hot_pos i {
     color: #555;
 }
 
-.job_company .b2 {
-    border: 2px solid #91cebe;
-}
 
 .job_company dt h2 {
     margin: 0;
@@ -2273,9 +2261,9 @@ ul.hot_pos i {
 }
 
 .job_company dt div {
-    position: absolute;
+    /* position: absolute;
     left: 90px;
-    bottom: 5px;
+    bottom: 5px; */
     padding: 20px 0;
 }
 
@@ -11621,7 +11609,7 @@ ul.resumeLists li.job_item .checkbox {
     cursor: pointer;
     position: relative;
     *z-index: 999;
-    background: url(img/collection_icon.png) 0 0 no-repeat;
+    /* background: url(img/collection_icon.png) 0 0 no-repeat; */
     float: right;
 }
 

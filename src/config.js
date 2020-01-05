@@ -1,1 +1,1 @@
-export const defcompanyUrl = 'http://47.93.199.16:8220';
+export const defcompanyUrl = 'http://47.93.199.16:8220/app/';

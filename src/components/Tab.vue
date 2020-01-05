@@ -29,13 +29,13 @@
                   <a href="javascript:;" @click="goCenter">账户信息</a>
                 </a-menu-item>
                 <a-menu-item key="1">
-                  <a href="delivery.html">我的院校</a>
+                  <a href="delivery.html?type=1">我的院校</a>
                 </a-menu-item>
                 <a-menu-item key="2">
-                  <a href="delivery.html">报名机构</a>
+                  <a href="delivery.html?type=2">报名机构</a>
                 </a-menu-item>
                 <a-menu-item key="3">
-                  <a href="delivery.html">职位投递</a>
+                  <a href="delivery.html?type=-1">职位投递</a>
                 </a-menu-item>
                 <a-menu-item key="4" @click="outLogin">退出</a-menu-item>
               </a-menu>
@@ -73,7 +73,7 @@
 </template>
 
 <script>
-import { defcompanyUrl } from "../config";
+import { defcompanyUrl } from "@/config";
 // console.log("process.env.NODE_ENV", process.env.NODE_ENV);
 import api from "@/api/index.js";
 import { log } from "util";
@@ -121,7 +121,7 @@ export default {
           routeName: "organization"
         },
         {
-          name: "咨询中心",
+          name: "资讯中心",
           path: _file + "consult.html#/",
           routeName: "consult"
         }
@@ -147,7 +147,7 @@ export default {
     goCenter() {
       let accessToken = localStorage.getItem("accessToken");
       if (accessToken != null && accessToken != "null") {
-        location.href = "center.html";
+        location.href = "center.html#/resume";
       } else {
         location.href = "login.html";
       }

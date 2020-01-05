@@ -8,7 +8,7 @@
         :key="school.id"
         @click="goDetail(school.id,school.schoolID)"
       >
-        <img :src="school.logo" alt class="schoolLogo" />
+        <img :src="school.logo || placehoderListImg()" alt class="schoolLogo" />
         <h1 class="paddingleft">{{school.name}}</h1>
         <span class="paddingleft">学校名称:{{school.schoolName}}</span>
         <!-- <p class="description" :title="school.description">简介:{{school.description}}</p> -->
@@ -28,13 +28,16 @@
 <script>
 import api from "@/api/index.js";
 import FilterOptions from "@/components/FilterOptions.vue";
+import {placeholderImgMixin} from '@/mixins/placeholderImg.js'
 const nodata = require("./nodata.png");
 export default {
+  mixins: [placeholderImgMixin],
   data() {
     return {
       nodata,
       current: 1,
       schoolsList: [],
+      total: 0,
       options: [
         {
           name: "院校地址",
@@ -87,7 +90,7 @@ export default {
     _getNoticeList(selectCity, selectZone) {
       api
         .schoolList({
-          Days: 3,
+          Days: 90,
           ProvinceId: 8587,
           CityId: selectCity,
           AreaId: selectZone

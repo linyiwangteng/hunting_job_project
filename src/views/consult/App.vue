@@ -14,5 +14,17 @@ export default {
   }
 };
 </script>
-<style lang="less" scoped >
+<style lang="less" scoped>
+.login-warp{
+  width: 100%;
+  min-height: calc(100vh - 125px);
+  background: rgba(0,0,0,0.06);
+}
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #000000;
+  background: #ffffff;
+}
 </style>

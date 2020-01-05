@@ -7,7 +7,7 @@
             <h1>
               <em></em>已投递简历状态
             </h1>
-            <a class="d_refresh" href="javascript:;">刷新</a>
+            <a class="d_refresh" href="javascript:;" @click="getToudiList()">刷新</a>
           </dt>
           <dd>
             <div class="delivery_tabs">
@@ -47,8 +47,8 @@
           </dd>
         </dl>
       </div>
-      <div class="content_r">
-        <!-- <div class="mycenterR" id="myInfo">
+      <!-- <div class="content_r">
+        <div class="mycenterR" id="myInfo">
           <h2>我的信息</h2>
           <a href="collections.html">我收藏的职位</a>
           <br />
@@ -56,8 +56,7 @@
             我投递的职位
             <span id="noticeNoPage" class="red dn">&nbsp;(0)</span>
           </a>
-        </div> -->
-        <!--end #myInfo-->
+        </div>
         <div class="mycenterR" id="myRecommend">
           <h2>
             可能适合你的职位
@@ -100,9 +99,9 @@
               </a>
             </li>
           </ul>
-          <!-- <a target="_blank" class="more" href="mList.html">更多推荐职位&gt;&gt;</a> -->
+          <a target="_blank" class="more" href="mList.html">更多推荐职位&gt;&gt;</a>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -123,12 +122,19 @@ export default {
     this.getToudiList();
   },
   methods: {
+    getURIParam(key) {
+      var reg = new RegExp("(^|&)"+ key +"=([^&]*)(&|$)");
+      var r = window.location.search.substr(1).match(reg);
+      if(r!=null)return  unescape(r[2]); return null;
+    },
     getToudiList() {
+      console.log(this.getURIParam('type'));
+      let type = this.getURIParam('type');
       api
         .getTouDiList({
           StartTime: "1990-01-01",
           EndTime: "2025-01-01",
-          Type: 1,
+          Type: type,
           Status: -1
         })
         .then(res => {

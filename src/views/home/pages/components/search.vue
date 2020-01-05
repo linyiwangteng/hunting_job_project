@@ -18,18 +18,6 @@
         <input type="text" v-model="val" class="search-input" placeholder="搜索职位、公司" />
         <span class="search-btn" @click="goList"></span>
       </div>
-      <div class="hot-search">
-        <i>热门搜素：</i>
-        <a href="javascript:;">Java</a>
-        <a>PHP</a>
-        <a>C++</a>
-        <a>web前端</a>
-        <a>iOS</a>
-        <a>Android</a>
-        <a>产品经理</a>
-        <a>UI设计师</a>
-        <a>产品运营</a>
-      </div>
     </div>
   </div>
 </template>

@@ -18,6 +18,9 @@ const  organizationList = (params) => instance.get('/api/personnelfiles/company/
 
 const orgDetail = (params) => instance.get('/api/personnelfiles/company/edit',{params});
 
+// 机构详情
+const jigouDetail = (params) => instance.get('/api/business/Occupation/edit',{params});
+
 // const getCity = () => instance.get('http://pv.sohu.com/cityjson?ie=utf-8')
 // 投递职位 报名院校、机构
 const baoming = (params) => instance.post('/api/business/Deliver/add',params);
@@ -43,6 +46,7 @@ export default {
   orgDetail,
   newsDetail,
   baoming,
+  jigouDetail,
 
   schoolList,
   majorDetail,

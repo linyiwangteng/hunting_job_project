@@ -4,7 +4,7 @@ let domain = process.env.NODE_ENV === 'development' ? '/' : serverUrl;
 
 let instance = axios.create({
   baseURL: domain,
-  timeout: 50000,
+  // timeout: 50000,
 });
 
 let accessToken = localStorage.getItem('accessToken');

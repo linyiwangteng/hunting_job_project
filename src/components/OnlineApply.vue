@@ -1,44 +1,65 @@
 <template>
   <div class="apply-container">
-    <h1>申请在线报名</h1>
+    <h1>报名</h1>
     <div>
       <div class="per-container">
-        <span>申请姓名</span>
-        <a-input class="input-box" placeholder="请输入联系人姓名"></a-input>
+        <div class="logo">
+          <img :src="logo" alt="">
+        </div>
+        <div class="name">
+          {{name}}
+        </div>
       </div>
-      <div class="per-container">
-        <span>申请手机号</span>
-        <a-input class="input-box" placeholder="请输入联系人手机号"></a-input>
-      </div>
-      <div class="per-container">
-        <span>申请课程</span>
-        <!-- <a-input class="input-box"></a-input> -->
-        <a-select defaultValue="请选择" class="input-box">
-          <a-select-option value="1">1</a-select-option>
-          <a-select-option value="2">2</a-select-option>
-          <a-select-option value="3">3</a-select-option>
-        </a-select>
-      </div>
-      <div class="per-container">
-        <span>申请班级</span>
-        <a-select defaultValue="请选择" class="input-box">
-          <a-select-option value="1">1</a-select-option>
-          <a-select-option value="2">2</a-select-option>
-          <a-select-option value="3">3</a-select-option>
-        </a-select>
-      </div>
-      <a-button class="apply-btn">免费报名申请</a-button>
+      <a-button class="apply-btn" @click="gobaoming">免费报名申请</a-button>
     </div>
   </div>
 </template>
 
 <script>
-import {Input,Select} from "ant-design-vue"
+import {Input,Select} from "ant-design-vue";
+import api from '@/api';
 export default {
+  props: {
+    logo: {
+      // 必须提供字段
+      required: false,
+      default: true
+    },
+    name:{
+      // 必须提供字段
+      required: false,
+      default: true
+    },
+    type:{
+      required:true,
+      default:0,
+    },
+    id:{
+      required:true,
+      default:0,
+    }
+  },
   components: {
     Input,
     Select
+  },
+  methods:{
+    gobaoming() {
+      api
+        .baoming({
+          CompanyId: this.id,
+          Type: this.type
+        })
+        .then(res => {
+          if (res.code == 1) {
+            this.$message.success("报名成功");
+          }else{
+            this.$message.error(res.msg);
+          }
+        });
+    }
   }
+
 }
 </script>
 
@@ -50,11 +71,24 @@ export default {
     background: #ffffff;
     .per-container{
       width: 100%;
-      height: 34px;
+      // height: 34px;
       display: flex;
       justify-content: center;
-      align-items: center;
+      // align-items: center;
       margin-bottom: 10px;
+      flex-direction: column;
+      .name{
+        text-align: left;
+        font-size: 18px;
+        padding: 10px 0 10px 0;
+      }
+      .logo{
+        width: 300px;
+        overflow: hidden;
+        img{
+          width: 100%;
+        }
+      }
       span{
         width: 80px;
         padding-right: 10px;

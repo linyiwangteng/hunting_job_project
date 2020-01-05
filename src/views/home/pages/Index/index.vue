@@ -24,14 +24,14 @@
           <ul class="companyList">
             <li v-for="company in conpanyList" :key="company.id" @click="goIntroDetail(company.id)">
               <span>
-                <img :src="company.logo" alt />
+                <img :src="company.logo || placehoderListImg()" alt />
               </span>
             </li>
           </ul>
         </div>
         <div class="enter-entrance">
-          <span class="entrance entrance1"></span>
-          <span class="entrance entrance2"></span>
+          <span @click="goOriginLogin" class="entrance entrance1"></span>
+          <span @click="goOriginLogin" class="entrance entrance2"></span>
         </div>
       </div>
     </div>
@@ -61,22 +61,33 @@
         </div>
         <!-- 具体职位 -->
         <div class="recommend-right">
-          <ul class="recommend-content">
-            <li v-for="(item,index) in HomeJobList" :key="index">
-              <!-- <div class="company-zhiwei">
-                <h3>
-                  数据分析师
-                  <i>[16:04发布]</i>
-                </h3>
-                <p>经验5-10年 本科</p>
-                <span class="xinzi">25k-45k</span>
-              </div> -->
-              <div class="company-info">
-                <img :src="item.logo" alt />
-                <span class="info-text">
-                  <span v-text="item.companyName"></span>
-                  <span>{{item.city}} {{item.area}}</span>
-                </span>
+          <h2 class="header">最新职位</h2>
+          <ul class="position_list_ul">
+            <li
+              class="position_list_item default_list"
+              v-for="(item,index) in HomeJobList"
+              :key="index"
+            >
+              <span class="top_icon direct_recruitment" style="display: inline;"></span>
+              <div class="position-top">
+                <div class="position-item-title">
+                  {{item.name}}
+                  <span class="title-tip">[{{item.publishedTime}}]</span>
+                </div>
+                <div class="position-title-desc">经验{{item.workExpName}}年 {{item.eduName}}</div>
+                <div class="postion-money">{{item.moneyMin}}-{{item.moneyMax}}k</div>
+              </div>
+              <div class="position-bottom">
+                <div class="company-item">
+                  <div class="cmp-img">
+                    <img :src="item.logo || placehoderListImg()" alt />
+                  </div>
+                  <div class="cmp-msg">
+                    <div class="cmp-name">{{item.companyName}}</div>
+                    <div class="cmp-desc">{{item.description}}</div>
+                    <div class="cmp-address">{{item.city}} {{item.area}}</div>
+                  </div>
+                </div>
               </div>
             </li>
           </ul>
@@ -90,7 +101,7 @@
       >
         <template v-slot:default="info">
           <div class="school-logo logo-box">
-            <img class="jg-logo" :src="info.item.logo" alt />
+            <img class="jg-logo" :src="info.item.logo || placehoderListImg()" alt />
             <div class="jg-content">
               <a href="javascript:;">{{info.item.name}}</a>
               <span class="content">{{info.item.address}}</span>
@@ -120,7 +131,10 @@ import SelectCity from "../components/select-city";
 import schoolRecommend from "../components/school-recommend";
 import api from "@/api/index.js";
 import { isArray } from "util";
+import { placeholderImgMixin } from "@/mixins/placeholderImg.js";
+import { defcompanyUrl } from "@/config";
 export default {
+  mixins: [placeholderImgMixin],
   data() {
     return {
       middleAdv: [],
@@ -130,7 +144,8 @@ export default {
       organizationList: [],
       isShowNotice: false,
       isShowBanner: false,
-      HotJobList: []
+      HotJobList: [],
+      HomeJobList: []
     };
   },
   mounted() {
@@ -147,7 +162,7 @@ export default {
       api
         .hometuijian({
           type: 1,
-          row: 1
+          row: 6
         })
         .then(res => {
           if (res.code == 1) {
@@ -227,10 +242,14 @@ export default {
         });
     },
     goIntroDetail(id) {
-      this.$router.push(`/organization?id=${id}`);
+      location.href = `companylist.html#/detail?id=${id}`;
+      // location.reload();
     },
     goList(id) {
       location.href = "list.html#/?id=" + id;
+    },
+    goOriginLogin() {
+      location.href = defcompanyUrl;
     }
   },
   components: {
@@ -244,6 +263,88 @@ export default {
 </script>
 
 <style lang="less">
+.position_list_ul {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  .position_list_item {
+    overflow: hidden;
+    float: left;
+    position: relative;
+    width: 250px;
+    height: 150px;
+    // margin: 12px 12px 0 0;
+    padding: 20px 18px 0;
+    border: 1px solid #eaeeed;
+    background-color: #fff;
+    margin-top: 15px;
+    .top_icon {
+      position: absolute;
+      top: -1px;
+      left: -1px;
+      width: 40px;
+      height: 40px;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    .direct_recruitment {
+      background-image: url(//www.lgstatic.com/lg-www-fed/index/modules/job_list/img/direct-recruit@2x_0d49da5.png);
+      background-size: 40px 40px;
+    }
+    .position-top {
+      border-bottom: 1px dotted #a2a3a3;
+      .position-item-title {
+        font-size: 14px;
+        color: #000;
+        .title-tip {
+          color: #9fa0a0;
+        }
+      }
+      .position-title-desc {
+        
+        color: #9fa0a0;
+      }
+      .postion-money {
+        color: #ff6700;
+      }
+    }
+    .position-bottom {
+      .company-item {
+        display: flex;
+        // margin-bottom: 15px;
+        padding: 14px 0 14px;
+        box-sizing: border-box;
+        .cmp-img {
+          width: 40px;
+          height: 40px;
+          overflow: hidden;
+          margin-right: 15px;
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+        .cmp-msg {
+          text-align: left;
+          .cmp-desc {
+            display: inline-block;
+            width: 80px;
+            overflow: hidden;
+            text-overflow:ellipsis;
+            white-space: nowrap;
+            color: rgb(176, 177, 177);
+          }
+          .cmp-address {
+            vertical-align: top;
+            display: inline-block;
+            color: rgb(176, 177, 177);
+          }
+        }
+      }
+    }
+  }
+}
 .home {
   width: 1180px;
   height: auto;
@@ -326,6 +427,7 @@ export default {
           height: 48px;
           border-radius: 24px;
           margin-top: 20px;
+          cursor: pointer;
         }
         .entrance1 {
           background: url("../../img/yuanxiao.png") no-repeat center;
@@ -423,6 +525,8 @@ export default {
           line-height: 40px;
           border-bottom: 1px solid #e2e2e2;
           padding-right: 45px;
+          color: #ff6700;
+          font-size: 18px;
           .item {
             font-size: 15px;
             padding-right: 16px;

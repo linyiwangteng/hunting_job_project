@@ -43,9 +43,9 @@
         class="options"
         v-for="(item,index) in organizationList"
         :key="index"
-        @click="goDetail(item.schoolId)"
+        @click="goDetail(item.id)"
       >
-        <img :src="item.logo" alt class="schoolLogo" />
+        <img :src="item.logo || placehoderListImg()" alt class="schoolLogo" />
         <h1 class="paddingleft">{{item.name}}</h1>
         <span class="paddingleft">机构名称:{{item.schoolName}}</span>
         <!-- <p class="description" :title="item.description">简介:{{item.description}}</p> -->
@@ -65,8 +65,10 @@
 <script>
 import api from "@/api/index.js";
 import FilterOptions from "@/components/FilterOptions.vue";
+import {placeholderImgMixin} from '@/mixins/placeholderImg.js'
 const nodata = require("./nodata.png");
 export default {
+  mixins: [placeholderImgMixin],
   data() {
     return {
       nodata,
@@ -207,8 +209,8 @@ export default {
           }
         });
     },
-    goDetail(id, name) {
-      this.$router.push(`/detail?id=${id}&name=${name}`);
+    goDetail(id) {
+      this.$router.push(`/detail?id=${id}`);
     },
     selectedZhuanYe() {}
   },
@@ -219,6 +221,12 @@ export default {
 </script>
 
 <style lang="less" scope>
+.consult-container {
+    width: 1080px;
+    min-height: calc(100vh - 125px);
+    margin: 0 auto;
+    background: #ffffff;
+}
 .nodata {
   width: 400px;
   margin: 0 auto;

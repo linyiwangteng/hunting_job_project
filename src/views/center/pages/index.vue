@@ -1,7 +1,6 @@
 <template>
   <div class="persion-center-container">
     <div class="left-container">
-      <!--  -->
       <div class="user-message-panel">
         <div class="user-img-box">
           <img :src="imgUrl" alt />
@@ -44,11 +43,6 @@
               </div>
               <a class="jianli-line" href="#/resume">在线简历</a>
             </li>
-            <li class="jianli-item">
-              <div class="icon"></div>
-              <a href="#/resume" class="jianli-edit">编辑简历</a>
-              <div class="jianli-update-time">1029.11.03更新</div>
-            </li>
           </ul>
         </div>
       </div>
@@ -59,11 +53,15 @@
               <div class="icon icon_one">
                 <img :src="iconTwo" alt />
               </div>
-              <a href="delivery.html" class="jianli-line">报名院校</a>
+              <a href="delivery.html" class="jianli-line">我的院校</a>
             </li>
             <li class="jianli-item">
               <div class="icon"></div>
               <a href="delivery.html" class="jianli-edit">报名机构</a>
+            </li>
+            <li class="jianli-item">
+              <div class="icon"></div>
+              <a href="delivery.html" class="jianli-edit">职位投递</a>
             </li>
           </ul>
         </div>
@@ -316,7 +314,7 @@ ul {
   display: flex;
   flex-direction: row;
   .left-container {
-    width: 387px;
+    width: 300px;
     .user-img-box {
       width: 102px;
       height: 102px;
@@ -355,7 +353,7 @@ ul {
       }
     }
     .user-jianli-away {
-      width: 320px;
+      width: 240px;
       margin: 0 auto;
       ul {
         display: flex;

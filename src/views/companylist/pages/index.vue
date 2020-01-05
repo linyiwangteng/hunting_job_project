@@ -21,7 +21,7 @@
         :key="school.id"
         @click="goDetail(school.id)"
       >
-        <img :src="school.logo" alt class="schoolLogo" />
+        <img :src="school.logo || placehoderListImg()" alt class="schoolLogo" />
         <h1 class="paddingleft">{{school.name}}</h1>
         <!-- <span class="paddingleft">开设专业:</span> -->
         <p class="description" :title="school.address">{{school.address}}</p>
@@ -41,11 +41,13 @@
 <script>
 import api from "@/api/index.js";
 import FilterOptions from "@/components/FilterOptions.vue";
+import {placeholderImgMixin} from '@/mixins/placeholderImg.js'
 const nodata = require("@/views/list/nodata.png");
 export default {
+  mixins: [placeholderImgMixin],
   data() {
     return {
-      total:0,
+      total: 15,
       current:1,
       nodata,
       Name: "",

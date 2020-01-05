@@ -5,7 +5,7 @@ export default {
       name: 'postion',
       component: () => import('../index.vue'),
       meta:{
-        key: 'postion'
+        key: 'jobPosition'
       }
     },
     {

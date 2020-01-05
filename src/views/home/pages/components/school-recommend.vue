@@ -2,13 +2,13 @@
   <div class="school-recommend">
     <h2>
       <span class="recommend-title" :style="updateStyle">{{recommendTitle}}</span>
-      <span class="recommend-more">更多></span>
+      <span class="recommend-more" @click="goSchool(recommendTitle == '名校热推'?1:2)">更多></span>
     </h2>
     <ul class="recommend-list">
       <li v-for="item in organizationList" :key="item.id" @click="goDetail(item.id)">
           <slot name="default" :item="item">
             <div class="school-logo">
-              <img :src="item.logo" alt="" class="logo-img">
+              <img :src="item.logo || placehoderListImg()" alt="" class="logo-img">
             </div>
             <!-- <p>成立于****年  ****   ****<br/>招聘*****人</p> -->
           </slot>
@@ -18,7 +18,9 @@
 </template>
 
 <script>
+import {placeholderImgMixin} from '@/mixins/placeholderImg.js'
 export default {
+  mixins: [placeholderImgMixin],
   props: {
     recommendTitle:{
       type: String,
@@ -36,7 +38,10 @@ export default {
   methods:{
     goDetail(id){
       this.$router.push(`/organization?id=${id}`);
-    }
+    },
+    goSchool(t){
+      location.href = t == 1 ?'school.html' : 'organization.html';
+    },
   }
 }
 </script>
@@ -66,6 +71,7 @@ export default {
       top: 26px;
       font-size: 14px;
       color: #000000;
+      cursor: pointer;
     }
   }
 }

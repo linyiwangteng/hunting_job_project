@@ -2,11 +2,9 @@
   <div class="footer">
     <div class="footer-content">
       <span class="f1">Copyright</span>
-      <span class="f2">© 2019 黑ICP备19008166号</span>
-      <span class="f4"><i></i>电子营业执照 </span> 
-      <span class="f5">京公网安备11010502032801<i></i></span>
-      <span style="margin-right: 24px;">首都网警</span> 
-      <span>人力资源服务许可证</span> 
+      <span class="f2">&copy;2019黑ICP备19008166号</span>
+      <span class="f4">主办单位：黑龙江省新鲜人力资源有限公司</span>
+      <span class="f4">技术支持：黑龙江校企科技有限公司</span>
     </div>
   </div>
 </template>
