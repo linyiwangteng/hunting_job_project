@@ -225,11 +225,24 @@
       <a-form :form="form" @submit="handleSelfInfoSubmit">
         <a-form-item v-bind="formItemLayout">
           <span slot="label">姓名</span>
-          <a-input v-model="name" />
+          <a-input
+            v-decorator="['name', { 
+              rules: [
+                {trigger: 'blur', pattern: /^([\u4e00-\u9fa5]{2,20}|[a-zA-Z.\s]{2,20})$/, message: '姓名长度必须为2-20个中文或英文字符'}
+              ],
+              initialValue: this.name
+            }]"
+          />
         </a-form-item>
         <a-form-item v-bind="formItemLayout">
           <span slot="label">邮箱</span>
-          <a-input v-model="email" />
+          <a-input v-model="email" 
+          v-decorator="['email', { 
+            rules: [
+              {trigger: 'blur', pattern: /^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/, message: '请输入正确的邮箱格式'}
+            ],
+            initialValue: this.email
+          }]" />
         </a-form-item>
         <a-form-item v-bind="formItemLayout">
           <span slot="label">生日</span>
@@ -241,7 +254,8 @@
         </a-form-item>
         <a-form-item v-bind="formItemLayout">
           <span slot="label">姓别</span>
-          <a-radio-group v-model="gender" @change="getGenger">
+          <!-- @change="getGenger" -->
+          <a-radio-group v-model="gender">
             <a-radio :value="1">男</a-radio>
             <a-radio :value="0">女</a-radio>
           </a-radio-group>
@@ -251,15 +265,16 @@
         </a-form-item>
         <a-form-item v-bind="formItemLayout" class="city_set">
           <span slot="label">期望城市</span>
-          <a-select placeholder="请选择省份" v-model="activeProvince" @change="getZoneList(item.code)">
+          <a-select placeholder="请选择省份" v-model="activeProvince" 
+          @change="getZoneList(activeProvince, true)">
             <a-select-option
               :key="item.code"
-              :value="item.id"
+              :value="item.code"
               v-for="(item) in Province"
             >{{item.name}}</a-select-option>
           </a-select>
-          <a-select placeholder="请选择城市" v-model="activeCity" @change="getCityCode">
-            <a-select-option :key="item.code" :value="item.id" v-for="(item) in City">{{item.name}}</a-select-option>
+          <a-select placeholder="请选择城市" v-model="activeCity">
+            <a-select-option :key="item.code" :value="item.code" v-for="(item) in City">{{item.name}}</a-select-option>
           </a-select>
         </a-form-item>
         <a-form-item v-bind="formItemLayout" class="city_set">
@@ -269,14 +284,15 @@
         </a-form-item>
         <a-form-item v-bind="formItemLayout" class="city_set">
           <span slot="label">期望职业</span>
-          <a-select @change="_getjoblist" v-model="expectationIndustry">
-            <a-select-option :key="item.id" :value="item.id" v-for="item in jobList">{{item.name}}</a-select-option>
+          <a-select @change="_getjoblist(expectationIndustry)" v-model="expectationIndustry">
+            <a-select-option :key="index" :value="item.id" v-for="(item, index) in jobList">{{item.name}}</a-select-option>
           </a-select>
-          <a-select @change="getTwoJobId" v-model="expectationOccupation">
+          <!-- @change="getTwoJobId" -->
+          <a-select  v-model="expectationOccupation">
             <a-select-option
-              :key="item.id"
+              :key="index"
               :value="item.id"
-              v-for="item in twoJobList"
+              v-for="(item, index) in twoJobList"
             >{{item.name}}</a-select-option>
           </a-select>
         </a-form-item>
@@ -287,7 +303,7 @@
           </a-select>
         </a-form-item>
         <a-form-item v-bind="formItemLayout" label="自我描述">
-          <a-textarea v-model="description" style="width: 100%"></a-textarea>
+          <a-textarea v-model="description" style="width: 100%" :rows="6"></a-textarea>
         </a-form-item>
         <a-form-item v-bind="tailFormItemLayout">
           <a-button type="primary" html-type="submit">保存</a-button>
@@ -311,7 +327,7 @@
           />
         </a-form-item>
         <a-form-item v-bind="formItemLayout" label="公司描述">
-          <a-textarea v-model="workDescription"></a-textarea>
+          <a-textarea v-model="workDescription" :rows="6"></a-textarea>
         </a-form-item>
         <a-form-item v-bind="tailFormItemLayout">
           <a-button type="primary" html-type="submit">保存</a-button>
@@ -335,7 +351,7 @@
           />
         </a-form-item>
         <a-form-item v-bind="formItemLayout" label="职责描述">
-          <a-textarea v-model="projectDescriptionMsg"></a-textarea>
+          <a-textarea v-model="projectDescriptionMsg" :rows="6"></a-textarea>
         </a-form-item>
         <a-form-item v-bind="tailFormItemLayout">
           <a-button type="primary" html-type="submit">保存</a-button>
@@ -501,8 +517,8 @@ export default {
         "50k"
       ],
 
-      activeProvince: 0,
-      activeCity: 0,
+      activeProvince: '',
+      activeCity: '',
       headImg: "", //头像
 
       // 求职类型
@@ -642,8 +658,7 @@ export default {
         Authorization: "Bearer " + accessToken
       };
     }
-
-    this.getZoneList();
+    this.getBaseInfo();
     // 期望职来
     this._getjoblist();
   },
@@ -788,13 +803,13 @@ export default {
         .then(res => {
           if (res.code == 1) {
             if (id == 0) {
-              this.jobList = [...res.data];
+              this.jobList = [{id: 0, name: '请选择'}, ...res.data];
 
               this._getjoblist(res.data[0].id);
             } else {
-              this.twoJobList = [...res.data];
+              this.twoJobList = [{id: 0, name: '请选择'}, ...res.data];
               if (isDefaultID) {
-                getTwoJobId(isDefaultID);
+                this.getTwoJobId(isDefaultID);
               }
             }
           }
@@ -876,6 +891,8 @@ export default {
             this.$message.success("添加成功");
             this.closeModal();
             this.getWorkList();
+          } else {
+            this.$message.success(res.msg);
           }
         });
     },
@@ -903,11 +920,11 @@ export default {
 
           this._getjoblist(this.expectationIndustry);
 
-          this.activeProvince = data.province;
+          this.province = data.province;
 
-          this.activeCity = data.city;
+          this.city = data.city;
           // 设置初始城市
-          this.getZoneList(this.findProviceCode(this.activeProvince));
+          this.getZoneList();
 
           // 初始化
           this.initPageData();
@@ -950,8 +967,8 @@ export default {
           email: this.formatData(email),
           expectationSalary: this.formatData(expectationSalary),
           name: this.formatData(name),
-          city: this.formatData(activeCity),
-          province: this.formatData(activeProvince),
+          city: this.formatData(this.getCityId(this.activeCity)),
+          province: this.formatData(this.getProvinceId(this.activeProvince)),
           height: this.formatData(height),
           weight: this.formatData(weight),
           mobile: this.formatData(mobile),
@@ -975,7 +992,7 @@ export default {
             this.getBaseInfo();
             this.closeModal();
           } else {
-            this.$message.success("保存失败");
+            this.$message.success(res.msg);
           }
         });
     },
@@ -988,26 +1005,34 @@ export default {
           if (res.code == 1) {
             if (code == 0) {
               this.Province = res.data;
-              this.getBaseInfo();
+              this.activeProvince = this.Province.filter(el => el.id == this.province)[0].code;
+              this.getZoneList(this.activeProvince);
             } else {
               this.City = res.data;
               if (isDefaultID) {
-                // setTimeout(e=>{
-                this.activeCity = isDefaultID;
-                // },1000);
+                this.activeCity = this.City[0].code;
+                return;
               }
-              this.activeProvince = this.Province.filter((el, index) => {
-                return el.code == code;
-              })[0].id;
+              this.activeCity = this.City.filter(el => el.id == this.city)[0].code;
             }
           }
         });
     },
     findProviceCode(id) {
-      let { Province } = this;
-      return Province.filter((el, index) => {
-        return el.id == id;
-      })[0].code;
+      if(id != 0) {
+        let { Province } = this;
+        console.log(this.Province);
+        this.Province.forEach(el => {
+          console.log(id, el.code);
+          if(id == el.code) {
+            console.log(el);
+          }
+        });
+        return 
+        return Province.filter((el, index) => {
+          return el.code == id;
+        })[0].id;
+      }
     },
     formatData(data, isDay = false) {
       if (data == "") {
@@ -1021,6 +1046,12 @@ export default {
     },
     getCityCode(id) {
       this.activeCity = id;
+    },
+    getProvinceId(code) {
+      return this.Province.filter(el => el.code == code)[0].id;
+    },
+    getCityId(code) {
+      return this.City.filter(el => el.code == code)[0].id;
     },
     // 上传图片
     handleChange(info) {
@@ -1822,7 +1853,7 @@ export default {
   display: flex;
   flex-direction: column;
   flex: 1;
-  height: 46px;
+  /* height: 46px; */
   justify-content: space-between;
 }
 
@@ -1835,6 +1866,7 @@ export default {
 .work-exp .work-exp_list .exp-list_top .exp-list_right strong {
   font-weight: 600;
   display: flex;
+  width: calc(100% - 160px);
 }
 
 .work-exp .work-exp_list .exp-list_top .exp-list_right strong span {

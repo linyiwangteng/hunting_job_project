@@ -21,7 +21,7 @@
           <span v-else>
             <a-dropdown :trigger="['click']">
               <a class="ant-dropdown-link" href="javascript::;">
-                简历刷新
+                我的信息
                 <a-icon type="down" />
               </a>
               <a-menu slot="overlay">
