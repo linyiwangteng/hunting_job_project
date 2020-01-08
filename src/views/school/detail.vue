@@ -12,7 +12,8 @@
           <online-apply
             :logo="schoolInfo.logo"
             :name="schoolInfo.name"
-            :type="1"
+            :type="schoolInfo.type"
+            :cID="schoolInfo.schoolID"
             :id="schoolInfo.id"
           ></online-apply>
           <div class="all-school">
@@ -20,6 +21,7 @@
               <h2>{{schoolInfo.typeName}}地址：{{schoolInfo.address}}</h2>
               <h2>联系人：{{schoolInfo.contact}}</h2>
               <h2>联系电话：{{schoolInfo.phone}}</h2>
+              <h2>招生人数：{{schoolInfo.studentCount}}人</h2>
             </div>
           </div>
         </div>
@@ -50,9 +52,9 @@ export default {
       this.showall = !this.showall;
     },
     _getInfoData() {
-      let { id } = this.$route.query;
+      let { id, schoolId } = this.$route.query;
       api
-        .orgDetail({
+        .schooLDetail({
           id
         })
         .then(res2 => {
@@ -62,11 +64,13 @@ export default {
         });
     },
     gobaoming() {
-      let { id, type } = this.schoolInfo;
+      // let { id, schoolId } = this.$route.query;
+      let { schoolID, type, id } = this.schoolInfo;
       api
         .baoming({
-          CompanyId: id,
-          Type: type
+          CompanyId: schoolID,
+          Type: type,
+          RecruitId: id
         })
         .then(res => {
           console.log(res);

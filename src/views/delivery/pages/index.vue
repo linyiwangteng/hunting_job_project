@@ -65,6 +65,10 @@
                 <i class="mr_works_i"></i>
                 <span class="mr_m_name">我的投递</span>
               </li>
+              <li class="right-nav__item" @click="goTouDi(4)">
+                <i class="mr_works_i"></i>
+                <span class="mr_m_name">我的收藏</span>
+              </li>
             </ul>
           </div>
         </div>
@@ -90,6 +94,9 @@ export default {
         case "0":
           return "职位投递";
           break;
+        case "4":
+          return "我的收藏";
+          break;
         default:
           break;
       }
@@ -104,7 +111,11 @@ export default {
   beforeCreate() {},
   created() {},
   mounted() {
-    this.getToudiList();
+    if(this.type == 4){
+      this.getCollect();
+    }else{
+      this.getToudiList();
+    }
   },
   methods: {
     goTouDi(type) {
@@ -113,6 +124,18 @@ export default {
       } else {
         location.href = `delivery.html?type=${type}`;
       }
+    },
+    getCollect(){
+      api.getCollect()
+        .then(res=>{
+          if (res.code == 1) {
+            if (Object.isArray(res.data.rows)) {
+              this.list = [...res.data.rows];
+            }
+          }else{
+            this.$message.error(res.msg);
+          }
+        })
     },
     getURIParam(key) {
       var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");

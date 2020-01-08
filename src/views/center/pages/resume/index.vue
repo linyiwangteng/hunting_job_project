@@ -14,7 +14,7 @@
             @change="handleChange"
             :headers="geHeader"
           >
-            <img v-if="headImg" :src="headImg" alt="avatar" />
+            <img class="headerImg" v-if="headImg" :src="headImg" alt="avatar" />
             <div v-else>
               <a-icon :type="loading ? 'loading' : 'plus'" />
               <div class="ant-upload-text">上传头像</div>
@@ -213,6 +213,10 @@
             <li class="right-nav__item" @click="goTouDi(0)">
               <i class="mr_works_i"></i>
               <span class="mr_m_name">我的投递</span>
+            </li>
+            <li class="right-nav__item" @click="goTouDi(0)">
+              <i class="mr_works_i"></i>
+              <span class="mr_m_name">我的收藏</span>
             </li>
           </ul>
         </div>
@@ -520,7 +524,7 @@ export default {
       activeProvince: '',
       activeCity: '',
       headImg: "", //头像
-
+    
       // 求职类型
       getJobType: [
         { id: 1, val: "全职" },
@@ -663,6 +667,9 @@ export default {
     this._getjoblist();
   },
   methods: {
+    goCollect(){
+
+    },
     goTouDi(type){
       location.href = `delivery.html?type=${type}`;
     },
@@ -921,7 +928,7 @@ export default {
           this._getjoblist(this.expectationIndustry);
 
           this.province = data.province;
-
+          this.headImg = data.headImg;
           this.city = data.city;
           // 设置初始城市
           this.getZoneList();
@@ -1290,6 +1297,11 @@ export default {
 };
 </script>
 <style lang="less" scoped>
+.headerImg{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
 .persion-center-container {
   width: 1024px;
   margin: 0 auto;

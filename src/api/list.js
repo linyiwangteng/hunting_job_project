@@ -10,11 +10,17 @@ const positionADD = (params) => instance.post('/api/business/Deliver/add',{...pa
 // 企业列表
 const companyList = (params) => instance.get('/api/personnelfiles/company/query',{params});
 
+// 企业收藏
+const companyCollect = (params) => instance.post('api/business/collect/add',{...params});
+
+
+
 export default {
     joblist,
     professlist,
     positionList,
     positionInfo,
     positionADD,
-    companyList
+    companyList,
+    companyCollect,
 }

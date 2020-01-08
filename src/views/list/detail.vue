@@ -21,9 +21,9 @@
 
         <div class="position-content-r clearfix">
           <div class="position-deal clearfix">
-            <div class="jd_collection job-collection">
+            <!-- <div class="jd_collection job-collection">
               <i class="icon-glyph-hollow-star"></i>收藏
-            </div>
+            </div> -->
             <div class="resume-deliver">
               <a
                 rel="nofollow"

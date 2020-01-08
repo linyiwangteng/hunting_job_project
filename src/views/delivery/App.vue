@@ -4,18 +4,21 @@
     <div class="center-warp">
       <router-view />
     </div>
+    <right-contact />
     <my-footer ></my-footer>
   </div>
 </template>
 <script>
-import Tab from "@/components/Tab";
+import Tab from '@/components/Tab';
 import MyFooter from '@/components/Footer'
+import RightContact from '@/components/Right-contact'
 export default {
-  components: {
+  components:{
     Tab,
-    MyFooter
+    MyFooter,
+    RightContact
   }
-};
+}
 </script>
 <style lang="less" scoped >
 #app {
@@ -24,7 +27,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
 }
-
 #nav {
   padding: 30px;
 

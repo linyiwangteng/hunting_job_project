@@ -37,7 +37,11 @@ export default {
     id:{
       required:true,
       default:0,
-    }
+    },
+    cID:{
+      required:true,
+      default:0,
+    },
   },
   components: {
     Input,
@@ -47,8 +51,9 @@ export default {
     gobaoming() {
       api
         .baoming({
-          CompanyId: this.id,
-          Type: this.type
+          CompanyId: this.cID,
+          Type: this.type,
+          RecruitId: this.id,
         })
         .then(res => {
           if (res.code == 1) {

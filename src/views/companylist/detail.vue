@@ -3,24 +3,34 @@
     <!-- <intro :introInfo = 'schoolInfo'></intro> -->
     <div class="fl intro-d">
       <div class="intro-header">
-          <div class="intro-comp-title">
-            <div class="comp-logo">
-              <img :src="schoolInfo.logo" alt />
+        <div class="intro-comp-title">
+          <div class="comp-logo">
+            <img :src="schoolInfo.logo" alt />
+          </div>
+          <div class="comp-name">
+            <h2>{{schoolInfo.name}}</h2>
+          </div>
+          <div class="shoucang" @click="onCollect(schoolId)">
+            <div class="shoucang_icon" v-if="schoolInfo.IsCollect">
+              <img src="@/assets/sc_open.png" alt="取消收藏" />
+              <p>取消收藏</p>
             </div>
-            <div class="comp-name">
-              <h2>{{schoolInfo.name}}</h2>
+            <div class="shoucang_icon" v-else>
+              <img src="@/assets/sc_close.png" alt="收藏" />
+              <p>收藏</p>
             </div>
           </div>
-          <div class="comp-desc">
-            <p>{{schoolInfo.typeName}}地址：{{schoolInfo.address}}</p>
-            <p>联系人：{{schoolInfo.contact}}</p>
-            <p>联系电话：{{schoolInfo.phone}}</p>
-          </div>
         </div>
-        <div class="intro-desc">
-          <p class="comp_desc_icon">企业描述</p>
-          <p style="margin-bottom:40px;">{{schoolInfo.description}}</p>
+        <div class="comp-desc">
+          <p>{{schoolInfo.typeName}}地址：{{schoolInfo.address}}</p>
+          <p>联系人：{{schoolInfo.contact}}</p>
+          <p>联系电话：{{schoolInfo.phone}}</p>
         </div>
+      </div>
+      <div class="intro-desc">
+        <p class="comp_desc_icon">企业描述</p>
+        <p style="margin-bottom:40px;">{{schoolInfo.description}}</p>
+      </div>
     </div>
     <div class="fr">
       <hot-job />
@@ -39,7 +49,8 @@ export default {
     return {
       showall: false,
       schoolInfo: {},
-      zhuanyelInfo: {}
+      zhuanyelInfo: {},
+      schoolId:this.$route.query.id
     };
   },
   mounted() {
@@ -51,7 +62,7 @@ export default {
       this.showall = !this.showall;
     },
     _getInfoData() {
-      let { id, schoolId } = this.$route.query;
+      let { id } = this.$route.query;
       api.orgDetail({ id }).then(res => {
         this.schoolInfo = res.data;
         this.schoolInfo.typeName = "企业";
@@ -66,9 +77,25 @@ export default {
         })
         .then(res => {
           if (res.code == 1) {
+            this._getInfoData();
             this.$message.success("报名成功");
           } else {
             this.$message.success(res.msg);
+          }
+        });
+    },
+    onCollect(companyId) {
+      console.log(companyId);
+      
+      api
+        .companyCollect({
+          companyId
+        })
+        .then(res => {
+          if (res.code == 1) {
+            this.$message.success('收藏成功');
+          } else {
+            this.$message.error(res.msg);
           }
         });
     }
@@ -83,14 +110,14 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.intro-d{
+.intro-d {
   width: 700px;
 }
-.comp_container{
+.comp_container {
   width: 1024px;
   margin: 0 auto;
   overflow: hidden;
-  padding:20px; 
+  padding: 20px;
   background: #fff;
 }
 .comp_desc_icon {
@@ -111,6 +138,7 @@ export default {
   .intro-comp-title {
     width: 100%;
     margin-bottom: 20px;
+    position: relative;
     .comp-logo {
       display: inline-block;
       vertical-align: bottom;
@@ -123,6 +151,20 @@ export default {
       display: inline-block;
       vertical-align: bottom;
       margin-left: 20px;
+    }
+    .shoucang {
+      right: 10px;
+      cursor: pointer;
+      top: 20px;
+      position: absolute;
+      .shoucang_icon {
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        img {
+          width: 100%;
+        }
+      }
     }
   }
 }

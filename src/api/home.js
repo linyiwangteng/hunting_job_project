@@ -30,7 +30,7 @@ const homeHotJobList = (params) => instance.get('/api/business/deliver/jobfuncti
 
 
 const schoolList =(params) => instance.get('/api/business/RecruitStudents/QueryByPerson',{params});
-const majorDetail = (params) => instance.get('/api/business/RecruitStudents/edit',{params});
+const schooLDetail = (params) => instance.get('/api/business/RecruitStudents/edit',{params});
 const Authentication = (params) => instance.get('/api/admin/Authentication/QueryChildren',{params});
 const AuthenticationList = (params) => instance.get('/api/business/Occupation/QueryByPerson',{params});
 
@@ -49,11 +49,12 @@ export default {
   jigouDetail,
 
   schoolList,
-  majorDetail,
+  // majorDetail,
   Authentication,
   AuthenticationList,
   zoneList__all,
   homeHotJobList,
+  schooLDetail,
   // getCity,
 
   hometuijian,

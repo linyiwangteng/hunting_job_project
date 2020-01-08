@@ -1,6 +1,6 @@
 import instance, { serverUrl } from './instance';
 
-export const uploadPhoto = serverUrl + '/api/cms/cmsinfo/uploadpicture';
+export const uploadPhoto = serverUrl + '/api/business/personcandidate/UploadHeadImg';
 
 export const uploadJianli = serverUrl + '/api/business/personcandidate/UploadCandidate';
 
@@ -40,6 +40,9 @@ const studyDelete = (params) => instance.delete('/api/business/personcandidateed
 // 投递列表
 const getTouDiList = (params) => instance.get('/api/business/Sign/QueryByPerson', { params });
 
+// 我的收藏
+const getCollect = (params) => instance.get('/api/business/collect/query', { params });
+
 
 
 export default {
@@ -56,4 +59,5 @@ export default {
     studyEdit,
     studyDelete,
     getTouDiList,
+    getCollect,
 }

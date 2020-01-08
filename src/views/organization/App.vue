@@ -1,18 +1,24 @@
 <template>
   <div id="app">
-    <tab></tab>
-    <div class="login-wrap">
+    <tab ></tab>
+    <div class="login-warp">
       <router-view />
     </div>
+    <right-contact />
+    <my-footer ></my-footer>
   </div>
 </template>
 <script>
-import Tab from "@/components/Tab";
+import Tab from '@/components/Tab';
+import MyFooter from '@/components/Footer'
+import RightContact from '@/components/Right-contact'
 export default {
-  components: {
-    Tab
+  components:{
+    Tab,
+    MyFooter,
+    RightContact
   }
-};
+}
 </script>
 <style lang="less" scoped >
 .login-wrap{

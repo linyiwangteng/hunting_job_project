@@ -6,7 +6,7 @@
         class="options"
         v-for="school in schoolsList"
         :key="school.id"
-        @click="goDetail(school.schoolID)"
+        @click="goDetail(school.id,school.schoolID)"
       >
         <img :src="school.logo || placehoderListImg()" alt class="schoolLogo" />
         <h1 class="paddingleft">{{school.name}}</h1>
@@ -99,7 +99,6 @@ export default {
           if (res.code == 1) {
             this.schoolsList = res.data.rows;
             this.total = res.data.total;
-            console.log(this.schoolsList);
           }
         });
     },

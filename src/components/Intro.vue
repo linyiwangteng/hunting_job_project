@@ -9,7 +9,7 @@
       </div>
       <div class="intro-right">
         <div style="margin-left:5px;">
-          <online-apply :logo="introInfo.logo" :name="introInfo.name" :type="type" :id="id"></online-apply>
+          <online-apply :logo="introInfo.logo" :cID="introInfo.schoolId" :name="introInfo.name" :type="introInfo.type" :id="introInfo.id"></online-apply>
           <div class="all-school">
             <div class="school-container">
               <h2>{{introInfo.typeName}}地址：{{introInfo.address}}</h2>
