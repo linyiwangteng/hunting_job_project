@@ -8,7 +8,7 @@
               <em></em>
               {{ type | formatTitle }}
             </h1>
-            <a class="d_refresh" href="javascript:;" @click="getToudiList()">刷新</a>
+            <!-- <a class="d_refresh" href="javascript:;" @click="getToudiList()">刷新</a> -->
           </dt>
           <dd>
             <div class="delivery_tabs">
@@ -20,7 +20,7 @@
             </div>
             <form id="deliveryForm">
               <ul class="reset my_delivery">
-                <li :key="index" v-for="(item,index) in list">
+                <li :key="index" v-for="(item,index) in list" @click="goDetail(item.id)">
                   <div class="d_item">
                     <img :src="item.logo" class="left-logo" alt />
                     <div>
@@ -35,12 +35,11 @@
                       <!-- <span class="d_time">2014-07-01 17:15</span> -->
                       <div class="clear"></div>
                       <div class="d_resume">{{ item.recruitName }}</div>
+                      <div class="d_resume">{{ item.desc }}</div>
                     </div>
                   </div>
                 </li>
               </ul>
-              <input type="hidden" value="-1" name="tag" />
-              <input type="hidden" value name="r" />
             </form>
           </dd>
         </dl>
@@ -80,7 +79,6 @@
 <script>
 // import DefaultImg from "./assets/./assets/touxiang.jpg";
 import api from "@/api";
-import { isArray } from "util";
 export default {
   filters: {
     formatTitle(t) {
@@ -111,13 +109,36 @@ export default {
   beforeCreate() {},
   created() {},
   mounted() {
-    if(this.type == 4){
+    if (this.type == 4) {
       this.getCollect();
-    }else{
+    } else {
       this.getToudiList();
     }
   },
   methods: {
+    goDetail(id) {
+      switch (this.getURIParam("type")) {
+        case "1":
+          location.href = 'school.html#/detail?id=' + id;
+          return "我的院校";
+          break;
+        case "2":
+          // location.href = 'organization.html#/detail?id=' + id;
+          return "报名机构";
+          break;
+        case "0":
+          location.href = 'list.html#/detail?id=' + id;
+          return "职位投递";
+          break;
+        case "4":
+          // location.href = 'list.html#/detail?id=' + id;
+          return "我的收藏";
+          break;
+        default:
+          break;
+      }
+      alert(id);
+    },
     goTouDi(type) {
       if (type == 3) {
         location.href = `center.html#/resume`;
@@ -125,17 +146,16 @@ export default {
         location.href = `delivery.html?type=${type}`;
       }
     },
-    getCollect(){
-      api.getCollect()
-        .then(res=>{
-          if (res.code == 1) {
-            if (Object.isArray(res.data.rows)) {
-              this.list = [...res.data.rows];
-            }
-          }else{
-            this.$message.error(res.msg);
+    getCollect() {
+      api.getCollect().then(res => {
+        if (res.code == 1) {
+          if (Array.isArray(res.data.rows)) {
+            this.list = [...res.data.rows];
           }
-        })
+        } else {
+          this.$message.error(res.msg);
+        }
+      });
     },
     getURIParam(key) {
       var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
@@ -154,7 +174,7 @@ export default {
         })
         .then(res => {
           if (res.code == 1) {
-            if (isArray(res.data.rows)) {
+            if (Array.isArray(res.data.rows)) {
               this.list = [...res.data.rows];
             }
           }
