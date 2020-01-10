@@ -139,7 +139,7 @@ export default {
   .options {
     position: relative;
     width: 500px;
-    height: 86px;
+    // height: 86px;
     border: 1px solid rgba(0, 0, 0, 0.06);
     border-radius: 4px;
     padding: 10px;

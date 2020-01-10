@@ -35,7 +35,7 @@ instance.interceptors.response.use(function (response) {
       case 401:
         // 返回 401 清除token信息并跳转到登录页面
         localStorage.clear();
-        location.href = '/login.html';
+        location.href = 'login.html';
     }
   }
   return Promise.reject(error);
