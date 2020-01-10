@@ -10,7 +10,8 @@
       >
         <img :src="school.logo || placehoderListImg()" alt class="schoolLogo" />
         <h1 class="paddingleft">{{school.name}}</h1>
-        <span class="paddingleft">学校名称:{{school.schoolName}}</span>
+        <div class="paddingleft">招生:<span style="color:red">{{school.studentCount+'人'}}</span></div>
+        <span class="paddingleft">{{school.schoolName}}</span>
         <!-- <p class="description" :title="school.description">简介:{{school.description}}</p> -->
       </span>
     </div>

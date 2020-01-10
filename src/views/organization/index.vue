@@ -47,7 +47,8 @@
       >
         <img :src="item.logo || placehoderListImg()" alt class="schoolLogo" />
         <h1 class="paddingleft">{{item.name}}</h1>
-        <span class="paddingleft">机构名称:{{item.schoolName}}</span>
+        <div class="paddingleft">{{item.startTime}}</div>
+        <span class="paddingleft">{{item.schoolName}}</span>
         <!-- <p class="description" :title="item.description">简介:{{item.description}}</p> -->
       </span>
     </div>

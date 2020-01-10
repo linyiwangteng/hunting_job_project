@@ -37,7 +37,7 @@
                         ></a>
                         <!-- <span class="d_time">2014-07-01 17:15</span> -->
                         <div class="clear"></div>
-                        <div class="d_resume">{{ item.recruitName }}</div>
+                        <div class="d_resume">{{ item.recruitName }}{{item.needName }}</div>
                         <div class="d_resume">{{ item.desc }}</div>
                       </div>
                     </div>

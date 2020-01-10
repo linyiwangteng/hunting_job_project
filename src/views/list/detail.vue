@@ -10,10 +10,10 @@
           </div>
           <dd class="job_request">
             <h3>
-              <span class="salary">{{introInfo.moneyMin}}K -{{introInfo.moneyMax}}K</span>
-              <span>/{{introInfo.address}} /</span>
-              <span>{{introInfo.workExpName}}年 /</span>
-              <span>{{introInfo.eduName}}及以上 /</span>
+              <span class="salary">{{introInfo.moneyMin}} -{{introInfo.moneyMax}}(K/年) </span>
+              <span>/ {{introInfo.province}}{{introInfo.city}} / </span>
+              <span>{{introInfo.workExpName+'年 / '}}</span>
+              <span>{{introInfo.eduName}}</span>
               <!-- <span>全职</span> -->
             </h3>
           </dd>
@@ -80,6 +80,11 @@
                 <i class="icon-glyph-trend"></i>
                 <h4 class="c_feature_name">联系电话：</h4>
                 <span class="hovertips">{{introInfo.phone}}</span>
+              </li>
+              <li>
+                <i class="icon-glyph-trend"></i>
+                <h4 class="c_feature_name">地址：</h4>
+                <span class="hovertips">{{introInfo.address}}</span>
               </li>
             </ul>
           </dd>
@@ -164,7 +169,7 @@ export default {
         .positionADD({
           CompanyId: companyId,
           Type: 0,
-          RecruitId: jobFunctionId
+          RecruitId: id
         })
         .then(res => {
           if (res.code == 1) {
