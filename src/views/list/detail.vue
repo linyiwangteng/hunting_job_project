@@ -41,7 +41,7 @@
         <dl class="job_detail">
           <dd class="job_bt">
             <h3 class="description">职位描述：</h3>
-            <div class="job-detail">{{introInfo.description}}</div>
+            <div class="job-detail" style="white-space: pre-wrap;">{{introInfo.description}}</div>
           </dd>
           <dd class="job-address clearfix">
             <h3 class="address">工作地址</h3>
@@ -56,7 +56,7 @@
       <div class="content_r">
         <dl class="job_company" id="job_company">
           <dt>
-            <a href="javascript:;" target="_blank">
+            <div>
               <img
                 class="b2"
                 width="200"
@@ -67,7 +67,7 @@
                   <em class="fl-cn">{{introInfo.companyName}}</em>
                 </h3>
               </div>
-            </a>
+            </div>
           </dt>
           <dd>
             <ul class="c_feature">
@@ -168,7 +168,7 @@ export default {
         })
         .then(res => {
           if (res.code == 1) {
-            this.$message.success("申请成功");
+            this.$message.success("投递成功");
           } else {
             this.$message.success(res.msg);
           }

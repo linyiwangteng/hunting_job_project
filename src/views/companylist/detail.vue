@@ -11,7 +11,7 @@
             <h2>{{schoolInfo.name}}</h2>
           </div>
           <div class="shoucang" @click="onCollect(schoolId)">
-            <div class="shoucang_icon" v-if="schoolInfo.IsCollect">
+            <div class="shoucang_icon" v-if="schoolInfo.isCollect">
               <img src="@/assets/sc_open.png" alt="取消收藏" />
               <p>取消收藏</p>
             </div>
@@ -29,7 +29,7 @@
       </div>
       <div class="intro-desc">
         <p class="comp_desc_icon">企业描述</p>
-        <p style="margin-bottom:40px;">{{schoolInfo.description}}</p>
+        <p style="margin-bottom:40px;white-space: pre-wrap;">{{schoolInfo.description}}</p>
       </div>
     </div>
     <div class="fr">
@@ -85,15 +85,14 @@ export default {
         });
     },
     onCollect(companyId) {
-      console.log(companyId);
-      
       api
         .companyCollect({
           companyId
         })
         .then(res => {
           if (res.code == 1) {
-            this.$message.success('收藏成功');
+            this._getInfoData();
+            this.$message.success(res.msg);
           } else {
             this.$message.error(res.msg);
           }

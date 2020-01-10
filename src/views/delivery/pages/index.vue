@@ -20,23 +20,28 @@
             </div>
             <form id="deliveryForm">
               <ul class="reset my_delivery">
-                <li :key="index" v-for="(item,index) in list" @click="goDetail(item.id)">
+                <li
+                  :key="index"
+                  v-for="(item,index) in list"
+                  @click="goDetail(item.needId,item.schoolId,item.companyID,item.recruitId)"
+                >
                   <div class="d_item">
-                    <img :src="item.logo" class="left-logo" alt />
-                    <div>
-                      <div class="clear"></div>
-                      <a
-                        title="公司名称"
-                        class="d_jobname"
-                        target="_blank"
-                        href="javascript:;"
-                        v-text="item.companyName"
-                      ></a>
-                      <!-- <span class="d_time">2014-07-01 17:15</span> -->
-                      <div class="clear"></div>
-                      <div class="d_resume">{{ item.recruitName }}</div>
-                      <div class="d_resume">{{ item.desc }}</div>
+                    <div class="d_item_left">
+                      <img :src="item.logo" class="left-logo" alt />
+                      <div class="item_com-desc">
+                        <a
+                          title="公司名称"
+                          class="d_jobname"
+                          href="javascript:;"
+                          v-text="item.companyName"
+                        ></a>
+                        <!-- <span class="d_time">2014-07-01 17:15</span> -->
+                        <div class="clear"></div>
+                        <div class="d_resume">{{ item.recruitName }}</div>
+                        <div class="d_resume">{{ item.desc }}</div>
+                      </div>
                     </div>
+                    <div class="comp-time">{{item.createdTime}}</div>
                   </div>
                 </li>
               </ul>
@@ -116,22 +121,22 @@ export default {
     }
   },
   methods: {
-    goDetail(id) {
+    goDetail(needid = 0, schoolId = 0, companyID = 0, recruitId = 0) {
       switch (this.getURIParam("type")) {
         case "1":
-          location.href = 'school.html#/detail?id=' + id;
+          location.href = "school.html#/detail?schoolId=" + schoolId + "&id=" + needid;
           return "我的院校";
           break;
         case "2":
-          // location.href = 'organization.html#/detail?id=' + id;
+          location.href = 'organization.html#/detail?id=' + needid;
           return "报名机构";
           break;
         case "0":
-          location.href = 'list.html#/detail?id=' + id;
+          location.href = "list.html#/detail?id=" + recruitId;
           return "职位投递";
           break;
         case "4":
-          // location.href = 'list.html#/detail?id=' + id;
+          location.href = "companylist.html#/detail?id=" + companyID;
           return "我的收藏";
           break;
         default:
@@ -195,6 +200,11 @@ export default {
 .d_item {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  padding: 15px;
+  .d_item_left {
+    display: flex;
+  }
   .left-logo {
     width: 150px;
     margin-right: 20px;

@@ -5,7 +5,7 @@
         <div class="title">
           <h1>{{introInfo.name}}</h1>
         </div>
-        <div class="school-desc" v-html="introInfo.description"></div>
+        <div class="school-desc" style="white-space: pre-wrap;" v-html="introInfo.description"></div>
       </div>
       <div class="intro-right">
         <div style="margin-left:5px;">

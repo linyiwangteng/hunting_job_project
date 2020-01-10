@@ -3,23 +3,28 @@
     <div class="mr-myresume-left">
       <div class="myresume">
         <div class="basic" id="baseInfo">
-          <a-upload
-            name="formFile"
-            listType="picture-card"
-            class="avatar-uploader"
-            accept=".png, .jpg, .jpeg"
-            :showUploadList="false"
-            :action="uploadPhoto"
-            :beforeUpload="beforeUpload"
-            @change="handleChange"
-            :headers="geHeader"
-          >
-            <img class="headerImg" v-if="headImg" :src="headImg" alt="avatar" />
-            <div v-else>
-              <a-icon :type="loading ? 'loading' : 'plus'" />
-              <div class="ant-upload-text">上传头像</div>
-            </div>
-          </a-upload>
+          <div class="header_img_box">
+            <a-upload
+              name="formFile"
+              listType="picture-card"
+              class="avatar-uploader"
+              accept=".png, .jpg, .jpeg"
+              :showUploadList="false"
+              :action="uploadPhoto"
+              :beforeUpload="beforeUpload"
+              @change="handleChange"
+              :headers="geHeader"
+            >
+              <img class="headerImg" v-if="headImg" :src="headImg" alt="avatar" />
+              <div v-else>
+                <a-icon :type="loading ? 'loading' : 'plus'" />
+                <div class="ant-upload-text">上传头像</div>
+              </div>
+            </a-upload>
+            <p style="text-align:center">修改头像</p>
+            <p style="text-align:center">大小不超过200k 格式为jpg、png</p>
+          </div>
+
           <div class="basic-info">
             <em class="edit-btn" @click="showSelfDesc('selfModal')">
               <i class="icon-icon_resume_editor active-color"></i>编辑
@@ -60,7 +65,7 @@
                 <span>{{page_expectationSalary}}K</span>
               </span>
             </p>
-            <p>{{page_description}}</p>
+            <p style="white-space: pre-wrap">{{page_description}}</p>
           </div>
         </div>
       </div>
@@ -96,7 +101,7 @@
               </div>
             </div>
             <div class="exp-list_content">
-              <p v-text="item.description"></p>
+              <p style="white-space: pre-wrap" v-text="item.description"></p>
             </div>
           </li>
         </ol>
@@ -128,11 +133,11 @@
             <div class="exp-list_top">
               <div class="exp-list_right">
                 <strong class="exp-list_title">
-                  <span v-text="item.projectDescription"></span>
+                  <p style="white-space: pre-wrap" v-text="item.projectDescription"></p>
                 </strong>
               </div>
             </div>
-            <div class="exp-list_content" v-text="item.description"></div>
+            <div class="exp-list_content" style="white-space: pre-wrap" v-text="item.description"></div>
           </li>
         </ol>
       </div>
@@ -166,7 +171,7 @@
                 <p>{{item.speciality}} / {{item.education}}</p>
               </div>
             </div>
-            <div class="exp-list_content" v-text="item.description"></div>
+            <div class="exp-list_content" style="white-space: pre-wrap" v-text="item.description"></div>
           </li>
         </ol>
       </div>
@@ -194,7 +199,7 @@
           </div>-->
           <div class="nearbyResumes-group">
             <div class="mr_up_main">
-              <span class="mr_up_text">{{ jianliName }}</span>
+              <span v-if="jianliUrl.length > 0" class="mr_up_text" @click="lookJianLi"> 我的简历 </span>
             </div>
           </div>
         </div>
@@ -202,7 +207,7 @@
       <div class="right-nav">
         <div class="scroll-fix">
           <ul class="right-nav__content">
-            <li class="right-nav__item" @click="goTouDi(1)" >
+            <li class="right-nav__item" @click="goTouDi(1)">
               <i class="mr_base_i"></i>
               <span class="mr_m_name">我的院校</span>
             </li>
@@ -240,13 +245,15 @@
         </a-form-item>
         <a-form-item v-bind="formItemLayout">
           <span slot="label">邮箱</span>
-          <a-input v-model="email" 
-          v-decorator="['email', { 
+          <a-input
+            v-model="email"
+            v-decorator="['email', { 
             rules: [
               {trigger: 'blur', pattern: /^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/, message: '请输入正确的邮箱格式'}
             ],
             initialValue: this.email
-          }]" />
+          }]"
+          />
         </a-form-item>
         <a-form-item v-bind="formItemLayout">
           <span slot="label">生日</span>
@@ -269,8 +276,11 @@
         </a-form-item>
         <a-form-item v-bind="formItemLayout" class="city_set">
           <span slot="label">期望城市</span>
-          <a-select placeholder="请选择省份" v-model="activeProvince" 
-          @change="getZoneList(activeProvince, true)">
+          <a-select
+            placeholder="请选择省份"
+            v-model="activeProvince"
+            @change="getZoneList(activeProvince, true)"
+          >
             <a-select-option
               :key="item.code"
               :value="item.code"
@@ -278,7 +288,11 @@
             >{{item.name}}</a-select-option>
           </a-select>
           <a-select placeholder="请选择城市" v-model="activeCity">
-            <a-select-option :key="item.code" :value="item.code" v-for="(item) in City">{{item.name}}</a-select-option>
+            <a-select-option
+              :key="item.code"
+              :value="item.code"
+              v-for="(item) in City"
+            >{{item.name}}</a-select-option>
           </a-select>
         </a-form-item>
         <a-form-item v-bind="formItemLayout" class="city_set">
@@ -289,10 +303,14 @@
         <a-form-item v-bind="formItemLayout" class="city_set">
           <span slot="label">期望职业</span>
           <a-select @change="_getjoblist(expectationIndustry)" v-model="expectationIndustry">
-            <a-select-option :key="index" :value="item.id" v-for="(item, index) in jobList">{{item.name}}</a-select-option>
+            <a-select-option
+              :key="index"
+              :value="item.id"
+              v-for="(item, index) in jobList"
+            >{{item.name}}</a-select-option>
           </a-select>
           <!-- @change="getTwoJobId" -->
-          <a-select  v-model="expectationOccupation">
+          <a-select v-model="expectationOccupation">
             <a-select-option
               :key="index"
               :value="item.id"
@@ -309,7 +327,7 @@
         <a-form-item v-bind="formItemLayout" label="自我描述">
           <a-textarea v-model="description" style="width: 100%" :rows="6"></a-textarea>
         </a-form-item>
-        <a-form-item v-bind="tailFormItemLayout">
+        <a-form-item style="text-align:center">
           <a-button type="primary" html-type="submit">保存</a-button>
         </a-form-item>
       </a-form>
@@ -333,7 +351,7 @@
         <a-form-item v-bind="formItemLayout" label="公司描述">
           <a-textarea v-model="workDescription" :rows="6"></a-textarea>
         </a-form-item>
-        <a-form-item v-bind="tailFormItemLayout">
+        <a-form-item style="text-align:center">>
           <a-button type="primary" html-type="submit">保存</a-button>
         </a-form-item>
       </a-form>
@@ -357,7 +375,7 @@
         <a-form-item v-bind="formItemLayout" label="职责描述">
           <a-textarea v-model="projectDescriptionMsg" :rows="6"></a-textarea>
         </a-form-item>
-        <a-form-item v-bind="tailFormItemLayout">
+        <a-form-item style="text-align:center">>
           <a-button type="primary" html-type="submit">保存</a-button>
         </a-form-item>
       </a-form>
@@ -392,7 +410,7 @@
             @change="schoolDateChange"
           />
         </a-form-item>
-        <a-form-item v-bind="tailFormItemLayout">
+        <a-form-item style="text-align:center">>
           <a-button type="primary" html-type="submit">保存</a-button>
         </a-form-item>
       </a-form>
@@ -521,10 +539,10 @@ export default {
         "50k"
       ],
 
-      activeProvince: '',
-      activeCity: '',
+      activeProvince: "",
+      activeCity: "",
       headImg: "", //头像
-    
+
       // 求职类型
       getJobType: [
         { id: 1, val: "全职" },
@@ -667,10 +685,18 @@ export default {
     this._getjoblist();
   },
   methods: {
-    goCollect(){
-
+    lookJianLi() {
+      let u = this.jianliUrl;
+      if (this.jianliUrl.indexOf("pdf") > -1) {
+        window.open(this.jianliUrl, "_blank");
+      } else {
+        window.open(
+          "https://view.officeapps.live.com/op/view.aspx?src=" + this.jianliUrl,
+          "_blank"
+        );
+      }
     },
-    goTouDi(type){
+    goTouDi(type) {
       location.href = `delivery.html?type=${type}`;
     },
     closeModal() {
@@ -810,11 +836,11 @@ export default {
         .then(res => {
           if (res.code == 1) {
             if (id == 0) {
-              this.jobList = [{id: 0, name: '请选择'}, ...res.data];
+              this.jobList = [{ id: 0, name: "请选择" }, ...res.data];
 
               this._getjoblist(res.data[0].id);
             } else {
-              this.twoJobList = [{id: 0, name: '请选择'}, ...res.data];
+              this.twoJobList = [{ id: 0, name: "请选择" }, ...res.data];
               if (isDefaultID) {
                 this.getTwoJobId(isDefaultID);
               }
@@ -930,6 +956,8 @@ export default {
           this.province = data.province;
           this.headImg = data.headImg;
           this.city = data.city;
+
+          this.jianliUrl = data.filePath;
           // 设置初始城市
           this.getZoneList();
 
@@ -1012,7 +1040,9 @@ export default {
           if (res.code == 1) {
             if (code == 0) {
               this.Province = res.data;
-              this.activeProvince = this.Province.filter(el => el.id == this.province)[0].code;
+              this.activeProvince = this.Province.filter(
+                el => el.id == this.province
+              )[0].code;
               this.getZoneList(this.activeProvince);
             } else {
               this.City = res.data;
@@ -1020,22 +1050,24 @@ export default {
                 this.activeCity = this.City[0].code;
                 return;
               }
-              this.activeCity = this.City.filter(el => el.id == this.city)[0].code;
+              this.activeCity = this.City.filter(
+                el => el.id == this.city
+              )[0].code;
             }
           }
         });
     },
     findProviceCode(id) {
-      if(id != 0) {
+      if (id != 0) {
         let { Province } = this;
         console.log(this.Province);
         this.Province.forEach(el => {
           console.log(id, el.code);
-          if(id == el.code) {
+          if (id == el.code) {
             console.log(el);
           }
         });
-        return 
+        return;
         return Province.filter((el, index) => {
           return el.code == id;
         })[0].id;
@@ -1297,7 +1329,19 @@ export default {
 };
 </script>
 <style lang="less" scoped>
-.headerImg{
+.header_img_box {
+  width: 200px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  .avatar-uploader {
+    width: 106px;
+    height: 106px;
+    margin: 0 auto;
+  }
+}
+.headerImg {
   width: 100%;
   height: 100%;
   border-radius: 50%;
@@ -1345,6 +1389,7 @@ export default {
     width: 100%;
     margin-left: 20px;
     flex: 1;
+    overflow: hidden;
   }
 
   .basic .basic-info .edit-btn {
@@ -2190,6 +2235,7 @@ export default {
   white-space: nowrap;
   float: left;
   line-height: 27px;
+  cursor: pointer;
 }
 
 .right-nav .mr_upload {
@@ -2245,7 +2291,7 @@ export default {
   width: 230px;
   height: 27px;
   margin: 0 10px;
-  padding: 10px 0;
+  // padding: 10px 0;
   border-bottom: 1px solid #f2f2f2;
 }
 
@@ -2259,7 +2305,7 @@ export default {
 
 .right-nav .mr_up_main:last-of-type {
   border-bottom: 0;
-  padding: 10px 0 0;
+  // padding: 10px 0 0;
 }
 
 .right-nav .mr_set_default {

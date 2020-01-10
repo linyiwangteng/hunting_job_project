@@ -40,10 +40,6 @@
                 <a-menu-item key="4" @click="outLogin">退出</a-menu-item>
               </a-menu>
             </a-dropdown>
-            <i class="divide">｜</i>
-            <span>
-              <a :href="defcompanyUrl">更多</a>
-            </span>
           </span>
         </span>
       </div>
